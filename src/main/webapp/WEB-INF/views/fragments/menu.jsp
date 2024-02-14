@@ -22,7 +22,7 @@
 			<acme:menu-suboption code="master.menu.anonymous.juan-lopez" action="https://chat.openai.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.jose-castro" action="https://www.realbetisbalompie.es/"/>
 			<acme:menu-suboption code="master.menu.anonymous.juan-del-junco" action="https://www.hermandaddelosgitanos.com/"/>
-			<acme:menu-suboption code="master.menu.anonymous.pablo-mejias" action="https://alexcordobes.es/"/>
+			<acme:menu-suboption code="master.menu.anonymous.pablo-mejias" action="https://www.centropkmn.com/pokemon-bw/?"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
