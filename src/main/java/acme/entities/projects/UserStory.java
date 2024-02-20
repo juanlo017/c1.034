@@ -1,12 +1,13 @@
 
 package acme.entities.projects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -18,17 +19,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Project extends AbstractEntity {
+public class UserStory extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-	@NotBlank
-	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{3}-\\d{4}$", message = "{validation.project.code}")
-	private String				code;
 
 	@NotBlank
 	@Length(max = 75)
@@ -36,13 +33,18 @@ public class Project extends AbstractEntity {
 
 	@NotBlank
 	@Length(max = 100)
-	private String				_abstract;
-
-	boolean						indication;
+	private String				description;
 
 	@Digits(integer = 3, fraction = 2)
 	@Min(0)
-	private double				cost;
+	private double				estimatedCost;
+
+	@NotBlank
+	@Length(max = 100)
+	private String				acceptanceCriteria;
+
+	@NotNull
+	Priority					priority;
 
 	@URL
 	@Length(max = 255)
@@ -51,4 +53,8 @@ public class Project extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
+	@Valid
+	@ManyToOne(optional = true)
+	private Project				project;
 }
