@@ -48,6 +48,8 @@ public class Project extends AbstractEntity {
 	@Length(max = 255)
 	private String				link;
 
+	boolean						draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
