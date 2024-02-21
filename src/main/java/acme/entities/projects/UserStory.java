@@ -1,20 +1,25 @@
 
-package acme.roles;
+package acme.entities.projects;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
-import acme.client.data.AbstractRole;
+import acme.client.data.AbstractEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Manager extends AbstractRole {
+public class UserStory extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -24,15 +29,22 @@ public class Manager extends AbstractRole {
 
 	@NotBlank
 	@Length(max = 75)
-	private String				degree;
+	private String				title;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				overview;
+	private String				description;
+
+	@Digits(integer = 3, fraction = 2)
+	@Min(0)
+	private double				estimatedCost;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				certifications;
+	private String				acceptanceCriteria;
+
+	@NotNull
+	Priority					priority;
 
 	@URL
 	@Length(max = 255)
@@ -41,4 +53,8 @@ public class Manager extends AbstractRole {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
+	@Valid
+	@ManyToOne(optional = true)
+	private Project				project;
 }
