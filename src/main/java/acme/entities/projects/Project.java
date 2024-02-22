@@ -40,6 +40,7 @@ public class Project extends AbstractEntity {
 
 	boolean						indication;
 
+	// THIS IS A DERIVED ATTRIBUTE, BUT FOR NOW IT STAYS LIKE SO UNTIL FOLLOW-UP SESSION.
 	@Digits(integer = 3, fraction = 2)
 	@Min(0)
 	private double				cost;
@@ -48,7 +49,7 @@ public class Project extends AbstractEntity {
 	@Length(max = 255)
 	private String				link;
 
-	boolean						draftMode;
+	private boolean				draftMode;
 
 	// Derived attributes -----------------------------------------------------
 
