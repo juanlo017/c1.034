@@ -3,15 +3,18 @@ package acme.entities.projects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.roles.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,12 +41,7 @@ public class Project extends AbstractEntity {
 	@Length(max = 100)
 	private String				_abstract;
 
-	boolean						indication;
-
-	// THIS IS A DERIVED ATTRIBUTE, BUT FOR NOW IT STAYS LIKE SO UNTIL FOLLOW-UP SESSION.
-	@Digits(integer = 3, fraction = 2)
-	@Min(0)
-	private double				cost;
+	private boolean				indication;
 
 	@URL
 	@Length(max = 255)
@@ -53,5 +51,15 @@ public class Project extends AbstractEntity {
 
 	// Derived attributes -----------------------------------------------------
 
+	// THIS IS A DERIVED ATTRIBUTE, BUT FOR NOW IT STAYS LIKE SO UNTIL FOLLOW-UP SESSION.
+	@Digits(integer = 3, fraction = 2)
+	@PositiveOrZero
+	private double				cost;
+
 	// Relationships ----------------------------------------------------------
+
+	@Valid
+	@ManyToOne(optional = false)
+	private Manager				manager;
+
 }

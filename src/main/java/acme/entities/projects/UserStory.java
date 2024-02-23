@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -36,7 +36,7 @@ public class UserStory extends AbstractEntity {
 	private String				description;
 
 	@Digits(integer = 3, fraction = 2)
-	@Min(0)
+	@PositiveOrZero
 	private double				estimatedCost;
 
 	@NotBlank
@@ -44,7 +44,7 @@ public class UserStory extends AbstractEntity {
 	private String				acceptanceCriteria;
 
 	@NotNull
-	Priority					priority;
+	private Priority			priority;
 
 	@URL
 	@Length(max = 255)
@@ -55,6 +55,6 @@ public class UserStory extends AbstractEntity {
 	// Relationships ----------------------------------------------------------
 
 	@Valid
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = false) // Composition   	
 	private Project				project;
 }
