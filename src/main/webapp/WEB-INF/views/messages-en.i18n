@@ -9,3 +9,4 @@
 # they accept any liabilities with respect to them.
 
 validation.project.code	= Invalid input. Please enter a string in the format 'ABC-1234' where 'ABC' consists of three uppercase letters followed by a hyphen and then four digits.
+validation.claim.code	= Invalid input. Please enter a string in the format 'C-1234' where the code starts with an uppercase 'C' followed by a hyphen and then four digits.

@@ -4,6 +4,7 @@ package acme.entities.projects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -52,6 +53,7 @@ public class Project extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// THIS IS A DERIVED ATTRIBUTE, BUT FOR NOW IT STAYS LIKE SO UNTIL FOLLOW-UP SESSION.
+	@Transient
 	@Digits(integer = 3, fraction = 2)
 	@PositiveOrZero
 	private double				cost;

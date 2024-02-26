@@ -9,3 +9,5 @@
 # they accept any liabilities with respect to them.
 
 validation.project.code	= Entrada inválida. Por favor, ingresa una cadena en el formato 'ABC-1234' donde 'ABC' consta de tres letras mayúsculas seguidas de un guión y luego cuatro dígitos.
+Entrada inválida. Ingrese una cadena en el formato 'C-1234' donde el código comience con una 'C' mayúscula seguida de un guión y luego cuatro dígitos.
+
