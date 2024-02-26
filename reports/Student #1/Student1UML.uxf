@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>368</x>
-      <y>480</y>
+      <x>112</x>
+      <y>368</y>
       <w>288</w>
       <h>128</h>
     </coordinates>
@@ -25,8 +25,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>384</y>
+      <x>440</x>
+      <y>272</y>
       <w>312</w>
       <h>136</h>
     </coordinates>
@@ -37,9 +37,9 @@ Project
 + title: String{NotBlank, Length(max=75)}
 + abstract: String{NotBlank, Length(max=100)}
 + indication: boolean
-+ cost: double {Digits(3,2), PositiveOrZero}
 + link: String {URL, Length(max=255)}
 + draftMode: boolean
+/ cost: double {Digits(3,2), PositiveOrZero}
 bg=green
 </panel_attributes>
     <additional_attributes/>
@@ -47,8 +47,8 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>552</x>
-      <y>200</y>
+      <x>296</x>
+      <y>88</y>
       <w>72</w>
       <h>96</h>
     </coordinates>
@@ -66,8 +66,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
-      <y>400</y>
+      <x>256</x>
+      <y>288</y>
       <w>200</w>
       <h>96</h>
     </coordinates>
@@ -79,8 +79,8 @@ belongs to &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>192</y>
+      <x>472</x>
+      <y>80</y>
       <w>264</w>
       <h>112</h>
     </coordinates>
@@ -98,8 +98,8 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>848</x>
-      <y>296</y>
+      <x>592</x>
+      <y>184</y>
       <w>40</w>
       <h>104</h>
     </coordinates>
@@ -110,8 +110,8 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>208</y>
+      <x>32</x>
+      <y>96</y>
       <w>184</w>
       <h>224</h>
     </coordinates>
@@ -139,8 +139,8 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>128</y>
+      <x>64</x>
+      <y>16</y>
       <w>112</w>
       <h>40</h>
     </coordinates>
@@ -153,8 +153,8 @@ bg=white
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>160</y>
+      <x>112</x>
+      <y>48</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -164,8 +164,8 @@ bg=white
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>944</x>
-      <y>560</y>
+      <x>688</x>
+      <y>448</y>
       <w>184</w>
       <h>56</h>
     </coordinates>
@@ -178,8 +178,8 @@ that compose it.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>512</y>
+      <x>584</x>
+      <y>400</y>
       <w>248</w>
       <h>64</h>
     </coordinates>
@@ -190,8 +190,8 @@ that compose it.</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>760</x>
-      <y>608</y>
+      <x>504</x>
+      <y>496</y>
       <w>184</w>
       <h>56</h>
     </coordinates>
@@ -203,8 +203,8 @@ be rejected by the system.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>512</y>
+      <x>584</x>
+      <y>400</y>
       <w>24</w>
       <h>112</h>
     </coordinates>
