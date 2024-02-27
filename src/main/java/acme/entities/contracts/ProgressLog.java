@@ -6,6 +6,7 @@ import java.security.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -14,10 +15,8 @@ import javax.validation.constraints.PositiveOrZero;
 import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
-import acme.client.data.datatypes.Money;
-import acme.entities.projects.Project;
 
-public class Contract extends AbstractEntity {
+public class ProgressLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -26,26 +25,22 @@ public class Contract extends AbstractEntity {
 	@NotBlank
 	@Column(unique = true)
 	@Pattern(regexp = "^[A-Z]{1,3}-[0-9]{3}$")
-	private String				code;
+	private String				recordId;
 
 	@Past
-	private Timestamp			instantiationMoment;
+	private Timestamp			registrationMoment;
 
 	@NotBlank
 	@Length(max = 75)
-	private String				providerName;
+	private String				responsiblePerson;
 
-	@NotBlank
-	@Length(max = 75)
-	private String				customerName;
+	@PositiveOrZero
+	@Max(value = 1)
+	private Double				completeness;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				goals;
-
-	@PositiveOrZero
-	//@Max(value = project.getCost()) TODO implement this
-	private Money				budget;
+	private String				comment;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -53,6 +48,6 @@ public class Contract extends AbstractEntity {
 
 	@Valid
 	@ManyToOne(optional = false)
-	private Project				project;
+	private Contract			contract;
 
 }
