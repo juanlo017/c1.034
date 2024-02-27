@@ -18,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Clients extends AbstractRole {
+public class Client extends AbstractRole {
 
 	// Serialisation identifier -----------------------------------------------
 
