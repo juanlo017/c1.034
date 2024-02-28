@@ -2,6 +2,8 @@
 package acme.roles;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -9,6 +11,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractRole;
+import acme.entities.trainings.TrainingModule;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,4 +49,9 @@ public class Developer extends AbstractRole {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
+	@Valid
+	@OneToMany
+	private TrainingModule		trainingModule;
+
 }
