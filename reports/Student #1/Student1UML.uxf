@@ -35,7 +35,7 @@ Project
 --
 + code: String{Pattern("^[A-Z]{3}-\\d{4}$"), NotBlank, Unique}
 + title: String{NotBlank, Length(max=75)}
-+ abstract: String{NotBlank, Length(max=100)}
++ abstractText: String{NotBlank, Length(max=100)}
 + indication: boolean
 + link: String {URL, Length(max=255)}
 + draftMode: boolean
