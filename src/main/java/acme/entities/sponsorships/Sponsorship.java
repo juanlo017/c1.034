@@ -18,6 +18,7 @@ import javax.validation.constraints.Positive;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.client.data.datatypes.Money;
 import acme.entities.projects.Project;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,23 +28,29 @@ import lombok.Setter;
 @Setter
 public class Sponsorship extends AbstractEntity {
 
+	// Serialisation identifier -----------------------------------------------
+
+	private static final long	serialVersionUID	= 1L;
+
+	// Attributes -------------------------------------------------------------
+
 	@NotBlank
 	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
 	@Column(unique = true)
-	private String			code;
+	private String				code;
 
 	@Past
-	private Date			moment;
+	private Date				moment;
 
 	@Positive
-	private Integer			amount;
+	private Money				amount;
 
-	private TypeSporsonship	type;
+	private TypeSporsonship		type;
 
-	private String			optionalEmail;
+	private String				optionalEmail;
 
 	@URL
-	private String			optionalLink;
+	private String				optionalLink;
 
 
 	// Derived attributes -----------------------------------------------------
