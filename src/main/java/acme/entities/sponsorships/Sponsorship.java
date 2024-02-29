@@ -1,14 +1,13 @@
 
 package acme.entities.sponsorships;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
+import java.time.Duration;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
@@ -19,6 +18,7 @@ import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
 import acme.client.data.datatypes.Money;
+import acme.client.helpers.MomentHelper;
 import acme.entities.projects.Project;
 import lombok.Getter;
 import lombok.Setter;
@@ -54,15 +54,20 @@ public class Sponsorship extends AbstractEntity {
 
 
 	// Derived attributes -----------------------------------------------------
-	public Integer getDurationInMonths() {
+	@Transient
+	public Integer getDuration() {
 		if (this.moment != null) {
-			LocalDate startDate = this.moment.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			LocalDate endDate = LocalDate.now();
-			Period period = Period.between(startDate, endDate);
-			int months = period.getMonths() + period.getYears() * 12;
-			return Math.max(months, 1);
+			Date currentMoment = MomentHelper.getCurrentMoment();
+			Duration duration = MomentHelper.computeDuration(this.moment, currentMoment);
+			long months = duration.toDays() / 30;
+			return Math.toIntExact(months);
 		}
 		return null;
+	}
+
+	@Transient
+	public boolean isDurationAtLeastOneMonthLong() {
+		return this.getDuration() != null && this.getDuration() >= 1;
 	}
 
 	// Relationships ----------------------------------------------------------
