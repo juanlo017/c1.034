@@ -4,20 +4,20 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>150</x>
-      <y>490</y>
-      <w>210</w>
+      <x>80</x>
+      <y>520</y>
+      <w>370</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Risk
 --
--Reference: String
--identificationDate: LocalDate
--Impact: Integer
+-Reference: String{pattern “R-[0-9]{3}”), not blank, unique}
+-identificationDate: Date{Past}
+-Impact: Integer{Positive}
 -Probability: Double
 -Value: Double
--Description: String
+-Description: String{not blank, length&lt;101}
 -Link: String
 bg=GREEN</panel_attributes>
     <additional_attributes/>
@@ -25,20 +25,20 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>150</x>
+      <x>70</x>
       <y>30</y>
-      <w>240</w>
+      <w>460</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Claim
 --
--code: String
--instantationMoment: LocalDateTime
--Heading: String
--Description: String
--Department: String
--Email: String
+-code: String{pattern “C-[0-9]{4}”), not blank, unique}
+-instantationMoment: Date{Past,Temporal(TemporalType.TIMESTAMP}
+-Heading: String{not blank, length&lt;76}
+-Description: String{not blank, length&lt;101}
+-Department: String{not blank, length&lt;101}
+-Email: String{Email}
 -Link: String
 bg=GREEN</panel_attributes>
     <additional_attributes/>
@@ -46,18 +46,18 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>580</x>
+      <x>590</x>
       <y>290</y>
-      <w>240</w>
+      <w>450</w>
       <h>130</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Banner
 --
--instantationMoment: LocalDateTime
--DisplayPeriod: Duration
--Picture: String
--Slogan: String
+-instantationMoment: Date{Past,Temporal(TemporalType.TIMESTAMP}
+-DisplayPeriod: Date
+-Picture: String{URL}
+-Slogan: String{not blank, length&lt;76}
 -Link: String
 bg=GREEN</panel_attributes>
     <additional_attributes/>
@@ -65,20 +65,20 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
+      <x>70</x>
       <y>260</y>
-      <w>270</w>
+      <w>450</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Objective
 --
--instantationMoment: LocalDateTime
--Title: String
--Description: String
+-instantationMoment: Date{Past,Temporal(TemporalType.TIMESTAMP}
+-Title: String{not blank, length&lt;76}
+-Description: String{not blank, length&lt;101}
 -Priority: enumerate('Low','Medium','High')
 -Status: enumerate('Critical','Not Critical')
--Duration: Duration
+-Duration: Integer
 -Link: String
 bg=GREEN</panel_attributes>
     <additional_attributes/>
@@ -86,19 +86,19 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
+      <x>650</x>
       <y>30</y>
-      <w>240</w>
+      <w>470</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Notice
 --
--instantationMoment: LocalDateTime
--Title: String
--Author: String
--Message: String
--Email: String
+-instantationMoment: Date{Past,Temporal(TemporalType.TIMESTAMP}
+-Title: String{not blank, length&lt;76}
+-Author: String{not blank, length&lt;76}
+-Message: String{not blank, length&lt;101}
+-Email: String{Email}
 -Link: String
 bg=GREEN</panel_attributes>
     <additional_attributes/>
@@ -106,8 +106,8 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>970</x>
-      <y>510</y>
+      <x>680</x>
+      <y>580</y>
       <w>70</w>
       <h>100</h>
     </coordinates>
@@ -123,8 +123,8 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>200</y>
+      <x>930</x>
+      <y>490</y>
       <w>250</w>
       <h>250</h>
     </coordinates>
@@ -175,55 +175,55 @@ m2=1</panel_attributes>
       <x>250</x>
       <y>410</y>
       <w>50</w>
-      <h>100</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m2=1
 m1=0..*</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
+      <x>510</x>
       <y>350</y>
-      <w>210</w>
+      <w>100</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..*
 m2=1</panel_attributes>
-    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
+      <x>520</x>
       <y>110</y>
-      <w>120</w>
+      <w>150</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m2=1..*
 m1=1</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1000</x>
-      <y>130</y>
+      <x>1050</x>
+      <y>460</y>
       <w>30</w>
-      <h>90</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
-      <y>100</y>
+      <x>1010</x>
+      <y>430</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
