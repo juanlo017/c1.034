@@ -10,7 +10,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -41,9 +40,8 @@ public class Invoices extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationTime; // Falta la restricción.
 
-	@NotNull // No estoy seguro, si not null es lo correcto para indicar que no puede ser 0.
 	@Positive
-	private Integer				quantity; // No se si es mas correcto integer o double
+	private Integer				quantity;
 
 	@PositiveOrZero
 	private Double				tax;
