@@ -1,67 +1,66 @@
 
-package acme.entities.projects;
+package acme.entities.trainings;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
-import acme.roles.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Project extends AbstractEntity {
+public class TrainingSession extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
+
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{3}-\\d{4}$", message = "{validation.project.code}")
+	@Pattern(regexp = "TS-[A-Z]{1,3}-[0-9]{3}", message = "{validation.training.code}")
 	private String				code;
 
-	@NotBlank
-	@Length(max = 75)
-	private String				title;
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime		timePeriod;
 
 	@NotBlank
-	@Length(max = 100)
-	private String				abstractText;
+	@Length(max = 76)
+	private String				location;
 
-	private boolean				indication;
+	@NotBlank
+	@Length(max = 76)
+	private String				instructor;
+
+	@NotBlank
+	@Email
+	private String				email;
 
 	@URL
 	@Length(max = 255)
 	private String				link;
 
-	private boolean				draftMode;
-
-	// Derived attributes -----------------------------------------------------
-
-	// THIS IS A DERIVED ATTRIBUTE, BUT FOR NOW IT STAYS LIKE SO UNTIL FOLLOW-UP SESSION.
-	@Transient
-	@Digits(integer = 3, fraction = 2)
-	@PositiveOrZero
-	private double				cost;
-
 	// Relationships ----------------------------------------------------------
 
 	@Valid
 	@ManyToOne(optional = false)
-	private Manager				manager;
+	private TrainingModule		trainingModule;
 
 }
