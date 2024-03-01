@@ -1,25 +1,21 @@
 
-package acme.entities.projects;
+package acme.roles;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.validation.Valid;
-import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
-import acme.client.data.AbstractEntity;
+import acme.client.data.AbstractRole;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class UserStory extends AbstractEntity {
+public class Developer extends AbstractRole {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -28,23 +24,20 @@ public class UserStory extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	@Length(max = 75)
-	private String				title;
+	@Length(max = 76)
+	private String				degree;
 
 	@NotBlank
-	@Length(max = 100)
-	private String				description;
-
-	@Digits(integer = 3, fraction = 2)
-	@Positive
-	private double				estimatedCost;
+	@Length(max = 101)
+	private String				specialisation;
 
 	@NotBlank
-	@Length(max = 100)
-	private String				acceptanceCriteria;
+	@Length(max = 101)
+	private String				skills;
 
-	@NotNull
-	private Priority			priority;
+	@NotBlank
+	@Email
+	private String				email;
 
 	@URL
 	@Length(max = 255)
@@ -53,8 +46,4 @@ public class UserStory extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-
-	@Valid
-	@ManyToOne(optional = false) // Composition   	
-	private Project				project;
 }
