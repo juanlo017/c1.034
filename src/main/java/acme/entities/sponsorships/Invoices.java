@@ -10,6 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -36,7 +37,7 @@ public class Invoices extends AbstractEntity {
 	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}", message = "{validation.invoices.code}")
 	private String				code;
 
-	@NotBlank
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationTime; // Falta la restricción.
 
