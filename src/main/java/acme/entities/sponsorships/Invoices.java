@@ -33,7 +33,7 @@ public class Invoices extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}", message = "{validation.project.code}")
+	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}", message = "{validation.invoices.code}")
 	private String				code;
 
 	@NotBlank
