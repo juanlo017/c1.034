@@ -35,7 +35,7 @@ public class Sponsorship extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
+	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}", message = "{validation.sponsorship.code}")
 	@Column(unique = true)
 	private String				code;
 
@@ -45,7 +45,7 @@ public class Sponsorship extends AbstractEntity {
 	@Positive
 	private Money				amount;
 
-	private TypeSporsonship		type;
+	private TypeSponsorship		type;
 
 	private String				optionalEmail;
 
