@@ -1,7 +1,7 @@
 
 package acme.entities.sponsorships;
 
-public enum TypeSporsonship {
+public enum TypeSponsorship {
 
 	FINANCIAL, INKIND
 }
