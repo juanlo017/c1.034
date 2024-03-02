@@ -10,7 +10,7 @@ user-story-08,Real-Time Collaboration Tools for Teams,"Collaborate in real time,
 user-story-09,Feedback System for Continuous Improvement,Share your thoughts for app enhancements,10,Criteria to be defined,MUST,http://www.example.org,project-01
 user-story-10,Accessibility Features for All Users,Making technology accessible to everyone.,50.00,Criteria to be defined,MUST,null,project-02
 user-story-11,Seamless Cross-Platform Synchronization for Users,Simplifying navigation with intuitive design updates.,49.00,Criteria to be defined,SHOULD,http://www.example.org,project-02
-user-story-12,Dynamic Content Recommendation Engine,Command your app without lifting a finger,0.00,Criteria to be defined,COULD,null,project-02
+user-story-12,Dynamic Content Recommendation Engine,Command your app without lifting a finger,0.01,Criteria to be defined,COULD,null,project-02
 user-story-13,Effortless File Sharing and Management System,Keep your devices in sync effortlessly.,1.99,Criteria to be defined,MUST,http://www.example.org,project-02
 user-story-14,Revolutionizing Customer Support with AI Chatbots,Get instant answers from our smart AI support,98.01,коза коза,WONT,null,project-02
 user-story-15,коза коза,-,999,Criteria to be defined,MUST,http://www.acme.org/moreInfo,project-02

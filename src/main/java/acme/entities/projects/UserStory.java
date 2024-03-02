@@ -55,6 +55,6 @@ public class UserStory extends AbstractEntity {
 	// Relationships ----------------------------------------------------------
 
 	@Valid
-	@ManyToOne(optional = false) // Composition   	
+	@ManyToOne(optional = false)
 	private Project				project;
 }

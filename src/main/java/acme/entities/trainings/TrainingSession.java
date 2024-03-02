@@ -1,7 +1,7 @@
 
 package acme.entities.trainings;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +39,7 @@ public class TrainingSession extends AbstractEntity {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime		timePeriod;
+	private Date				timePeriod;
 
 	@NotBlank
 	@Length(max = 76)
