@@ -10,3 +10,5 @@
 
 validation.project.code	= Invalid input. Please enter a string in the format 'ABC-1234' where 'ABC' consists of three uppercase letters followed by a hyphen and then four digits.
 validation.training.code = Invalid input. Please enter a string that follows the pattern 'TS-[A-Z]{1,3}-[0-9]{3}', where 'TS-' is followed by one to three uppercase letters, a hyphen, and then three digits.
+validation.sporsonship.code = Invalid input. Please enter a string that follows the pattern '[A-Z]{1,3}-[0-9]{3}', where one to three uppercase letters are followed by a hyphen, and then three digits.
+validation.invoices.code = Invalid input. Please enter a string that follows the pattern 'IN-[0-9]{4}-[0-9]{4}', where 'IN-' is followed by four digits followed by a hyphen, and then four digits.
