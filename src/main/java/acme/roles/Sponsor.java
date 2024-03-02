@@ -1,25 +1,21 @@
 
-package acme.entities.projects;
+package acme.roles;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.validation.Valid;
-import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
-import acme.client.data.AbstractEntity;
+import acme.client.data.AbstractRole;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class UserStory extends AbstractEntity {
+public class Sponsor extends AbstractRole {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -29,32 +25,20 @@ public class UserStory extends AbstractEntity {
 
 	@NotBlank
 	@Length(max = 75)
-	private String				title;
+	private String				name;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				description;
-
-	@Digits(integer = 3, fraction = 2)
-	@Positive
-	private double				estimatedCost;
-
-	@NotBlank
-	@Length(max = 100)
-	private String				acceptanceCriteria;
-
-	@NotNull
-	private Priority			priority;
+	private String				benefits;
 
 	@URL
 	@Length(max = 255)
-	private String				link;
+	private String				optionalPage;
+
+	@Email
+	private String				optionalEmail;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-
-	@Valid
-	@ManyToOne(optional = false)
-	private Project				project;
 }

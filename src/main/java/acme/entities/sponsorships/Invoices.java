@@ -1,29 +1,33 @@
 
-package acme.entities.projects;
+package acme.entities.sponsorships;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
-import acme.roles.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Project extends AbstractEntity {
 
+public class Invoices extends AbstractEntity {
 	// Serialisation identifier -----------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
@@ -31,37 +35,35 @@ public class Project extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{3}-\\d{4}$", message = "{validation.project.code}")
+	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}", message = "{validation.invoices.code}")
 	private String				code;
 
-	@NotBlank
-	@Length(max = 75)
-	private String				title;
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				registrationTime; // Falta la restricción.
 
-	@NotBlank
-	@Length(max = 100)
-	private String				abstractText;
+	@Positive
+	private Integer				quantity;
 
-	private boolean				indication;
+	@PositiveOrZero
+	private Double				tax;
 
 	@URL
 	@Length(max = 255)
-	private String				link;
-
-	private boolean				draftMode;
+	private String				optionalLink;
 
 	// Derived attributes -----------------------------------------------------
 
-	// THIS IS A DERIVED ATTRIBUTE, BUT FOR NOW IT STAYS LIKE SO UNTIL FOLLOW-UP SESSION.
+
 	@Transient
-	@Digits(integer = 3, fraction = 2)
-	@PositiveOrZero
-	private double				cost;
+	public Double getTotalAmount() {
+		return this.quantity * this.tax;
+	}
 
 	// Relationships ----------------------------------------------------------
 
+
 	@Valid
 	@ManyToOne(optional = false)
-	private Manager				manager;
-
+	private Sponsorship sponsorship;
 }
