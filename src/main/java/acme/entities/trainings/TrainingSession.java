@@ -1,7 +1,7 @@
 
 package acme.entities.trainings;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,10 +36,7 @@ public class TrainingSession extends AbstractEntity {
 	private String				code;
 
 	@NotNull
-	private LocalDateTime		timePeriodStart;
-
-	@NotNull
-	private LocalDateTime		timePeriodEnd;
+	private Date				timePeriod;
 
 	@NotBlank
 	@Length(max = 76)
@@ -62,36 +59,5 @@ public class TrainingSession extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private TrainingModule		trainingModule;
-
-	// Custom validators--------------------------------------------------------
-
-
-	public void setTimePeriod(final LocalDateTime start, final LocalDateTime end) {
-		this.timePeriodStart = start;
-		this.timePeriodEnd = end;
-	}
-
-	// Getter for the timePeriod attribute
-	public LocalDateTime getTimePeriodStart() {
-		return this.timePeriodStart;
-	}
-
-	// Custom validation for timePeriod
-	public boolean isValidTimePeriod() {
-		if (this.timePeriodStart == null || this.timePeriodEnd == null)
-			return false;
-
-		// Check if start is at least one week ahead of creation moment
-		LocalDateTime creationMoment = this.trainingModule.getCreationMoment();
-		LocalDateTime oneWeekAhead = creationMoment.plusWeeks(1);
-		if (this.timePeriodStart.isBefore(oneWeekAhead))
-			return false;
-
-		// Check if duration is at least one week long
-		if (this.timePeriodStart.plusWeeks(1).isAfter(this.timePeriodEnd))
-			return false;
-
-		return true;
-	}
 
 }
