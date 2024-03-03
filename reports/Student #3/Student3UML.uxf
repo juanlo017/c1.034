@@ -13,7 +13,7 @@
 TrainingSession
 --
 + code: String {Pattern("[A-Z]{1,3}-[0-9]{3}"), NotBlank, Unique}
-+ timePeriod: LocalDateTime {NotNull, Temporal(TemporalType.TIMESTAMP)}
++ timePeriod: Date {NotNull, Temporal(TemporalType.TIMESTAMP)}
 + location: String {NotBlank, Length(max=76)}
 + instructor: String {NotBlank, Length(max=76)}
 + email: String{NotBlank, Email}	
@@ -34,8 +34,7 @@ bg=green</panel_attributes>
 TrainingModule
 --
 + code: String{Pattern("[A-Z]{1,3}-[0-9]{3}"), NotBlank, Unique}
-+ creationMoment: String{NotBlank, Length(max=75)}
-+ creationMoment: LocalDateTime{Past}
++ creationMoment: Date{Past, Temporal(TemporalType.TIMESTAMP)}
 + details: String {NotBlank, Length(max=101)}
 + difficultyLevel: DifficultyLevel
 + updateMoment: LocalDateTime {Past}
