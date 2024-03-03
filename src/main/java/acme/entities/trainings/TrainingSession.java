@@ -37,8 +37,8 @@ public class TrainingSession extends AbstractEntity {
 	@Pattern(regexp = "TS-[A-Z]{1,3}-[0-9]{3}", message = "{validation.training.code}")
 	private String				code;
 
+  @Temporal(TemporalType.TIMESTAMP)
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date				timePeriod;
 
 	@NotBlank

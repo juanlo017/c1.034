@@ -34,7 +34,7 @@ bg=green</panel_attributes>
 TrainingModule
 --
 + code: String{Pattern("[A-Z]{1,3}-[0-9]{3}"), NotBlank, Unique}
-+ creationMoment: Date {Past, Temporal(TemporalType.TIMESTAMP)}
++ creationMoment: Date{Past, Temporal(TemporalType.TIMESTAMP)}
 + details: String {NotBlank, Length(max=101)}
 + difficultyLevel: DifficultyLevel
 + updateMoment: LocalDateTime {Past}
