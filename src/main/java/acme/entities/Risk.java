@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
@@ -33,13 +36,16 @@ public class Risk extends AbstractEntity {
 	@Pattern(regexp = "R-[0-9]{3}", message = "{validation.claim.code}")
 	private String				reference;
 
+	@NotNull
 	@Past
 	private Date				identificationDate;
 
 	@Positive
-	private Double				impact;
+	private double				impact;
 
-	private Double				probability;
+	@Digits(integer = 1, fraction = 2)
+	@Max(1)
+	private double				probability;
 
 	@NotBlank
 	@Length(max = 100)
