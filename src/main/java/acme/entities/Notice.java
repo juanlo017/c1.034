@@ -15,6 +15,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.client.data.accounts.Principal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -50,5 +51,16 @@ public class Notice extends AbstractEntity {
 
 	@URL
 	private String				link;
+
+
+	public void computeAuthor(final Principal principal) {
+		if (principal != null) {
+			String[] fullName = this.author.split(",");
+			String surname = fullName[0].trim();
+			String name = fullName[1].trim();
+			this.author = "〈" + principal.getUsername() + "〉" + " - " + "〈" + surname + ", " + name + "〉";
+		} else
+			this.author = "Unknown";
+	}
 
 }
