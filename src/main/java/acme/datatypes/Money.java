@@ -15,6 +15,7 @@ package acme.datatypes;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import acme.client.data.AbstractDatatype;
 import lombok.Getter;
@@ -35,10 +36,15 @@ public class Money extends AbstractDatatype {
 	private Double				amount;
 
 	@NotBlank
+	@Pattern(regexp = "EUR|USD|GBP")
 	private String				currency;
 
-	// Object interface -------------------------------------------------------
 
+	public Money() {
+		this.currency = "EUR";
+	}
+
+	// Object interface -------------------------------------------------------
 
 	@Override
 	public String toString() {
