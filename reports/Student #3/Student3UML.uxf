@@ -27,8 +27,8 @@ bg=green</panel_attributes>
     <coordinates>
       <x>432</x>
       <y>352</y>
-      <w>320</w>
-      <h>144</h>
+      <w>360</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 TrainingModule
@@ -173,13 +173,13 @@ be rejected by the system.</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>576</x>
-      <y>488</y>
+      <y>480</y>
       <w>24</w>
-      <h>104</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=..
 </panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -199,15 +199,15 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>744</x>
+      <x>784</x>
       <y>408</y>
-      <w>168</w>
+      <w>128</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2= 1
 extends to &gt;</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>
