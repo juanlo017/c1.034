@@ -36,6 +36,7 @@ public class Banner extends AbstractEntity {
 	@NotNull
 	private Date				instantiationMoment;
 
+	@NotBlank
 	@URL
 	@Length(max = 255)
 	private String				pictureLink;
@@ -49,7 +50,7 @@ public class Banner extends AbstractEntity {
 	private String				link;
 
 	@NotNull
-	@FutureOrPresent
+	@FutureOrPresent // PREGUNTAR EN FOLLOW-UP
 	private Date				displayPeriodStart;
 
 	@NotNull

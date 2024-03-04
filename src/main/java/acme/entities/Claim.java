@@ -9,7 +9,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -34,7 +34,7 @@ public class Claim extends AbstractEntity {
 	private String				heading;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@PastOrPresent
+	@Past
 	@NotNull
 	private Date				instantiationMoment;
 
