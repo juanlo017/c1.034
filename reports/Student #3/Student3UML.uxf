@@ -4,9 +4,9 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>104</x>
+      <x>40</x>
       <y>448</y>
-      <w>288</w>
+      <w>352</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
@@ -65,15 +65,15 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>248</x>
+      <x>184</x>
       <y>368</y>
-      <w>200</w>
+      <w>264</w>
       <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-x
 m2=1..n
 belongs to &gt;</panel_attributes>
-    <additional_attributes>230.0;20.0;10.0;20.0;10.0;100.0</additional_attributes>
+    <additional_attributes>310.0;20.0;10.0;20.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
