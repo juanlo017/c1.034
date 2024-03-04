@@ -1,7 +1,6 @@
 
 package acme.entities.objective;
 
-import java.time.Duration;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -34,22 +33,28 @@ public class Objective extends AbstractEntity {
 	private Date				instantiationMoment;
 
 	@NotBlank
-	@Length(max = 76)
+	@Length(max = 75)
 	private String				title;
 
 	@NotBlank
-	@Length(max = 101)
+	@Length(max = 100)
 	private String				description;
 
-	private ObjectivePriority			priority;
+	private ObjectivePriority	priority;
 
 	@NotNull
 	private boolean				status;
 
-	private Duration			duration;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				durationStart;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				durationEnd;
 
 	@URL
 	@Length(max = 255)
 	private String				link;
+
+	//Custom validator---------------------------------------------------------
 
 }
