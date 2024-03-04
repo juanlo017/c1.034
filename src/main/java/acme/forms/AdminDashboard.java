@@ -21,7 +21,7 @@ public class AdminDashboard extends AbstractForm {
 	int							numOfManagers;
 	int							numOfProviders;
 	int							numOfSponsors;
-	int							numOfClients;
+	int							numOfClients; //still have to close clients role pr
 
 	double						ratioNonCriticalObjectives;
 	double						ratioNoticesWithMailAndLink;
