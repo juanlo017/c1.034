@@ -190,7 +190,7 @@ bg=yellow</panel_attributes>
       <w>105</w>
       <h>35</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-x
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-x
 m1=1
 m2=0..n
 has &gt;</panel_attributes>
