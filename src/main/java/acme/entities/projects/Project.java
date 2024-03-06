@@ -8,6 +8,7 @@ import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -42,7 +43,8 @@ public class Project extends AbstractEntity {
 	@Length(max = 100)
 	private String				abstractText;
 
-	private boolean				indication;
+	@Transient
+	private boolean				fatalErrors;
 
 	@URL
 	@Length(max = 255)
@@ -60,8 +62,9 @@ public class Project extends AbstractEntity {
 
 	// Relationships ----------------------------------------------------------
 
+	@NotNull //a nvl de aplicación
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false) //a nvl de BBDD
 	private Manager				manager;
 
 }
