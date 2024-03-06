@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -43,7 +42,6 @@ public class Project extends AbstractEntity {
 	@Length(max = 100)
 	private String				abstractText;
 
-	@Transient
 	private boolean				fatalErrors;
 
 	@URL
@@ -54,17 +52,15 @@ public class Project extends AbstractEntity {
 
 	// Derived attributes -----------------------------------------------------
 
-	// THIS IS A DERIVED ATTRIBUTE, BUT FOR NOW IT STAYS LIKE SO UNTIL FOLLOW-UP SESSION.
 	@Transient
-	@Digits(integer = 3, fraction = 2)
 	@PositiveOrZero
-	private double				cost;
+	private int					cost;
 
 	// Relationships ----------------------------------------------------------
 
-	@NotNull //a nvl de aplicación
+	@NotNull
 	@Valid
-	@ManyToOne(optional = false) //a nvl de BBDD
+	@ManyToOne(optional = false)
 	private Manager				manager;
 
 }

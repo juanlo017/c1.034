@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>10</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>150</x>
-      <y>490</y>
-      <w>360</w>
-      <h>160</h>
+      <x>252</x>
+      <y>18</y>
+      <w>324</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 User Story
 --
 + title: String{NotBlank, Length(max=75)}
 + description: String{NotBlank, Length(max=100)}
-+ estimatedCost: double {Digits(3,2), PositiveOrZero}
++ estimatedCost: int {Positive}
 + acceptanceCriteria: String{NotBlank, Length(max=75)}	
 + priority: Priority {NotNull}
 + link: String {URL, Length(max=255)}
@@ -25,10 +25,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>560</x>
-      <y>370</y>
-      <w>390</w>
-      <h>170</h>
+      <x>261</x>
+      <y>495</y>
+      <w>351</w>
+      <h>153</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Project
@@ -36,10 +36,10 @@ Project
 + code: String{Pattern("^[A-Z]{3}-\\d{4}$"), NotBlank, Unique}
 + title: String{NotBlank, Length(max=75)}
 + abstractText: String{NotBlank, Length(max=100)}
-+ indication: boolean { Transient }
++ fatalErrors: boolean
 + link: String {URL, Length(max=255)}
 + draftMode: boolean
-/ cost: double {Digits(3,2), Positive}
+/ cost: int {Transient, PositiveOrZero}
 bg=green
 </panel_attributes>
     <additional_attributes/>
@@ -47,10 +47,10 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>510</y>
-      <w>90</w>
-      <h>120</h>
+      <x>270</x>
+      <y>189</y>
+      <w>81</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Enum&gt;&gt;
 Priority
@@ -64,25 +64,12 @@ bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>330</x>
-      <y>390</y>
-      <w>250</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-x
-m2=1..n
-belongs to a &gt;</panel_attributes>
-    <additional_attributes>230.0;20.0;10.0;20.0;10.0;100.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>790</x>
-      <y>90</y>
-      <w>330</w>
-      <h>140</h>
+      <x>468</x>
+      <y>243</y>
+      <w>297</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Manager
@@ -98,10 +85,10 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>220</y>
-      <w>220</w>
-      <h>170</h>
+      <x>423</x>
+      <y>360</y>
+      <w>198</w>
+      <h>153</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m2=0..n
@@ -111,10 +98,10 @@ owned by &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>0</y>
-      <w>230</w>
-      <h>280</h>
+      <x>675</x>
+      <y>396</y>
+      <w>207</w>
+      <h>252</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 ManagerDashboard
@@ -140,36 +127,10 @@ bg=green
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>870</x>
-      <y>590</y>
-      <w>230</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>bg=pink
-Cost of a project is the sum of the
-estimated cost of all user stories 
-that compose it.</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>740</x>
-      <y>530</y>
-      <w>310</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=..
-</panel_attributes>
-    <additional_attributes>290.0;60.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>640</x>
-      <y>650</y>
-      <w>230</w>
-      <h>70</h>
+      <x>333</x>
+      <y>747</y>
+      <w>207</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>bg=pink
 Projects containing fatal errors must
@@ -179,13 +140,68 @@ be rejected by the system.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>530</y>
-      <w>30</w>
-      <h>140</h>
+      <x>423</x>
+      <y>639</y>
+      <w>27</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=..
 </panel_attributes>
     <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>324</y>
+      <w>171</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Assignment
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>81</x>
+      <y>72</y>
+      <w>189</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m2=0..n</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>162</x>
+      <y>360</y>
+      <w>189</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m2=0..n
+
+
+</panel_attributes>
+    <additional_attributes>190.0;150.0;190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>567</x>
+      <y>63</y>
+      <w>189</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m2=0..n
+
+belongs to &gt;</panel_attributes>
+    <additional_attributes>110.0;200.0;110.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

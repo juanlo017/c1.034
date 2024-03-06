@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
@@ -34,6 +36,7 @@ public class CodeAudit extends AbstractEntity {
 	@Pattern(regexp = "^[A-Z]{1,3}-[0-9]{3}$", message = "{validation.codeaudit.code}")
 	private String				code;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Past
 	private Date				executionDate;
 
