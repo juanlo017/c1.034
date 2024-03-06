@@ -12,5 +12,7 @@ validation.project.code	= Entrada inválida. Por favor, ingresa una cadena en el
 validation.training.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón 'TS-[A-Z]{1,3}-[0-9]{3}', donde 'TS-' es seguido por una a tres letras mayúsculas, un guión, y luego tres dígitos.
 validation.sponsorship.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón '[A-Z]{1,3}-[0-9]{3}', donde una a tres letras mayúsculas son seguidas por un guión, y luego tres dígitos.
 validation.invoices.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón 'IN-[0-9]{4}-[0-9]{4}', donde 'IN-' es seguido por cuatro dígitos seguidos de un guión, y luego otros cuatro dígitos.
+validation.codeaudit.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón '[A-Z]{1,3}-[0-9]{3}', donde una a tres letras mayúsculas son seguidas por un guión, y luego tres dígitos.
+validation.auditrecord.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón 'AU-[0-9]{4}-[0-9]{3}', donde 'AU-' es seguido por cuatro dígitos seguidos de un guión, y luego tres dígitos.
 
 default.error.currency = Moneda no aceptada
