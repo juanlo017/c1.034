@@ -1,2 +1,3 @@
 key,code,instantiation-moment,provider-name,customer-name,goals,budget,key:project,key:client
 contract-01,A-000,2021/12/03 19:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac lectus.","Larem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac lectus.","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",0,project-01,client-01
+contract-02,Z-999,2021/12/03 20:00,a,b,c,0,project-01,client-01
