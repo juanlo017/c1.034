@@ -36,7 +36,7 @@ Contract
 + providerName: String{NotBlank, Length(1,75)}
 + customerName: String{NotBlank, Length(1,75)}
 + goals: String{NotBlank, Length(1,100)}
-/ budget: int{Max(cost)}
+/ budget: int{PositiveOrZero, Max(cost)}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -117,7 +117,7 @@ ClientDashboard
 + averageContractBudget: int{PositiveOrZero}
 + deviationContractBudget: int{PositiveOrZero}
 + minContractBudget: int{PositiveOrZero}
-+ maxContractBudget: int{PositiveOrZero}s
++ maxContractBudget: int{PositiveOrZero}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>

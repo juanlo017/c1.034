@@ -4,6 +4,7 @@ package acme.entities.contracts;
 import java.security.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -14,9 +15,13 @@ import javax.validation.constraints.PositiveOrZero;
 import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
-import acme.client.data.datatypes.Money;
 import acme.entities.projects.Project;
+import lombok.Getter;
+import lombok.Setter;
 
+@Entity
+@Getter
+@Setter
 public class Contract extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -45,7 +50,7 @@ public class Contract extends AbstractEntity {
 
 	@PositiveOrZero
 	//@Max(value = project.getCost()) TODO implement this
-	private Money				budget;
+	private int					budget;
 
 	// Derived attributes -----------------------------------------------------
 

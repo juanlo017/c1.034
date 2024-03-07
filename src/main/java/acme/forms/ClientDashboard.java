@@ -2,6 +2,7 @@
 package acme.forms;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 import acme.client.data.AbstractForm;
 import lombok.Getter;
@@ -18,13 +19,21 @@ public class ClientDashboard extends AbstractForm {
 	// Attributes -------------------------------------------------------------
 
 	int							numberOfProgressLogs;
+
 	@NotNull
 	Percentil					progressLogsCompletenessRate;
 
-	double						avgContractBudget;
-	double						minContractBudget;
-	double						maxContractBudget;
-	double						deviationContractBudget;
+	@PositiveOrZero
+	int							avgContractBudget;
+
+	@PositiveOrZero
+	int							minContractBudget;
+
+	@PositiveOrZero
+	int							maxContractBudget;
+
+	@PositiveOrZero
+	int							deviationContractBudget;
 
 	// Derived attributes -----------------------------------------------------
 

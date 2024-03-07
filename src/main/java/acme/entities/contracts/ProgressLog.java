@@ -4,6 +4,7 @@ package acme.entities.contracts;
 import java.security.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -15,7 +16,12 @@ import javax.validation.constraints.PositiveOrZero;
 import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
+import lombok.Getter;
+import lombok.Setter;
 
+@Entity
+@Getter
+@Setter
 public class ProgressLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
