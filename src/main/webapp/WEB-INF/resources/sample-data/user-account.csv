@@ -9,3 +9,4 @@ user-account-auditor-01,true,"UserIdentity{name: 'David', surname: '貸んい建
 user-account-auditor-02,true,"UserIdentity{name: 'David', surname: 'Auditor', email: 'david@acme.com'}",auditor2,auditor2
 user-account-client-01,true,"UserIdentity{name: 'Joselito', surname: 'One', email: 'client1@email.com'}",client1,client1
 user-account-client-02,true,"UserIdentity{name: 'Joselito', surname: 'Two', email: 'client2@email.com'}",client2,client2
+user-account-client-03,true,"UserIdentity{name: 'Joselito', surname: 'Three', email: 'client3@email.com'}",client3,client3
