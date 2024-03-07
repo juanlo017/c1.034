@@ -2,11 +2,9 @@
 package acme.entities.codeAudits;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -18,7 +16,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
-import acme.entities.auditRecords.AuditRecord;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,10 +51,10 @@ public class CodeAudit extends AbstractEntity {
 	private String				link;
 
 	// Relationships -----------------------------------
-
-	@OneToMany
-	private List<AuditRecord>	auditRecords;
-
+	/*
+	 * @OneToMany
+	 * private List<AuditRecord> auditRecords;
+	 */
 	/*
 	 * //Derived atributes
 	 * public void computeModeMark() { ¿En el service?

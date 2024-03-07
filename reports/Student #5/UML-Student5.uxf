@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
+      <x>80</x>
       <y>310</y>
       <w>380</w>
       <h>150</h>
@@ -12,12 +12,12 @@
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 codeAudit
 --
--code: String{pattern “[A-Z]{1,3}-[0-9]{3}”, not blank, unique}
--executionDate: Date{Past}
--type: enum('Static','Dynamic')
--correctiveActions: List&lt;String&gt;{not blank, length&lt;101}
--mark: Double
--Link: String{URL}
++code: String{pattern “[A-Z]{1,3}-[0-9]{3}”, not blank, unique}
++executionDate: Date{Past}
++type: enum('Static','Dynamic')
++actions: String{not blank, length&lt;101}
++mark: String
++Link: String{URL,length&lt;256}
 
 bg=GREEN</panel_attributes>
     <additional_attributes/>
@@ -25,18 +25,20 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
-      <y>120</y>
+      <x>80</x>
+      <y>50</y>
       <w>390</w>
-      <h>110</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 auditRecord
 --
--code: String{pattern “AU-[0-9]{4}-[0-9]{3}”, not blank, unique}
--period: Integer
--mark: enum('A+','A','B','C','F','F-')
--link: String{URL}
++code: String{pattern “AU-[0-9]{4}-[0-9]{3}”, not blank, unique}
++startTime:Date{Past}
++endTime:Date{Past}
++mark: enum('A_PLUS','A','B','C','F','F_MINUS')
++link: String{URL,length&lt;256}
++/getPeriod: Long{Transient}
 
 bg=GREEN</panel_attributes>
     <additional_attributes/>
@@ -44,15 +46,15 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>300</y>
+      <x>860</x>
+      <y>490</y>
       <w>240</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 auditorDashboard
 --
-Map&lt;type,Integer&gt;: recordsPerType
+Map&lt;Type,Integer&gt;: recordsPerType
 Double: averageRecords
 Double: recordsDeviation
 Integer: minRecords
@@ -68,8 +70,8 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>150</x>
-      <y>520</y>
+      <x>110</x>
+      <y>550</y>
       <w>320</w>
       <h>110</h>
     </coordinates>
@@ -78,7 +80,7 @@ Auditor
 --
 firm: String{not blank, length&lt;76}
 professionalId: String{not blank, length&lt;26}
-certifications: List&lt;String&gt;{not blank, length&lt;101}
+certifications: String{not blank, length&lt;101}
 link: String{URL} 
 
 bg=GREEN</panel_attributes>
@@ -87,48 +89,135 @@ bg=GREEN</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>220</y>
+      <x>260</x>
+      <y>190</y>
       <w>50</w>
-      <h>110</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m2=0..n</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+m2=0..n
+</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
+      <x>260</x>
       <y>450</y>
       <w>50</w>
-      <h>90</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m2=0..n</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>240</y>
+      <x>970</x>
+      <y>410</y>
       <w>30</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>210</y>
+      <x>930</x>
+      <y>380</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Serializable</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>670</x>
+      <y>520</y>
+      <w>90</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+Type
+--
++STATIC
++DYNAMIC
+
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>500</y>
+      <w>90</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+Mark
+--
++A_PLUS
++A 
++B  
++C  
++F 
++F_MINUS
+
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>640</x>
+      <y>80</y>
+      <w>220</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>getPeriod if it's at least 1h long
+bg=PINK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>460</x>
+      <y>60</y>
+      <w>200</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>640</x>
+      <y>260</y>
+      <w>300</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>The mark computed as the mode of the marks 
+in the corresponding auditing records; 
+ties must be broken arbitrarily if necessary
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>300</y>
+      <w>210</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>10.0;40.0;190.0;10.0</additional_attributes>
   </element>
 </diagram>
