@@ -1,8 +1,6 @@
 
 package acme.forms;
 
-import java.util.Date;
-
 import acme.client.data.AbstractForm;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +14,8 @@ public class DeveloperDashboard extends AbstractForm {
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-	int							totalNumberOfTrainingModules;
-	int							totalNumberOfTrainingSessions;
-	Date						lastUpdateMoment;
+	int							totalNumberOfTrainingModulesWithUpdateMoment;
+	int							totalNumberOfTrainingSessionsWithLink;
 
 	double						avgTimeOfTrainingModule;
 	double						minTimeOfTrainingModule;

@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>40</x>
-      <y>448</y>
+      <x>112</x>
+      <y>408</y>
       <w>352</w>
       <h>120</h>
     </coordinates>
@@ -16,7 +16,7 @@ TrainingSession
 + timePeriod: Date {NotNull, Temporal(TemporalType.TIMESTAMP)}
 + location: String {NotBlank, Length(max=76)}
 + instructor: String {NotBlank, Length(max=76)}
-+ email: String{NotBlank, Email}	
++ email: String {NotBlank, Email}	
 + link: String {URL, Length(max=255)}
 
 bg=green</panel_attributes>
@@ -25,21 +25,21 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>432</x>
-      <y>352</y>
-      <w>320</w>
+      <x>504</x>
+      <y>312</y>
+      <w>408</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 TrainingModule
 --
 + code: String{Pattern("[A-Z]{1,3}-[0-9]{3}"), NotBlank, Unique}
-+ creationMoment: Date{Past, Temporal(TemporalType.TIMESTAMP)}
-+ details: String {NotBlank, Length(max=101)}
++ creationMoment: Date{Past, NotNull, Temporal(TemporalType.TIMESTAMP)}
++ details: String {NotBlank, Length(max=100)}
 + difficultyLevel: DifficultyLevel
-+ updateMoment: LocalDateTime {Past}
-+ optionalLink: String {URL}
-+ totalTime: Double
++ updateMoment: Date {Past, Temporal(TemporalType.TIMESTAMP)}
++ optionalLink: String {URL, Length(max=255)}
++ totalTime: Integer {NotNull}
 bg=green
 </panel_attributes>
     <additional_attributes/>
@@ -47,8 +47,8 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>168</y>
+      <x>360</x>
+      <y>128</y>
       <w>104</w>
       <h>80</h>
     </coordinates>
@@ -65,8 +65,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>184</x>
-      <y>368</y>
+      <x>256</x>
+      <y>328</y>
       <w>264</w>
       <h>96</h>
     </coordinates>
@@ -78,8 +78,8 @@ belongs to &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>464</x>
-      <y>160</y>
+      <x>536</x>
+      <y>120</y>
       <w>272</w>
       <h>112</h>
     </coordinates>
@@ -91,15 +91,15 @@ Developer
 + skills: String {NotBlank, Length(max=101)}
 + email: String {NotBlank, Email}
 + link: String {URL, Length(max=255)}
-bg=green
+bg=orange
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>584</x>
-      <y>264</y>
+      <x>656</x>
+      <y>224</y>
       <w>40</w>
       <h>104</h>
     </coordinates>
@@ -110,17 +110,16 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>24</x>
-      <y>176</y>
+      <x>96</x>
+      <y>136</y>
       <w>208</w>
       <h>152</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 DeveloperDashboard
 --
-int: totalNumberOfTrainingModules
-int: totalNumberOfTrainingSessions
-Date: lastUpdateMoment
+int: totalNumberOfTrainingModulesWithUpdateMoment
+int: totalNumberOfTrainingSessionsWithLink
 
 double: avgTimeOfTrainingModule
 double: minTimeOfTrainingModule
@@ -134,8 +133,8 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>56</x>
-      <y>96</y>
+      <x>128</x>
+      <y>56</y>
       <w>112</w>
       <h>40</h>
     </coordinates>
@@ -148,8 +147,8 @@ bg=white
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>104</x>
-      <y>128</y>
+      <x>176</x>
+      <y>88</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -159,8 +158,8 @@ bg=white
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>496</x>
-      <y>576</y>
+      <x>568</x>
+      <y>536</y>
       <w>184</w>
       <h>56</h>
     </coordinates>
@@ -172,8 +171,8 @@ be rejected by the system.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>488</y>
+      <x>648</x>
+      <y>448</y>
       <w>24</w>
       <h>104</h>
     </coordinates>
@@ -184,8 +183,8 @@ be rejected by the system.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>896</x>
-      <y>400</y>
+      <x>936</x>
+      <y>520</y>
       <w>88</w>
       <h>40</h>
     </coordinates>
@@ -199,15 +198,92 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>744</x>
-      <y>408</y>
-      <w>168</w>
-      <h>40</h>
+      <x>904</x>
+      <y>376</y>
+      <w>152</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2= 1
 extends to &gt;</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>90.0;180.0;90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>856</x>
+      <y>240</y>
+      <w>200</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>bg=green
+UpdateMoment es opcional, y debe
+ser después de CreationMoment</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>168</x>
+      <y>560</y>
+      <w>216</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>bg=green
+TimePeriod debe durar al menos una
+semana, y tiene que ser al menos
+una semana antes de CreationMoment
+de la entidad TrainingModule</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>520</y>
+      <w>24</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=..
+</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>904</x>
+      <y>272</y>
+      <w>56</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=..
+</panel_attributes>
+    <additional_attributes>10.0;80.0;50.0;80.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>832</x>
+      <y>448</y>
+      <w>24</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>lt=..
+</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>752</x>
+      <y>608</y>
+      <w>144</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>bg=pink
+The attribute totalTime is 
+represented in minutes.</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

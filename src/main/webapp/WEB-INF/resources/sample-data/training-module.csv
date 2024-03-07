@@ -1,0 +1,11 @@
+key,code,creationMoment,details,difficultyLevel,updateMoment,optionalLink,totalTime,key:project,key:developer
+training-module-01,B-001,2001/04/23 19:00,"For beginners",BASIC,2001/04/23 21:00,http://www.trainingmodule01.com,120,project-01,developer-01
+training-module-02,E-002,2002/05/15 09:30,"Intermediate level training module",INTERMEDIATE,2002/05/15 11:45,http://www.trainingmodule02.com,180,project-01,developer-02
+training-module-03,T-003,2003/08/27 14:15,"Advanced training module with hands-on exercises",ADVANCED,null,http://www.trainingmodule03.com,240,project-02,developer-02
+training-module-04,I-004,2004/11/09 10:00,"Specialized module for specific domain knowledge",ADVANCED,2004/11/09 12:30,http://www.trainingmodule04.com,300,project-03,developer-01
+training-module-05,S-005,2002/02/18 13:45,"Comprehensive module covering fundamentals and advanced topics",INTERMEDIATE,2005/02/18 16:00,http://www.trainingmodule05.com,330,project-04,developer-01
+training-module-06,JJO-551,2001/05/05 12:50,"Special module for certification preparation",ADVANCED,2006/06/30 13:45,http://www.trainingmodule06.com,280,project-05,developer-02
+training-module-07,POV-230,2000/07/20 10:30,"Quick crash course for beginners",BASIC,2006/07/20 12:00,http://www.trainingmodule07.com,90,project-06,developer-02
+training-module-08,RBB-007,2000/09/14 14:00,"Workshop-style module with group projects",INTERMEDIATE,null,http://www.trainingmodule08.com,240,project-07,developer-02
+training-module-09,CI-015,2001/02/28 14:15,"Zero to hero module for accelerated learning",BASIC,null,http://www.trainingmodule09.com,120,project-08,developer-01
+training-module-10,WIN-033,2003/12/19 08:30,"Workshop-style module with group projects",INTERMEDIATE,2014/12/19 11:30,http://www.trainingmodule08.com,210,project-09,developer-01
