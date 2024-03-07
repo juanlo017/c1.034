@@ -17,3 +17,4 @@ validation.auditrecord.code = Invalid input. Please enter a string that follows 
 
 
 default.error.currency = Currency not accepted
+validation.risk.code = Invalid input. Please enter a string that follows the pattern 'R-[0-9]{3}', where 'R-' is followed by three digits.

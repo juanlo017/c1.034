@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
@@ -37,21 +39,22 @@ public class Risk extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "R-[0-9]{3}", message = "{validation.claim.code}")
+	@Pattern(regexp = "^R-[0-9]{3}$", message = "{validation.risk.code}")
 	private String				reference;
 
 	@NotNull
 	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				identificationDate;
 
-	@NotNull
 	@Positive
-	private double				impact;
+	@NotNull
+	private Double				impact;
 
 	@NotNull
 	@Digits(integer = 1, fraction = 2)
 	@Max(1)
-	private double				probability;
+	private Double				probability;
 
 	@NotBlank
 	@Length(max = 100)

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>77</x>
+      <y>448</y>
+      <w>357</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Risk
+--
++ reference: String{pattern “R-[0-9]{3}”), NotBlank, unique}
++ identificationDate: Date{NotNull,Past,Temporal(TemporalType.TIMESTAMP)}
++ impact: Double{Positive, NotNull}
++ probability: Double{Digits(Integer=1, Fraction = 2), max(1), NotNull} 
++ description: String{NotBlank, Length(max=100)}
++ optionalLink: String{URL, Length(max=255)}
+/ value: Double{Transient}
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>140</y>
+      <w>364</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Claim
+--
++ code: String{pattern “C-[0-9]{4}”), NotBlank, unique}
++ instantationMoment: Date{Past,NotNull,Temporal(TemporalType.TIMESTAMP)}
++ heading: String{NotBlank, Length(max=75)}
++ description: String{NotBlank, Length(max=100)}
++ department: String{NotBlank, Length(max=100)}
++ email: String{Email, Length(max=255)}
++ link: String{URL, Length(max=255}
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>742</x>
+      <y>287</y>
+      <w>371</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Banner
+--
++ instantationMoment: Date{NotNull,Past,Temporal(TemporalType.TIMESTAMP)}
++ pictureLink: String{NotBlank,URL,Length(max=255)}
++ slogan: String{NotBlank,Length(max=75)}
++ link: String{NotBlank,URL,Length(max=255)}
++ displayPeriodStart: Date{NotNull,Temporal(TemporalType.TIMESTAMP)}
++ displayPeriodEnd: Date{NotNull,Temporal(TemporalType.TIMESTAMP)}
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>357</x>
+      <y>301</y>
+      <w>371</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Objective
+--
++ instantationMoment: Date{NotNull,Past,Temporal(TemporalType.TIMESTAMP)}
++ title: String{NotBlank, Length(max=75)}
++ description: String{NotBlank, Length(max=100)}
++ priority: ObjectivePriority
++ status: boolean
++ durationStart: Date{NotNull,Temporal(TemporalType.TIMESTAMP)}
++ durationEnd: Date{NotNull,Temporal(TemporalType.TIMESTAMP)}
++ link: String{URL, Length(max=255)}
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>742</x>
+      <y>140</y>
+      <w>364</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Notice
+--
++ instantationMoment: Date{NotNull,Past,Temporal(TemporalType.TIMESTAMP)}
++ title: String{NotBlank,Length(max=75)}
++ author: String{NotBlank,Length(max=75)}
++ message: String{NotBlank,Length(max=100)}
++ email: String{Email,Length(max=255)}
++ link: String{URL,Length(max=255)}
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>973</x>
+      <y>532</y>
+      <w>175</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Form&gt;&gt;
+AdminDashboard
+--
+Map&lt;String,Integer&gt;:principalsByRole
+Double: noticeRatioWithEmail
+Double: noticeRatioWithLink
+Double: criticalObjectiveRatio
+Double: nonCriticalObjectiveRatio
+Double: riskAverage
+Integer: maxRisk
+Integer: minRisk
+Double: riskDeviation
+Double: claimAverage
+Integer: maxClaim
+Integer: minClaim
+Double: claimDeviation
+
+
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1057</x>
+      <y>497</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1029</x>
+      <y>476</y>
+      <w>70</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Serializable</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>154</x>
+      <y>322</y>
+      <w>112</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Project
+--
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>259</x>
+      <y>343</y>
+      <w>112</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>203</x>
+      <y>378</y>
+      <w>35</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>483</x>
+      <y>490</y>
+      <w>98</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Impact debe 
+ser positivo
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>427</x>
+      <y>497</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>553</x>
+      <y>574</y>
+      <w>133</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Administrator
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>553</y>
+      <w>343</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1=0..*
+m2=1
+Considered by &gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;470.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>679</x>
+      <y>392</y>
+      <w>252</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1=0..*
+m2=1
+Created by &gt;
+</panel_attributes>
+    <additional_attributes>260.0;10.0;260.0;300.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>42</x>
+      <y>609</y>
+      <w>161</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Value se calcula a partir de la 
+multiplicación de impact 
+con probability
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>119</x>
+      <y>553</y>
+      <w>21</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>637</x>
+      <y>448</y>
+      <w>91</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumerate&gt;&gt;
+ObjectivePriority
+--
++LOW
++MEDIUM
++HIGH
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>980</x>
+      <y>413</y>
+      <w>168</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>DisplayPeriodStart debe empezar
+despues de instantiationMoment
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>385</y>
+      <w>28</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>20.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>21</x>
+      <y>378</y>
+      <w>105</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Probability no puede 
+ser mayor que 1.00
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>98</x>
+      <y>413</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>147</x>
+      <y>238</y>
+      <w>168</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>DurationStart debe empezar
+despues de instantiationMoment.
+
+DurationEnd debe ser posterior a
+DurationStart.
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>266</y>
+      <w>119</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>150.0;50.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

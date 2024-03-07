@@ -48,6 +48,7 @@ public class Banner extends AbstractEntity {
 	private String				slogan;
 
 	@URL
+	@NotBlank
 	@Length(max = 255)
 	private String				link;
 
