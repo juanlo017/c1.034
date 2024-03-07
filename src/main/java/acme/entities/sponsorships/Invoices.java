@@ -16,7 +16,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
@@ -51,7 +50,7 @@ public class Invoices extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				dueDate; // Falta restricción de que es al menos un mes antes del registrationTime
 
-	@Positive
+	//	@Positive
 	@NotNull
 	private Money				quantity;
 
