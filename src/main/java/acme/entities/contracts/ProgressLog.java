@@ -33,7 +33,7 @@ public class ProgressLog extends AbstractEntity {
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{1,3}-[0-9]{3}$")
+	@Pattern(regexp = "^PG-[A-Z]{1,2}-[0-9]{4}$")
 	private String				recordId;
 
 	@NotNull
