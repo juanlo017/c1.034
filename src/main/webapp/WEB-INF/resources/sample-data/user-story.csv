@@ -2,7 +2,7 @@ key,title,description,estimated-cost,acceptance-criteria,priority,link,key:manag
 user-story-01,Enhancing User Experience with Personalized Dashboards,"Customize your dashboard for a tailored experience in the web, improve the UX of the app experiences",100,User can select widgets; settings saved & applied instantly across devices independently of OS used.,MUST,http://www.example.org,manager-01
 user-story-02,Streamlining Checkout for Faster Online Purchases by implementing UI system,"Quick, easy checkout for hassle-free shopping.",50,"Checkout <4 clicks, <2 sec load, autofill, clear cost, multiple payments, instant email confirmation",SHOULD,http://www.example.org,manager-01
 user-story-03,Mobile App Notifications to Keep Users Informed,Stay updated with instant app notifications.,50,Criteria to be defined,COULD,http://www.example.org,manager-01
-user-story-04,貸んい建濯よ芝弾テソ,Create a unique profile that reflects you.,33,Criteria to be defined,WONT,null,manager-01
+user-story-04,貸んい建濯よ芝弾テソ,Create a unique profile that reflects you.,33,Criteria to be defined,WONT,http://www.thisisaverylongexampleurlthatdoesnotactuallyleadanywherespecificallydesignedtobeexactlytwohundredandfiftyfivecharacterslongincludingthehttpwwwparttoseehowitlooksandfeelsinpracticeabcdefg1234567890abcdefghijklmnopqrstuvwxyzletsgetto255chars.html,manager-01
 user-story-05,Advanced Search Filters for Efficient Navigation,Find what you need faster with smart filters.,33,貸んい建濯よ芝弾テソ,MUST,null,manager-01
 user-story-06,-,Track your finance,33,Criteria to be defined,SHOULD,http://www.козаоза.org,manager-01
 user-story-07,Interactive Tutorials for New Users,Learn the ropes with interactive guides,80,Criteria to be defined,MUST,null,manager-01

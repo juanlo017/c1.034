@@ -5,9 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -70,9 +70,8 @@ public class Risk extends AbstractEntity {
 		return this.impact * this.probability;
 	}
 
+
 	//Relationships -----------------------------------------------------------
-
-
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)

@@ -1,0 +1,10 @@
+key,reference,identificationDate,impact,probability,description,optionalLink,key:project,key:administrator
+risk-01,R-123,2000/1/1 00:00,120.00,1,"Imagination is the most important. For knowledge islimited whereas imagination embraces the world.",null,project-01,administrator-01
+risk-02,R-333,2001/1/1 01:00,1200.00,0.75,"我有一个梦想。",null,project-02,administrator-02
+risk-03,R-343,2002/1/1 04:00,134.00,0.50,"Ich habe einen Traum.",http://www.asadadsdsdssfdfssdkffkdkdkdkfgjgdsldfsdlfsdfsdfdsfsdfldsfsdfldsflsdfkdslfksdfksdlfksdflksdflksdflsdkfsdlfksdflksdflskfsdlfksdlfksdforekgorekgerogkerokdflksdgoekgoergkofksdpfskfrepofkerpfokerfpoekrfpefkeropfkerfpoerkrepgkerpgkergperkgrrggefd.com,project-01,administrator-01
+risk-04,R-543,2000/3/2 10:00,145.50,0.25,"У меня есть мечта.",http://www.linkopciona1.com,project-02,administrator-01
+risk-05,R-673,2000/1/5 11:00,234.00,0.15,"Imagination",http://www.linkopci1.com,project-03,administrator-02
+risk-06,R-783,2000/3/21 10:00,456.00,0.10,"Imagination is the most important",http://www.linona1.com,project-04,administrator-01
+risk-07,R-843,2000/6/12 09:00,12345.00,0.34,"For knowledge islimited whereas imagination embraces the world.",null,project-05,administrator-02
+risk-08,R-993,2000/8/15 08:00,567.00,0.56,"world.",null,project-03,administrator-01
+risk-09,R-697,2000/9/17 05:00,333.00,0.85,"embraces the world.",null,project-02,administrator-01
