@@ -5,5 +5,6 @@ user-account-developer-01, true, "UserIdentity{name: 'IlloWan', surname: 'Uno', 
 user-account-developer-02, true, "UserIdentity{name: 'IlloTwo', surname: 'Dos', email: 'developer2@email.com'}",developer2,developer2
 user-account-sponsor-01,true,"UserIdentity{name: 'Pablo', surname: 'TheSponsor', email: 'pablo@acme.com'}",sponsor1,sponsor1
 user-account-sponsor-02,true,"UserIdentity{name: 'Wilfred', surname: '万福玛利亚', email: 'wilfred@acme.com'}",sponsor2,sponsor2
+user-account-sponsor-03,true,"UserIdentity{name: 'Luigi', surname: 'Mario', email: 'luigitufontanerofavorito@acme.com'}",sponsor3,sponsor3
 user-account-auditor-01,true,"UserIdentity{name: 'David', surname: '貸んい建濯よ芝弾テソ Λορεμ ιπσθμ', email: 'david@acme.com'}",auditor1,auditor1
 user-account-auditor-02,true,"UserIdentity{name: 'David', surname: 'Auditor', email: 'david@acme.com'}",auditor2,auditor2
