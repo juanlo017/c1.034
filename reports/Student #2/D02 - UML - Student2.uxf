@@ -15,7 +15,7 @@ ProgressLog
 + recordId: String{NotBlank, Pattern “PG-[A-Z]{1,2}-[0-9]{4}”}
 + completeness: Double{PositiveOrZero, Max(1)}
 + comment: String{NotBlank, Length(1,101)}
-+ registrationMoment: Timestamp{Past}
++ registrationMoment: Date{Past, NotNull, Temporal(TemporalType.TIMESTAMP)}
 + responsiblePerson: String{NotBlank, Length(1,76)}
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -32,7 +32,7 @@ bg=green</panel_attributes>
 Contract
 --
 + code: String{NotBlank, Pattern “[A-Z]{1,3}-[0-9]{3}”}
-+ instantiationMoment: Timestamp{Past}
++ instantiationMoment: Date{Past, NotNull, Temporal(TemporalType.TIMESTAMP)}
 + providerName: String{NotBlank, Length(1,75)}
 + customerName: String{NotBlank, Length(1,75)}
 + goals: String{NotBlank, Length(1,100)}
