@@ -1,0 +1,8 @@
+
+package acme.forms;
+
+public enum Percentil {
+
+	BELOW_25_PERCENT, BETWEEN_25_AND_50_PERCENT, BETWEEN_50_AND_75_PERCENT, ABOVE_75_PERCENT
+
+}
