@@ -52,11 +52,11 @@ public class Invoices extends AbstractEntity {
 	private Date				dueDate; // Falta restricción de que es al menos un mes antes del registrationTime
 
 	@Positive
-	@Digits(integer = 1, fraction = 2)
-	@Max(1)
 	@NotNull
 	private Money				quantity;
 
+	@Digits(integer = 1, fraction = 2)
+	@Max(1)
 	@NotNull
 	@PositiveOrZero
 	private Double				tax;
