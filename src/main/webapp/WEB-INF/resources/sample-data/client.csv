@@ -1,0 +1,3 @@
+key,key:userAccount,identification,companyName,type,email,link
+client-01,user-account-client-01,CLI-0000,phoskitos,COMPANY,info@phoskitos.com,http://www.phoskitos.com
+client-02,user-account-client-02,CLI-9999,Joselito,INDIVIDUAL,joselito@two.es,http://www.joselito2.com
