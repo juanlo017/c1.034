@@ -1,0 +1,5 @@
+key,code,executionDate,type,actions,link,key:auditRecord
+codeAudit-01,AA-000,2021/09/12 19:00,STATIC,Current technology stack and architecture examination/Security vulnerabilities analysis,http://www.codeAudit.com,auditRecord-01
+codeAudit-02,AA-001,2021/08/12 19:00,DYNAMIC,Code quality check,http://www.codeAudit.com,auditRecord-02
+codeAudit-03,AAA-002,2021/05/14 19:00,STATIC,Performance and scalability check/Potential maintenance issues detection/Code quality check/Summary,https://www.adservio.fr/post/meaning-of-code-audit-when-and-why-we-needed-it,auditRecord-03
+codeAudit-04,AAA-003,2021/01/01 17:00,STATIC,การออกแบบและการทดสอบสองอย่างถือเป็นขยะ,http://www.codeAudit.com,auditRecord-04
