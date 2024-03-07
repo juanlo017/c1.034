@@ -36,6 +36,7 @@ public class Sponsor extends AbstractRole {
 	private String				optionalPage;
 
 	@Email
+	@Length(max = 255)
 	private String				optionalEmail;
 
 	// Derived attributes -----------------------------------------------------

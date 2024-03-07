@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -46,15 +45,16 @@ public class Banner extends AbstractEntity {
 	private String				slogan;
 
 	@URL
+	@NotBlank
 	@Length(max = 255)
 	private String				link;
 
 	@NotNull
-	@FutureOrPresent // PREGUNTAR EN FOLLOW-UP
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				displayPeriodStart;
 
 	@NotNull
-	@FutureOrPresent
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				displayPeriodEnd;
 
 

@@ -14,3 +14,4 @@ validation.sporsonship.code = Invalid input. Please enter a string that follows 
 validation.invoices.code = Invalid input. Please enter a string that follows the pattern 'IN-[0-9]{4}-[0-9]{4}', where 'IN-' is followed by four digits followed by a hyphen, and then four digits.
 
 default.error.currency = Currency not accepted
+validation.risk.code = Invalid input. Please enter a string that follows the pattern 'R-[0-9]{3}', where 'R-' is followed by three digits.

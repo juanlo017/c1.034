@@ -14,3 +14,4 @@ validation.sponsorship.code = Entrada inválida. Por favor, ingresa una cadena q
 validation.invoices.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón 'IN-[0-9]{4}-[0-9]{4}', donde 'IN-' es seguido por cuatro dígitos seguidos de un guión, y luego otros cuatro dígitos.
 
 default.error.currency = Moneda no aceptada
+validation.risk.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón 'R-[0-9]{3}', donde R- es seguido de 3 dígitos.
