@@ -1,2 +1,2 @@
-key,code,instantiation-moment,provider-name,customer-name,goals,budget,key:project
-contract-01,A-000,2021/12/03 19:00,Paco,Juan,Metas a lograr,0,project-01
+key,code,instantiation-moment,provider-name,customer-name,goals,budget,key:project,key:client
+contract-01,A-000,2021/12/03 19:00,Paco,Juan,Metas a lograr,0,project-01,client-01
