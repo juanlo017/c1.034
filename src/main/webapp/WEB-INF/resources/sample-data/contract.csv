@@ -1,0 +1,4 @@
+key,code,instantiation-moment,provider-name,customer-name,goals,budget,key:project,key:client
+contract-01,A-000,2000/01/01 0:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac lectus.","Larem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac lectus.","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",0,project-01,client-01
+contract-02,Z-999,2022/07/30 0:00,a,b,c,10,project-02,client-01
+contract-03,K-500,2021/12/03 20:00,深受全世界人民的喜爱和尊重。,a受全世界人民的喜爱和尊重。,b受全世界人民的喜爱和尊重。,50,project-04,client-02
