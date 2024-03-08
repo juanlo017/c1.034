@@ -1,9 +1,13 @@
 key,instantiationMoment,title,description,priority,status,durationStart,durationEnd,link,key:project
-objective-01,2000/1/1 00:00,titlee,descriptipon,HIGH,true,2002/2/2 00:00,2002/3/5 00:00,http://link.com,project-01
-objective-02,2001/1/1 04:00,titlee,descriptipon,MEDIUM,true,2001/2/2 00:00,2001/3/5 00:00,http://link.com,project-01
-objective-03,2011/1/1 00:00,titlee,descriptipon,LOW,true,2011/4/4 00:00,2011/6/6 00:00,http://link.com,project-02
-objective-04,2020/1/1 00:00,titlee,descriptipon,MEDIUM,false,2020/2/1 00:00,2020/3/1 00:00,http://link.com,project-02
-objective-05,2007/1/1 00:00,titlee,descriptipon,MEDIUM,true,2007/8/1 00:00,2007/9/1 00:00,http://link.com,project-02
-objective-06,2001/1/1 00:00,titlee,descriptipon,LOW,true,2000/2/2 00:00,2000/3/5 00:00,http://link.com,project-03
-objective-07,2000/10/1 00:00,titlee,descriptipon,MEDIUM,false,2000/12/2 00:00,2000/12/5 00:00,http://link.com,project-03
-objective-08,2000/11/1 00:00,titlee,descriptipon,HIGH,true,2000/11/2 00:00,2000/11/3 00:00,http://link.com,project-03
+objective-01,2000/1/1 00:00,"Objective Nano","This objective wants to prove Fernando Alonso is the best",HIGH,true,2002/2/2 00:00,2002/3/5 00:00,http://elnanoesunabala.com,project-01
+objective-02,2001/1/1 04:00,"Objective 2","This objective focuses on another important aspect of Project 01",MEDIUM,true,2001/2/2 00:00,2001/3/5 00:00,http://proooooooooojeeeeeeeeeeeeeeectooooooooooooooobjeeeeeeeeeeeeectiiiiiiiiiiiveeeeeeeeee01.com,project-01
+objective-03,2011/1/1 00:00,"Objective Betis Campeon","This objective focuses on making a good team for Betis so they can win the Champions League",LOW,true,2011/4/4 00:00,2011/6/6 00:00,http://nosotrostenemosunbetisquenonoslomerecemos.com,project-02
+objective-04,2020/1/1 00:00,"Objective Sevilla descenso a 2a divison","This objective focuses on ruining Sevilla's team",MEDIUM,false,2020/2/1 00:00,2020/3/1 00:00,http://jesusnavasereselmejordelmundo.com,project-02
+objective-05,2007/1/1 00:00,"Objective aprobar DP2","This objective focuses on earning six credits",HIGH,true,2007/8/1 00:00,2007/9/1 00:00,http://indp2wetrust.com,project-02
+objective-06,2001/1/1 00:00,"Optimize Database Queries","Analyze and improve the efficiency of database queries for faster data retrieval",LOW,true,2000/2/2 00:00,2000/3/5 00:00,http://databasequeries.com,project-03
+objective-07,2000/10/1 00:00,"Organize Team Training Sessions","Organize Team Training Sessions",MEDIUM,false,2000/12/2 00:00,2000/12/5 00:00,http://teamtrainingorganization.com,project-03
+objective-08,2000/11/1 00:00,"Launch Marketing Campaign","Launch Marketing Campaign",HIGH,true,2000/11/2 00:00,2000/11/3 00:00,http://marketingcampaignlaunching.com,project-03
+objective-09,2005/3/15 10:00,"Upgrade Website Backend","Revamp the backend infrastructure of the website to improve performance and scalability", HIGH, true,2005/4/1 00:00,2005/5/1 00:00,http://websitebackendupgrade.com,project-04
+objective-10,2019/7/20 14:30,"Develop Machine Learning Model","Design and implement a machine learning model to analyze customer behavior and predict trends", HIGH, true,2019/8/1 00:00,2019/9/1 00:00,http://machinelearningmodel.com,project-05
+objective-11,2010/9/5 08:00,"Expand Product Line","Research new market opportunities and develop additional products", MEDIUM, true,2010/10/1 00:00,2010/11/1 00:00,http://productlineexpansion.com,project-06
+objective-12,2018/2/10 13:45,"Implement Agile Methodology","Transition the project team to Agile methodology to improve project management", HIGH, true,2018/3/1 00:00,2018/4/1 00:00,http://agilemethodologyimplementation.com,project-07
