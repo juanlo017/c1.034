@@ -40,6 +40,7 @@ TrainingModule
 + updateMoment: Date {Past, Temporal(TemporalType.TIMESTAMP)}
 + optionalLink: String {URL, Length(max=255)}
 + totalTime: Integer {NotNull}
++ draftMode: boolean
 bg=green
 </panel_attributes>
     <additional_attributes/>
