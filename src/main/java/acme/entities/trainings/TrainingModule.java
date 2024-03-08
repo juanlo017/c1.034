@@ -62,14 +62,18 @@ public class TrainingModule extends AbstractEntity {
 	@NotNull
 	private Integer				totalTime;
 
+	private boolean				draftMode;
+
 	// Relationships ----------------------------------------------------------
 
 	@Valid
-	@OneToOne
+	@OneToOne(optional = false)
+	@NotNull
 	private Project				project;
 
 	@Valid
 	@ManyToOne(optional = false)
+	@NotNull
 	private Developer			developer;
 
 }

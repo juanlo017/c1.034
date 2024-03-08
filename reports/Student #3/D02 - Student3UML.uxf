@@ -104,7 +104,7 @@ bg=orange
       <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
-m2=0..n</panel_attributes>
+m2=1..n</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
