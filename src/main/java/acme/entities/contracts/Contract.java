@@ -54,6 +54,8 @@ public class Contract extends AbstractEntity {
 	@Length(max = 100)
 	private String				goals;
 
+	private boolean				draftMode;
+
 	@PositiveOrZero
 	//@Max(value = project.getCost()) TODO implement this
 	private int					budget;
