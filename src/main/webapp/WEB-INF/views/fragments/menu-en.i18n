@@ -51,6 +51,9 @@ master.menu.manager = Manager
 master.menu.manager.list.all.projects = List all projects
 master.menu.manager.list.mine.projects = List my projects
 
+master.menu.manager.list.all.user-story = List all user stories
+master.menu.manager.list.mine.user-story = List my user stories
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
