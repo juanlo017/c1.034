@@ -24,9 +24,6 @@
 	<acme:input-url code="manager.user-story.form.label.link" path="link"/>
 
 	<jstl:choose>	 
-		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:button code="employer.job.form.button.stories" action="/manager/user-story/list?masterId=${id}"/>			
-		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:button code="manager.project.form.button.stories" action="/manager/user-story/list?masterId=${id}"/>
 			<acme:submit code="manager.project.form.button.update" action="/manager/user-story/update"/>
