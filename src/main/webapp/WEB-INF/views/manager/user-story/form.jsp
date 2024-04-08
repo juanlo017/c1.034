@@ -25,13 +25,12 @@
 
 	<jstl:choose>	 
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
-			<acme:button code="manager.project.form.button.stories" action="/manager/user-story/list?masterId=${id}"/>
-			<acme:submit code="manager.project.form.button.update" action="/manager/user-story/update"/>
-			<acme:submit code="manager.project.form.button.delete" action="/manager/user-story/delete"/>
-			<acme:submit code="manager.project.form.button.publish" action="/manager/user-story/publish"/>
+			<acme:submit code="manager.user-story.form.button.update" action="/manager/user-story/update"/>
+			<acme:submit code="manager.user-story.form.button.delete" action="/manager/user-story/delete"/>
+			<acme:submit code="manager.user-story.form.button.publish" action="/manager/user-story/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="manager.project.form.button.create" action="/manager/user-story/create"/>
+			<acme:submit code="manager.user-story.for	m.button.create" action="/manager/user-story/create"/>
 		</jstl:when>		
 	</jstl:choose>
 </acme:form>

@@ -1,4 +1,4 @@
-key,title,description,estimated-cost,acceptance-criteria,priority,link,key:manager, draft-mode
+key,title,description,estimated-cost,acceptance-criteria,priority,link,key:manager,draft-mode
 user-story-01,Enhancing User Experience with Personalized Dashboards,"Customize your dashboard for a tailored experience in the web, improve the UX of the app experiences",100,User can select widgets; settings saved & applied instantly across devices independently of OS used.,MUST,http://www.example.org,manager-01, false
 user-story-02,Streamlining Checkout for Faster Online Purchases by implementing UI system,"Quick, easy checkout for hassle-free shopping.",50,"Checkout <4 clicks, <2 sec load, autofill, clear cost, multiple payments, instant email confirmation",SHOULD,http://www.example.org,manager-01, false
 user-story-03,Mobile App Notifications to Keep Users Informed,Stay updated with instant app notifications.,50,Criteria to be defined,COULD,http://www.example.org,manager-01, false

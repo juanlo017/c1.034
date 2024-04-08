@@ -8,30 +8,24 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-manager.project.form.title = Detalles de projecto
-manager.project.list.title = Lista de proyectos
-anager.project.list.code = Código
-anager.project.list.draftmode = Modo borrador
+manager.user-story.list.title = Listado de historias de usuario
+manager.user-story.list.label.title = Título
+manager.user-story.list.label.description = Descripción
+manager.user-story.list.label.draftMode = Modo Borrador
+manager.user-story.list.label.estimatedCost = Coste Estimado
+manager.user-story.button.create = Crear
 
-manager.project.form.label.code = Código
-manager.project.form.label.title = Título 
-manager.project.form.label.abstractText = Abstracto 
-manager.project.form.label.fatalErrors = Errores Críticos 
-manager.project.form.label.link = Link 
-manager.project.form.label.draftMode = Modo borrador
-manager.project.form.label.cost = Coste 
+manager.user-story.form.label.title = Título
+manager.user-story.form.label.draftMode = Modo Borrador
+manager.user-story.form.label.estimatedCost = Coste estimado
+manager.user-story.form.label.acceptanceCriteria = Criterios de aceptación
+manager.user-story.form.label.priority = Prioridad
+manager.user-story.form.label.link = Enlace
 
-manager.project.form.button.stories = Listado de historias de usuario
-manager.project.form.button.update = Actualizar
-manager.project.form.button.delete = Eliminar
-manager.project.form.button.publish = Publicar
-manager.project.form.button.create = Crear
+manager.user-story.form.button.update = Actualizar
+manager.user-story.form.button.delete = Eliminar
+manager.user-story.form.button.publish = Publicar
+manager.user-story.form.button.create = Crear
 
-
-
-manager.project.list.title = Listing of projects
-manager.project.list.label.code = Code
-manager.project.list.label.draftMode = DraftMode
-manager.project.list.label.title = Title
-
-manager.project.button.create = Create
+manager.user-story.form.label.description = Descripción
+manager.user-story.form.title = Título

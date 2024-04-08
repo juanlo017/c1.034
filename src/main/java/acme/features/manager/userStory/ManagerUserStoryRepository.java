@@ -24,16 +24,13 @@ import acme.entities.projects.UserStory;
 @Repository
 public interface ManagerUserStoryRepository extends AbstractRepository {
 
-	@Query("select us from UserStory us where us.project.id = :projectId")
-	Collection<UserStory> findManyUserStoriesByProjectId(int projectId);
+	@Query("select p from Project p where p.id = :projectId")
+	Project findOneProjectById(int projectId);
 
-	@Query("select us from UserStory us")
-	Collection<UserStory> findAllUserStories();
+	@Query("select a.userStory from Assignment a where a.project.id = :masterId")
+	Collection<UserStory> findManyUserStoriesByProjectId(int masterId);
 
-	@Query("select us from UserStory us where us.id = :userStoryId")
-	UserStory findOneUserStoryById(int userStoryId);
-
-	@Query("select p from Project p where p.id = :masterId")
-	Project findOneProjectById(int masterId);
+	@Query("select ua from UserStory ua where ua.id = :id")
+	UserStory findOneUserStoryById(int id);
 
 }

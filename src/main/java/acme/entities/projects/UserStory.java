@@ -49,7 +49,7 @@ public class UserStory extends AbstractEntity {
 	@Length(max = 255)
 	private String				link;
 
-	boolean						draftMode;
+	private boolean				draftMode;
 
 	@NotNull
 	@Valid

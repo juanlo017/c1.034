@@ -64,7 +64,7 @@ public class ManagerUserStoryListService extends AbstractService<Manager, UserSt
 
 		Dataset dataset;
 
-		dataset = super.unbind(story, "title", "description", "estimatedCost");
+		dataset = super.unbind(story, "title", "draftMode", "estimatedCost");
 
 		super.getResponse().addData(dataset);
 	}
@@ -79,6 +79,9 @@ public class ManagerUserStoryListService extends AbstractService<Manager, UserSt
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		project = this.repository.findOneProjectById(masterId);
+
+		assert project != null;
+
 		//Si proyecto esta en draftMode y es manager se pueden editar/crear/borrar etc...
 		showCreate = project.isDraftMode() && super.getRequest().getPrincipal().hasRole(project.getManager());
 

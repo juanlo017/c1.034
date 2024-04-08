@@ -16,9 +16,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="manager.user-story.list.label.title" path="title" width="20%"/>
-	<acme:list-column code="manager.user-story.list.label.description" path="description" width="70%"/>
-	<acme:list-column code="manager.user-story.list.label.estimatedCost" path="estimatedCost" width="10%"/>	
+	<acme:list-column code="manager.user-story.list.label.title" path="title" width="60%"/>
+	<acme:list-column code="manager.user-story.list.label.estimatedCost" path="estimatedCost" width="20%"/>	
+	<acme:list-column code="manager.user-story.list.label.draftMode" path="draftMode" width="20%"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list-mine'}">

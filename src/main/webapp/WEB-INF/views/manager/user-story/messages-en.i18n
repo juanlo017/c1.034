@@ -8,32 +8,24 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-manager.project.form.title = Project form 
-manager.project.list.title = Project Listing
-anager.project.list.code = Code
-anager.project.list.draftmode = DraftMode
+manager.user-story.list.title = User Story List
+manager.user-story.list.label.title = Title
+manager.user-story.list.label.description = Description
+manager.user-story.list.label.draftMode = Draft Mode
+manager.user-story.list.label.estimatedCost = Estimated Cost
+manager.user-story.button.create = Create
 
-manager.project.form.label.code = Code
-manager.project.form.label.title = Title
-manager.project.form.label.abstractText = Abstract
-manager.project.form.label.fatalErrors = Fatal Errors
-manager.project.form.label.link = Link
-manager.project.form.label.draftMode = DraftMode
-manager.project.form.label.cost = Cost
+manager.user-story.form.label.title = Title
+manager.user-story.form.label.draftMode = Draft Mode
+manager.user-story.form.label.estimatedCost = Estimated Cost
+manager.user-story.form.label.acceptanceCriteria = AcceptanceCriteria 
+manager.user-story.form.label.priority = Priority
+manager.user-story.form.label.link = Link
 
-manager.project.form.button.stories = List Stories
-manager.project.form.button.update = Update
-manager.project.form.button.delete = Delete
-manager.project.form.button.publish = Publish
-manager.project.form.button.create = Create
+manager.user-story.form.button.update = Update
+manager.user-story.form.button.delete = Delete
+manager.user-story.form.button.publish = Publish
+manager.user-story.form.button.create = Create
 
-
-
-manager.project.list.title = Listing of projects
-manager.project.list.label.code = Code
-manager.project.list.label.draftMode = DraftMode
-manager.project.list.label.title = Title
-
-manager.project.button.create = Create
-
-	
+manager.user-story.form.label.description = Description	
+manager.user-story.form.title = Title
