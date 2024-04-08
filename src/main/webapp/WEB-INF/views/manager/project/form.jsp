@@ -16,7 +16,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form> 
-	<acme:input-textbox code="manager.project.form.label.code" path="code"/>
+	<acme:input-textbox code="manager.project.form.label.code" path="code" placeholder="ABC-1234"/>
 	<acme:input-textbox code="manager.project.form.label.title" path="title"/>
 	<acme:input-textbox code="manager.project.form.label.abstractText" path="abstractText"/>
 	<acme:input-textbox code="manager.project.form.label.fatalErrors" path="fatalErrors"/>
@@ -35,7 +35,7 @@
 			<acme:submit code="manager.project.form.button.publish" action="/manager/project/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="manager.project.form.button.create" action="/manager/job/create"/>
+			<acme:submit code="manager.project.form.button.create" action="/manager/project/create"/>
 		</jstl:when>		
 	</jstl:choose>
 </acme:form>

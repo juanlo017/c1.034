@@ -81,7 +81,7 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 		assert object != null;
 
 		Dataset dataset;
-		dataset = super.unbind(object, "code", "title", "abstractText", "fatalErrors", "link", "drafMode", "cost");
+		dataset = super.unbind(object, "code", "title", "abstractText", "fatalErrors", "link", "cost", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}
