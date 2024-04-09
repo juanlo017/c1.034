@@ -18,6 +18,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.projects.Assignment;
 import acme.entities.projects.Project;
 import acme.roles.Manager;
 
@@ -38,5 +39,8 @@ public interface ManagerProjectRepository extends AbstractRepository {
 
 	@Query("select p from Project p where p.code = :code")
 	Project findOneProjectByCode(String code);
+
+	@Query("select a from Assignment a where a.project.id = :id")
+	Collection<Assignment> findManyAssignmentsByProjectId(int id);
 
 }

@@ -12,11 +12,14 @@
 
 package acme.features.manager.project;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.entities.projects.Assignment;
 import acme.entities.projects.Project;
 import acme.roles.Manager;
 
@@ -61,7 +64,7 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 	public void bind(final Project object) {
 		assert object != null;
 
-		super.bind(object, "code", "title", "abstractText", "fatalErrors", "link", "drafMode", "cost");
+		super.bind(object, "code", "title", "abstractText", "fatalErrors", "link", "cost");
 	}
 
 	@Override
@@ -73,6 +76,11 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 	public void perform(final Project object) {
 		assert object != null;
 
+		Collection<Assignment> assignments;
+
+		assignments = this.repository.findManyAssignmentsByProjectId(object.getId());
+		this.repository.deleteAll(assignments);
+
 		this.repository.delete(object);
 	}
 
@@ -81,7 +89,7 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		assert object != null;
 
 		Dataset dataset;
-		dataset = super.unbind(object, "reference", "title", "deadline", "salary", "score", "moreInfo", "description", "draftMode");
+		dataset = super.unbind(object, "code", "title", "abstractText", "fatalErrors", "link", "cost");
 
 		super.getResponse().addData(dataset);
 	}

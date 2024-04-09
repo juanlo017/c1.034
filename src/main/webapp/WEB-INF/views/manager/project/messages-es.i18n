@@ -9,7 +9,6 @@
 # they accept any liabilities with respect to them.
 
 manager.project.form.title = Detalles de projecto
-manager.project.list.title = Lista de proyectos
 anager.project.list.code = Código
 anager.project.list.draftmode = Modo borrador
 
@@ -29,7 +28,7 @@ manager.project.form.button.create = Crear
 
 
 
-manager.project.list.title = Listing of projects
+manager.project.list.title = Listado de proyectos
 manager.project.list.label.code = Code
 manager.project.list.label.draftMode = DraftMode
 manager.project.list.label.title = Title
