@@ -28,8 +28,6 @@ public class ManagerProjectUpdateService extends AbstractService<Manager, Projec
 	@Autowired
 	private ManagerProjectRepository repository;
 
-	// AbstractService<Employer, Job> -------------------------------------
-
 
 	@Override
 	public void authorise() {

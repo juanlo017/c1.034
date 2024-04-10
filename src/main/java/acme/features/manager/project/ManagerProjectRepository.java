@@ -18,8 +18,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.contracts.Contract;
 import acme.entities.projects.Assignment;
 import acme.entities.projects.Project;
+import acme.entities.sponsorships.Sponsorship;
+import acme.entities.trainings.TrainingModule;
 import acme.roles.Manager;
 
 @Repository
@@ -42,5 +45,14 @@ public interface ManagerProjectRepository extends AbstractRepository {
 
 	@Query("select a from Assignment a where a.project.id = :id")
 	Collection<Assignment> findManyAssignmentsByProjectId(int id);
+
+	@Query("select c from Contract c where c.project.id = :id")
+	Collection<Contract> findManyContractsByProjectId(int id);
+
+	@Query("select s from Sponsorship s where s.project.id = :id")
+	Collection<Sponsorship> findManySponsorshipsByProjectId(int id);
+
+	@Query("select tm from TrainingModule tm where tm.project.id = :id")
+	Collection<TrainingModule> findManyTrainingModulesByProjectId(int id);
 
 }

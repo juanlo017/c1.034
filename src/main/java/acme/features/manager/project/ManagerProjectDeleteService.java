@@ -19,8 +19,11 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.entities.contracts.Contract;
 import acme.entities.projects.Assignment;
 import acme.entities.projects.Project;
+import acme.entities.sponsorships.Sponsorship;
+import acme.entities.trainings.TrainingModule;
 import acme.roles.Manager;
 
 @Service
@@ -77,9 +80,22 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		assert object != null;
 
 		Collection<Assignment> assignments;
+		Collection<Contract> contracts;
+		Collection<Sponsorship> sponsoships;
+		Collection<TrainingModule> modules;
 
+		//ASSIGNMENT
 		assignments = this.repository.findManyAssignmentsByProjectId(object.getId());
 		this.repository.deleteAll(assignments);
+		//CONTRACT
+		contracts = this.repository.findManyContractsByProjectId(object.getId());
+		this.repository.deleteAll(contracts);
+		//SPONSORSHIPS
+		sponsoships = this.repository.findManySponsorshipsByProjectId(object.getId());
+		this.repository.deleteAll(sponsoships);
+		//TRAINING MODULE
+		modules = this.repository.findManyTrainingModulesByProjectId(object.getId());
+		this.repository.deleteAll(modules);
 
 		this.repository.delete(object);
 	}
@@ -89,7 +105,7 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		assert object != null;
 
 		Dataset dataset;
-		dataset = super.unbind(object, "code", "title", "abstractText", "fatalErrors", "link", "cost");
+		dataset = super.unbind(object, "code", "title", "abstractText", "fatalErrors", "link", "cost", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

@@ -21,8 +21,8 @@
 	<acme:input-textbox code="manager.project.form.label.abstractText" path="abstractText"/>
 	<acme:input-textbox code="manager.project.form.label.fatalErrors" path="fatalErrors"/>
 	<acme:input-url code="manager.project.form.label.link" path="link"/>
-	<acme:input-textbox code="manager.project.form.label.draftMode" path="draftMode"/>
 	<acme:input-integer code="manager.project.form.label.cost" path="cost"/>
+	<acme:hidden-data path="draftMode"/>
 
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show' && draftMode == false}">
