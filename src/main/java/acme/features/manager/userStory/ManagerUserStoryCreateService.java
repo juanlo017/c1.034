@@ -72,7 +72,6 @@ public class ManagerUserStoryCreateService extends AbstractService<Manager, User
 		assert object != null;
 
 		Dataset dataset;
-
 		dataset = super.unbind(object, "title", "description", "estimatedCost", "acceptanceCriteria", "priority", "link", "draftMode");
 
 		super.getResponse().addData(dataset);
