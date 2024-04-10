@@ -16,10 +16,19 @@ public class ManagerUserStoryController extends AbstractController<Manager, User
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ManagerUserStoryShowService	showService;
+	private ManagerUserStoryShowService		showService;
 
 	@Autowired
-	private ManagerUserStoryListService	listService;
+	private ManagerUserStoryCreateService	createService;
+
+	@Autowired
+	private ManagerUserStoryDeleteService	deleteService;
+
+	@Autowired
+	private ManagerUserStoryUpdateService	updateService;
+
+	@Autowired
+	private ManagerUserStoryListService		listService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -27,6 +36,9 @@ public class ManagerUserStoryController extends AbstractController<Manager, User
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("delete", this.deleteService);
+		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("list", this.listService);
 	}
 
