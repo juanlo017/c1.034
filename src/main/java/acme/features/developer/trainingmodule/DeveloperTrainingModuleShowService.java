@@ -22,7 +22,13 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 
 	@Override
 	public void authorise() {
-		boolean status = true;
+		boolean status;
+		int trainingModuleId;
+		TrainingModule trainingModule;
+
+		trainingModuleId = super.getRequest().getData("id", int.class);
+		trainingModule = this.repository.findOneTrainingModuleById(trainingModuleId);
+		status = trainingModule != null && super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -44,7 +50,7 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 
 		Dataset dataset;
 		//Atributos a pasar a la vista
-		dataset = super.unbind(trainingModule, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode", "project", "developer");
+		dataset = super.unbind(trainingModule, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}
