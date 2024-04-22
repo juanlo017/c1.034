@@ -1,9 +1,6 @@
 
 package acme.features.auditor.auditRecord;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +10,7 @@ import acme.entities.auditRecords.AuditRecord;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorAuditRecordCreateService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorAuditRecordDeleteService extends AbstractService<Auditor, AuditRecord> {
 
 	//Internal state ----------------------------------------------------------
 
@@ -25,20 +22,28 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int auditRecordId;
+		AuditRecord ar;
+		Auditor auditor;
+
+		auditRecordId = super.getRequest().getData("id", int.class);
+		ar = this.repository.findAuditRecordById(auditRecordId);
+		auditor = ar == null ? null : ar.getCodeAudit().getAuditor();
+		status = ar != null && super.getRequest().getPrincipal().hasRole(auditor);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		AuditRecord object;
-		Auditor auditor;
+		AuditRecord ar;
+		int id;
 
-		auditor = this.repository.findOneAuditorById(super.getRequest().getPrincipal().getActiveRoleId());
-		object = new AuditRecord();
-		object.setDraftMode(true);
-		object.getCodeAudit().setAuditor(auditor);
+		id = super.getRequest().getData("id", int.class);
+		ar = this.repository.findAuditRecordById(id);
 
-		super.getBuffer().addData(object);
+		super.getBuffer().addData(ar);
 	}
 
 	@Override
@@ -62,24 +67,13 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 	@Override
 	public void validate(final AuditRecord object) {
 		assert object != null;
-
-		if (!super.getBuffer().getErrors().hasErrors("auditPeriod")) {
-			// Check if execution date is in the past
-			// Convert executionDate to LocalDate
-			LocalDate startTime = object.getStartTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			LocalDate endTime = object.getEndTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			// Check if execution date is in the past
-			LocalDate currentDate = LocalDate.now(); // Current date
-			super.state(startTime.isBefore(currentDate) && endTime.isBefore(currentDate) && object.getAuditPeriod() > 3600, "executionDate", "validation.auditrecord.auditperiod");
-
-		}
 	}
 
 	@Override
 	public void perform(final AuditRecord object) {
 		assert object != null;
 
-		this.repository.save(object);
+		this.repository.delete(object);
 	}
 
 	@Override
@@ -98,4 +92,5 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 
 		super.getResponse().addData(dataset);
 	}
+
 }

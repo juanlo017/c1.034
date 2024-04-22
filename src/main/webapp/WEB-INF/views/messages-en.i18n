@@ -19,5 +19,6 @@ validation.claim.code = Invalid input. Please enter a string that follows the pa
 
 validation.codeaudit.executiondate = Invalid date. The execution date has to precede the current date.
 validation.codeaudit.mark = Invalid mark. The mark needs to be at least C.
+validation.auditrecord.auditperiod = Invalid period. Both dates need to be and the past, and the period between must be at least 1 hour long.
 default.error.currency = Currency not accepted
 validation.risk.code = Invalid input. Please enter a string that follows the pattern 'R-[0-9]{3}', where 'R-' is followed by three digits.

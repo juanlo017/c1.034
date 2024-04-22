@@ -3,13 +3,18 @@ package acme.features.auditor.codeAudit;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.entities.auditRecords.AuditRecord;
 import acme.entities.codeAudits.CodeAudit;
+import acme.features.auditor.auditRecord.AuditorAuditRecordRepository;
 import acme.roles.Auditor;
 
 @Service
@@ -18,7 +23,10 @@ public class AuditorCodeAuditPublishService extends AbstractService<Auditor, Cod
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditorCodeAuditRepository repository;
+	private AuditorCodeAuditRepository		repository;
+
+	@Autowired
+	private AuditorAuditRecordRepository	auditRecordRepo;
 
 	// AbstractService interface ----------------------------------------------
 
@@ -67,6 +75,32 @@ public class AuditorCodeAuditPublishService extends AbstractService<Auditor, Cod
 		object.setAuditor(auditor);
 	}
 
+	public String computeModeMark(final Collection<AuditRecord> auditRecords) {
+
+		String mark;
+		if (auditRecords == null || auditRecords.isEmpty())
+			mark = null; // No audit records, mark cannot be computed
+
+		// Count occurrences of each mark
+		Map<String, Integer> markCount = new HashMap<>();
+		for (AuditRecord ar : auditRecords) {
+			String m = ar.getMark().toString();
+			markCount.put(m, markCount.getOrDefault(m, 0) + 1);
+		}
+
+		// Find the mark with the highest count (mode)
+		String modeMark = null;
+		int maxCount = 0;
+		for (Map.Entry<String, Integer> entry : markCount.entrySet())
+			if (entry.getValue() > maxCount) {
+				modeMark = entry.getKey();
+				maxCount = entry.getValue();
+			}
+
+		mark = modeMark;
+		return mark;
+	}
+
 	@Override
 	public void validate(final CodeAudit object) {
 		assert object != null;
@@ -83,8 +117,8 @@ public class AuditorCodeAuditPublishService extends AbstractService<Auditor, Cod
 		}
 
 		// Check if mark is valid (at least "C")
-		String mark;
-		mark = this.repository.findMarkByCodeAuditId(object.getId());
+		Collection<AuditRecord> auditRecords = this.auditRecordRepo.findAuditRecordsByCodeAudit(object);
+		String mark = this.computeModeMark(auditRecords);
 		super.state(mark != null && object.getMark().compareTo("C") >= 0, "mark", "validation.codeaudit.mark");
 
 	}
