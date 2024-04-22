@@ -17,5 +17,7 @@ validation.codeaudit.code = Invalid input. Please enter a string that follows th
 validation.auditrecord.code = Invalid input. Please enter a string that follows the pattern 'AU-[0-9]{4}-[0-9]{3}', where 'AU-' is followed by four digits followed by a hyphen, and then three digits.
 validation.claim.code = Invalid input. Please enter a string that follows the pattern 'C-\\d{4}', where 'C-' is followed by four digits.
 
+validation.codeaudit.executiondate = Invalid date. The execution date has to precede the current date.
+validation.codeaudit.mark = Invalid mark. The mark needs to be at least C.
 default.error.currency = Currency not accepted
 validation.risk.code = Invalid input. Please enter a string that follows the pattern 'R-[0-9]{3}', where 'R-' is followed by three digits.

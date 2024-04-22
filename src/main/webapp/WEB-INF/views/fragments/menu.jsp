@@ -43,6 +43,12 @@
 		<acme:menu-option code="master.menu.consumer" access="hasRole('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">
+			<acme:menu-suboption code="master.menu.auditor.list.all.codeAudits" action="/auditor/codeAudits/list-all"/>
+			<acme:menu-suboption code="master.menu.auditor.list.mine.codeAudits" action="/auditor/codeAudits/list-mine"/>
+		</acme:menu-option>
+		
 	</acme:menu-left>
 
 	<acme:menu-right>

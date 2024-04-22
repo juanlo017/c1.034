@@ -58,6 +58,8 @@ public class AuditRecord extends AbstractEntity {
 	@Length(max = 255)
 	private String				link;
 
+	private boolean				draftMode;
+
 
 	public void getPeriod() {
 		if (this.startTime != null && this.endTime != null) {
