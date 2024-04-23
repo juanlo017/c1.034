@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.accounts.Authenticated;
-import acme.client.data.accounts.Principal;
-import acme.client.data.accounts.UserAccount;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractService;
@@ -23,7 +21,7 @@ public class AuthenticatedManagerUpdateService extends AbstractService<Authentic
 	public void authorise() {
 		boolean status;
 
-		status = !this.getRequest().getPrincipal().hasRole(Manager.class);
+		status = this.getRequest().getPrincipal().hasRole(Manager.class);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -31,16 +29,10 @@ public class AuthenticatedManagerUpdateService extends AbstractService<Authentic
 	@Override
 	public void load() {
 		Manager object;
-		Principal principal;
 		int userAccountId;
-		UserAccount userAccount;
 
-		principal = this.getRequest().getPrincipal();
-		userAccountId = principal.getAccountId();
-		userAccount = this.repository.findOneUserAccountById(userAccountId);
-
-		object = new Manager();
-		object.setUserAccount(userAccount);
+		userAccountId = super.getRequest().getPrincipal().getAccountId();
+		object = this.repository.findManagerByUserAccountId(userAccountId);
 
 		super.getBuffer().addData(object);
 	}
