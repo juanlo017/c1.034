@@ -10,13 +10,13 @@
 - they accept any liabilities with respect to them.
 --%>
 
-<%@page%>
+<%@page  language="java"%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="client.contracts.form.label.code" path="code"/>
-	<acme:list-column code="client.contracts.form.label.budget" path="budget"/>
-	<acme:list-column code="client.contracts.form.label.project" path="project"/>
+	<acme:list-column code="client.contracts.list.label.code" path="code"/>
+	<acme:list-column code="client.contracts.list.label.budget" path="budget"/>
+	<acme:list-column code="client.contracts.list.label.project" path="project"/>
 </acme:list>

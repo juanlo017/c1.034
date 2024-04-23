@@ -1,7 +1,7 @@
 
-package acme.features.authenticated.client.contracts;
+package acme.features.client.contracts;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import acme.roles.Client;
 public interface ClientContractsRepository extends AbstractRepository {
 
 	@Query("select c from Contract c where c.client.id = :id")
-	List<Contract> findContractsByClientId(int id);
+	Collection<Contract> findContractsByClientId(int id);
 
 	@Query("select c from Contract c where c.id = :id")
 	Contract findContractById(int id);

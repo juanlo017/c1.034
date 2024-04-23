@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.client.contracts;
+package acme.features.client.contracts;
 
 import javax.annotation.PostConstruct;
 

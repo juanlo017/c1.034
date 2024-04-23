@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.client.contracts;
+package acme.features.client.contracts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class ClientContractsCreateService extends AbstractService<Client, Contra
 		Client client;
 
 		principal = super.getRequest().getPrincipal();
-		clientId = principal.getAccountId();
+		clientId = principal.getActiveRoleId();
 		client = this.repository.findClientById(clientId);
 
 		object = new Contract();
