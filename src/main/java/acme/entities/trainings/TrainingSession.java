@@ -51,14 +51,18 @@ public class TrainingSession extends AbstractEntity {
 
 	@NotBlank
 	@Email
+	@Length(max = 255)
 	private String				email;
 
 	@URL
 	@Length(max = 255)
 	private String				link;
 
+	private boolean				draftMode;
+
 	// Relationships ----------------------------------------------------------
 
+	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
 	private TrainingModule		trainingModule;
