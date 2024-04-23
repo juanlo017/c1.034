@@ -41,7 +41,7 @@ public class ClientContractsController extends AbstractController<Client, Contra
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
-		super.addBasicCommand("create", this.publishService);
+		super.addBasicCommand("publish", this.publishService);
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("delete", this.deleteService);
 	}
