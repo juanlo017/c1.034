@@ -1,5 +1,5 @@
 
-package acme.features.client.contracts;
+package acme.features.authenticated.client.contracts;
 
 import org.springframework.stereotype.Service;
 

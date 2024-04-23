@@ -1,5 +1,5 @@
 
-package acme.features.client.contracts;
+package acme.features.authenticated.client.contracts;
 
 import org.springframework.stereotype.Service;
 
@@ -8,6 +8,6 @@ import acme.entities.contracts.Contract;
 import acme.roles.Client;
 
 @Service
-public class ClientContractsDeleteService extends AbstractService<Client, Contract> {
+public class ClientContractsShowService extends AbstractService<Client, Contract> {
 
 }

@@ -1,5 +1,5 @@
 
-package acme.features.client.contracts;
+package acme.features.authenticated.client.contracts;
 
 import java.util.List;
 
