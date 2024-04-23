@@ -1,12 +1,18 @@
 
 package acme.features.developer.trainingmodule;
 
+import java.util.Collection;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.projects.Project;
+import acme.entities.trainings.DifficultyLevel;
 import acme.entities.trainings.TrainingModule;
 import acme.roles.Developer;
 
@@ -23,38 +29,19 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
-		Project project;
-
-		masterId = super.getRequest().getData("masterId", int.class);
-		project = this.repository.findOneProjectById(masterId);
-		status = project != null && project.isDraftMode() && super.getRequest().getPrincipal().hasRole(project.getManager());
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		TrainingModule object;
-		int masterId;
-		Project project;
+		Developer developer;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		project = this.repository.findOneProjectById(masterId);
+		developer = this.repository.findOneDeveloperById(super.getRequest().getPrincipal().getActiveRoleId());
 
-		//Revisar creación del objeto
 		object = new TrainingModule();
-		object.setCode("");
-		object.setCreationMoment(null);
-		object.setDetails("");
-		object.setDifficultyLevel(null);
-		object.setUpdateMoment(null);
-		object.setOptionalLink("");
-		object.setTotalTime(0);
 		object.setDraftMode(true);
-		object.setProject(project);
-		object.setDeveloper(object.getDeveloper());
+		object.setDeveloper(developer);
 
 		super.getBuffer().addData(object);
 	}
@@ -63,7 +50,20 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	public void bind(final TrainingModule object) {
 		assert object != null;
 
-		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode");
+		int projectId;
+		Project project;
+
+		projectId = super.getRequest().getData("project", int.class);
+		project = this.repository.findOneProjectById(projectId);
+
+		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project");
+
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date creationMoment = new Date(currentMoment.getTime() - 600000);
+
+		object.setCreationMoment(creationMoment);
+		object.setProject(project);
+
 	}
 
 	@Override
@@ -74,7 +74,6 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	@Override
 	public void perform(final TrainingModule object) {
 		assert object != null;
-
 		this.repository.save(object);
 	}
 
@@ -82,11 +81,19 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	public void unbind(final TrainingModule object) {
 		assert object != null;
 
+		Collection<Project> projects;
+		SelectChoices levelChoices;
+		SelectChoices projectChoices;
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode");
-		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
-		dataset.put("draftMode", object.getProject().isDraftMode());
+		projects = this.repository.findManyProjectsByDraftMode();
+		projectChoices = SelectChoices.from(projects, "code", object.getProject());
+		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
+
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project", "draftMode");
+		dataset.put("project", projectChoices.getSelected().getKey());
+		dataset.put("projects", projectChoices);
+		dataset.put("difficultyLevels", levelChoices);
 
 		super.getResponse().addData(dataset);
 	}

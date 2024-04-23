@@ -10,12 +10,13 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.projects.Project;
 import acme.entities.trainings.TrainingModule;
 import acme.entities.trainings.TrainingSession;
+import acme.roles.Developer;
 
 @Repository
 public interface DeveloperTrainingModuleRepository extends AbstractRepository {
 
-	@Query("select tm from TrainingModule tm where tm.developer.id = :developerId")
-	Collection<TrainingModule> findManyTrainingModulesByDeveloperId(int developerId);
+	@Query("select tm from TrainingModule tm where tm.developer.id = :id")
+	Collection<TrainingModule> findAllTrainingModulesByDeveloperId(int id);
 
 	@Query("select tm from TrainingModule tm")
 	Collection<TrainingModule> findAllTrainingModules();
@@ -35,6 +36,12 @@ public interface DeveloperTrainingModuleRepository extends AbstractRepository {
 	@Query("select ts from TrainingSession ts where ts.trainingModule.id = :id")
 	Collection<TrainingSession> findManyTrainingSessionsByTrainingModuleId(int id);
 
-	@Query("select p from Project p where p.draftMode =:b")
-	Collection<Project> findAllProjects(boolean b);
+	@Query("select p from Project p")
+	Collection<Project> findAllProjects();
+
+	@Query("select d from Developer d where d.id= :id")
+	Developer findOneDeveloperById(int id);
+
+	@Query("select p from Project p where p.draftMode = false")
+	Collection<Project> findManyProjectsByDraftMode();
 }

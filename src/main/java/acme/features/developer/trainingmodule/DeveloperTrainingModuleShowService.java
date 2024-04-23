@@ -1,11 +1,16 @@
 
 package acme.features.developer.trainingmodule;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
+import acme.entities.projects.Project;
+import acme.entities.trainings.DifficultyLevel;
 import acme.entities.trainings.TrainingModule;
 import acme.roles.Developer;
 
@@ -20,39 +25,40 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 	// AbstractService interface ----------------------------------------------
 
 
+	//Esto ahora mismo acepta todas las peticiones que lleguen
 	@Override
 	public void authorise() {
-		boolean status;
-		int trainingModuleId;
-		TrainingModule trainingModule;
-
-		trainingModuleId = super.getRequest().getData("id", int.class);
-		trainingModule = this.repository.findOneTrainingModuleById(trainingModuleId);
-		status = trainingModule != null && super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper());
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		TrainingModule trainingModule;
+		TrainingModule object;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		trainingModule = this.repository.findOneTrainingModuleById(id);
+		object = this.repository.findOneTrainingModuleById(id);
 
-		super.getBuffer().addData(trainingModule);
+		super.getBuffer().addData(object);
 	}
-
 	@Override
-	public void unbind(final TrainingModule trainingModule) {
-		assert trainingModule != null;
+	public void unbind(final TrainingModule object) {
+		assert object != null;
 
+		Collection<Project> projects;
+		SelectChoices projectChoices;
+		SelectChoices levelChoices;
 		Dataset dataset;
-		//Atributos a pasar a la vista
-		dataset = super.unbind(trainingModule, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode");
+
+		projects = this.repository.findAllProjects();
+		projectChoices = SelectChoices.from(projects, "code", object.getProject());
+		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
+
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode", "project");
+		dataset.put("project", projectChoices.getSelected().getKey());
+		dataset.put("projects", projectChoices);
+		dataset.put("difficultyLevels", levelChoices);
 
 		super.getResponse().addData(dataset);
 	}
-
 }

@@ -29,20 +29,18 @@ public class DeveloperTrainingModuleListAllService extends AbstractService<Devel
 
 	@Override
 	public void load() {
-		Collection<TrainingModule> trainingModules;
+		Collection<TrainingModule> objects;
 
-		trainingModules = this.repository.findAllTrainingModules();
+		objects = this.repository.findAllTrainingModules();
 
-		super.getBuffer().addData(trainingModules);
+		super.getBuffer().addData(objects);
 	}
 
 	@Override
-	public void unbind(final TrainingModule trainingModules) {
-		assert trainingModules != null;
+	public void unbind(final TrainingModule object) {
+		assert object != null;
 
-		Dataset dataset;
-
-		dataset = super.unbind(trainingModules, "code", "details", "optionalLink", "draftMode");
+		final Dataset dataset = super.unbind(object, "code", "details");
 
 		super.getResponse().addData(dataset);
 	}
