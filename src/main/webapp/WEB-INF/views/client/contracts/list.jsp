@@ -16,7 +16,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="authenticated.client.contracts.form.label.code" path="code"/>
-	<acme:list-column code="authenticated.client.contracts.form.label.budget" path="budget"/>
-	<acme:list-column code="authenticated.client.contracts.form.label.project" path="project"/>
+	<acme:list-column code="client.contracts.form.label.code" path="code"/>
+	<acme:list-column code="client.contracts.form.label.budget" path="budget"/>
+	<acme:list-column code="client.contracts.form.label.project" path="project"/>
 </acme:list>
