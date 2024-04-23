@@ -30,6 +30,9 @@ public class ManagerUserStoryController extends AbstractController<Manager, User
 	@Autowired
 	private ManagerUserStoryListService		listService;
 
+	@Autowired
+	private ManagerUserStoryPublishService	publishService;
+
 	// Constructors -----------------------------------------------------------
 
 
@@ -40,6 +43,8 @@ public class ManagerUserStoryController extends AbstractController<Manager, User
 		super.addBasicCommand("delete", this.deleteService);
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("list", this.listService);
+
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
 }

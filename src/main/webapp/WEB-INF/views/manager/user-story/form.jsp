@@ -20,7 +20,7 @@
 	<acme:input-textbox code="manager.user-story.form.label.description" path="description"/>
 	<acme:input-integer code="manager.user-story.form.label.estimatedCost" path="estimatedCost"/>
 	<acme:input-textbox code="manager.user-story.form.label.acceptanceCriteria" path="acceptanceCriteria"/>
-	<acme:input-textbox code="manager.user-story.form.label.priority" path="priority"/>
+	<acme:input-select code="manager.user-story.form.label.priority" path="priority" choices="${ priorities }"/>
 	<acme:input-url code="manager.user-story.form.label.link" path="link"/>
 	<acme:hidden-data path="draftMode"/>
 

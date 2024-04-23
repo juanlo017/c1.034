@@ -21,6 +21,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.contracts.Contract;
 import acme.entities.projects.Assignment;
 import acme.entities.projects.Project;
+import acme.entities.projects.UserStory;
 import acme.entities.sponsorships.Sponsorship;
 import acme.entities.trainings.TrainingModule;
 import acme.roles.Manager;
@@ -45,6 +46,9 @@ public interface ManagerProjectRepository extends AbstractRepository {
 
 	@Query("select a from Assignment a where a.project.id = :id")
 	Collection<Assignment> findManyAssignmentsByProjectId(int id);
+
+	@Query("select a.userStory from Assignment a where a.project.id = :id")
+	Collection<UserStory> findAllUserStoriesByProjectId(int id);
 
 	@Query("select c from Contract c where c.project.id = :id")
 	Collection<Contract> findManyContractsByProjectId(int id);

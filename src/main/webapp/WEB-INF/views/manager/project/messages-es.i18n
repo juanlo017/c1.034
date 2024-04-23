@@ -8,9 +8,9 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-manager.project.form.title = Detalles de projecto
-anager.project.list.code = Código
-anager.project.list.draftmode = Modo borrador
+manager.project.form.title = Detalles de proyecto
+manager.project.list.code = Código
+manager.project.list.draftmode = Modo borrador
 
 manager.project.form.label.code = Código
 manager.project.form.label.title = Título 
@@ -34,3 +34,7 @@ manager.project.list.label.draftMode = DraftMode
 manager.project.list.label.title = Title
 
 manager.project.button.create = Create
+
+manager.project.form.error.notAllStoriesPublished = No todas las historias de usuario asociadas están publicadas!
+manager.project.form.error.hasFatalErrors = El proyecto contiene errores fatales!
+manager.project.form.error.numberOfUserStories = El proyecto debe tener al menos 1 historia de usuario antes de ser publicada!
