@@ -22,9 +22,19 @@
 	<acme:input-textbox code="client.contracts.form.label.goals" path="goals"/>
 	<acme:input-textbox code="client.contracts.form.label.budget" path="budget"/>
 	<acme:input-textbox code="client.contracts.form.label.project" path="project"/>
+	<acme:hidden-data path="draftMode"/>
 	
-	<acme:submit test="${_command == 'create'}" code="client.contracts.form.button.create" action="client/contracts/create"/>
-	<acme:submit test="${_command == 'update'}" code="client.contracts.form.button.update" action="consumer/contracts/update"/>
-	<acme:submit test="${_command == 'publish'}" code="client.contracts.form.button.publish" action="consumer/contracts/publish"/>
-	<acme:submit test="${_command == 'delete'}" code="client.contracts.form.button.delete" action="consumer/contracts/delete"/>
+	<jstl:choose>	 
+		<jstl:when test="${_command == 'show' && draftMode == false}">
+			<acme:button code="client.contracts.form.button.stories" action="/client/contracts/list?contractId=${id}"/>			
+		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+			<acme:submit code="client.contracts.form.button.update" action="client/contracts/update"/>
+			<acme:submit code="client.contracts.form.button.delete" action="client/contracts/delete"/>
+			<acme:submit code="client.contracts.form.button.publish" action="client/contracts/publish"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="client.contracts.form.button.create" action="client/contracts/create"/>
+		</jstl:when>		
+	</jstl:choose>
 </acme:form>

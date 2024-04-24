@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
-import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractService;
 import acme.entities.contracts.Contract;
 import acme.roles.Client;
@@ -48,12 +47,19 @@ public class ClientContractsCreateService extends AbstractService<Client, Contra
 	public void bind(final Contract object) {
 		assert object != null;
 
-		super.bind(object, "code", "providerName", "customerName", "goals", "budget", "project");
+		super.bind(object, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 	}
 
 	@Override
 	public void validate(final Contract object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Contract existing;
+
+			existing = this.repository.findContractById(object.getId());
+			super.state(existing == null, "code", "client.contrct.form.error.duplicated");
+		}
 	}
 
 	@Override
@@ -67,15 +73,17 @@ public class ClientContractsCreateService extends AbstractService<Client, Contra
 	public void unbind(final Contract object) {
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "providerName", "customerName", "goals", "budget", "project");
+		dataset = super.unbind(object, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}
 
-	@Override
-	public void onSuccess() {
-		if (super.getRequest().getMethod().equals("POST"))
-			PrincipalHelper.handleUpdate();
-	}
+	/*
+	 * @Override
+	 * public void onSuccess() {
+	 * if (super.getRequest().getMethod().equals("POST"))
+	 * PrincipalHelper.handleUpdate();
+	 * }
+	 */
 
 }
