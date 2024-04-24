@@ -1,5 +1,5 @@
 
-package acme.features.client.contracts;
+package acme.features.client.contract;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,13 @@ import acme.entities.contracts.Contract;
 import acme.roles.Client;
 
 @Service
-public class ClientContractsPublishService extends AbstractService<Client, Contract> {
+public class ClientContractDeleteService extends AbstractService<Client, Contract> {
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ClientContractsRepository repository;
+	private ClientContractRepository repository;
+
+	// AbstractService interface ----------------------------------------------
 
 
 	@Override
@@ -47,7 +50,7 @@ public class ClientContractsPublishService extends AbstractService<Client, Contr
 	public void bind(final Contract object) {
 		assert object != null;
 
-		super.bind(object, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		super.bind(object, "code", "providerName", "customerName", "goals", "budget", "project");
 	}
 
 	@Override
@@ -61,8 +64,7 @@ public class ClientContractsPublishService extends AbstractService<Client, Contr
 	public void perform(final Contract object) {
 		assert object != null;
 
-		object.setDraftMode(false);
-		this.repository.save(object);
+		this.repository.delete(object);
 	}
 
 	@Override

@@ -1,24 +1,21 @@
 
-package acme.features.client.contracts;
+package acme.features.client.contract;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.contracts.Contract;
 import acme.roles.Client;
 
 @Service
-public class ClientContractsCreateService extends AbstractService<Client, Contract> {
+public class ClientContractUpdateService extends AbstractService<Client, Contract> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ClientContractsRepository repository;
-
-	// AbstractService<Client, Contract> ---------------------------
+	private ClientContractRepository repository;
 
 
 	@Override
@@ -29,16 +26,10 @@ public class ClientContractsCreateService extends AbstractService<Client, Contra
 	@Override
 	public void load() {
 		Contract object;
-		Principal principal;
-		int clientId;
-		Client client;
+		int id;
 
-		principal = super.getRequest().getPrincipal();
-		clientId = principal.getActiveRoleId();
-		client = this.repository.findClientById(clientId);
-
-		object = new Contract();
-		object.setClient(client);
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findContractById(id);
 
 		super.getBuffer().addData(object);
 	}
@@ -54,12 +45,7 @@ public class ClientContractsCreateService extends AbstractService<Client, Contra
 	public void validate(final Contract object) {
 		assert object != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			Contract existing;
-
-			existing = this.repository.findContractById(object.getId());
-			super.state(existing == null, "code", "client.contrct.form.error.duplicated");
-		}
+		//TODO
 	}
 
 	@Override
@@ -71,19 +57,11 @@ public class ClientContractsCreateService extends AbstractService<Client, Contra
 
 	@Override
 	public void unbind(final Contract object) {
-		Dataset dataset;
+		assert object != null;
 
+		Dataset dataset;
 		dataset = super.unbind(object, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}
-
-	/*
-	 * @Override
-	 * public void onSuccess() {
-	 * if (super.getRequest().getMethod().equals("POST"))
-	 * PrincipalHelper.handleUpdate();
-	 * }
-	 */
-
 }

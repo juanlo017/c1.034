@@ -16,9 +16,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="client.contracts.list.label.code" path="code"/>
-	<acme:list-column code="client.contracts.list.label.budget" path="budget"/>
-	<acme:list-column code="client.contracts.list.label.project" path="project"/>
+	<acme:list-column code="client.contract.list.label.code" path="code"/>
+	<acme:list-column code="client.contract.list.label.budget" path="budget"/>
+	<acme:list-column code="client.contract.list.label.project" path="project"/>
 </acme:list>
 
-<acme:button code="client.contracts.button.create" action="/client/contracts/create"/>
+<acme:button code="client.contract.button.create" action="/client/contract/create"/>

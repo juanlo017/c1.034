@@ -1,5 +1,5 @@
 
-package acme.features.client.contracts;
+package acme.features.client.contract;
 
 import java.util.Collection;
 
@@ -11,7 +11,7 @@ import acme.entities.contracts.Contract;
 import acme.roles.Client;
 
 @Repository
-public interface ClientContractsRepository extends AbstractRepository {
+public interface ClientContractRepository extends AbstractRepository {
 
 	@Query("select c from Contract c where c.client.id = :id")
 	Collection<Contract> findContractsByClientId(int id);
