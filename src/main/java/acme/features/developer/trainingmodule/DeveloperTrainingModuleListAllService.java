@@ -40,7 +40,7 @@ public class DeveloperTrainingModuleListAllService extends AbstractService<Devel
 	public void unbind(final TrainingModule object) {
 		assert object != null;
 
-		final Dataset dataset = super.unbind(object, "code", "details");
+		final Dataset dataset = super.unbind(object, "code", "details", "totalTime");
 
 		super.getResponse().addData(dataset);
 	}

@@ -10,8 +10,6 @@
 	<acme:input-url code="developer.training-module.form.label.optionalLink" path="optionalLink"/>
 	<acme:input-integer code="developer.training-module.form.label.totalTime" path="totalTime"/>
 	<acme:input-select code="developer.training-module.form.label.project" path="project" choices="${projects}" />
-	<acme:input-moment code="developer.training-module.form.label.creationMoment" path="creationMoment" readonly="true"/>
-	<acme:input-moment code="developer.training-module.form.label.updateMoment" path="updateMoment" readonly="true"/>
 
 	
 	<jstl:choose>
