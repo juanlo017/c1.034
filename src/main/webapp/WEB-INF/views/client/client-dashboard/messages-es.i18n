@@ -8,7 +8,7 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-client.dashboard.form.title = Panel de cliente
+client.client-dashboard.form.title = Panel de cliente
 
 client.dashboard.form.label.numberOfProgressLogs = Registros de progreso totales
 client.dashboard.form.label.progressLogsCompletenessRate = Completitud de los registros de progreso
