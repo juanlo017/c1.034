@@ -45,6 +45,18 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.list.all.projects = List all projects
+master.menu.manager.list.mine.projects = List my projects
+
+master.menu.manager.list.all.user-story = List all user stories
+master.menu.manager.list.mine.user-story = List my user stories
+
+master.menu.manager.list.assignment = List assignments
+master.menu.manager.list.dashboard = View Dashboard
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
