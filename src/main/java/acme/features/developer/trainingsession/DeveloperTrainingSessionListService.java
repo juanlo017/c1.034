@@ -2,7 +2,6 @@
 package acme.features.developer.trainingsession;
 
 import java.util.Collection;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,7 @@ import acme.entities.trainings.TrainingSession;
 import acme.roles.Developer;
 
 @Service
-public class DeveloperTrainingSessionsListInTrainingModuleService extends AbstractService<Developer, TrainingSession> {
+public class DeveloperTrainingSessionListService extends AbstractService<Developer, TrainingSession> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -48,15 +47,9 @@ public class DeveloperTrainingSessionsListInTrainingModuleService extends Abstra
 		Collection<TrainingModule> modules = this.repository.findAllTrainingModules();
 		SelectChoices choices = SelectChoices.from(modules, "code", object.getTrainingModule());
 
-		final Dataset dataset = super.unbind(object, "code", "instructor", "email");
+		final Dataset dataset = super.unbind(object, "code", "instructor", "location");
 		dataset.put("trainingModule", choices.getSelected().getLabel());
 		dataset.put("trainingModules", choices);
-
-		if (object.isDraftMode()) {
-			final Locale local = super.getRequest().getLocale();
-			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
-		} else
-			dataset.put("draftMode", "No");
 
 		trainingModuleId = super.getRequest().getData("trainingModuleId", int.class);
 
@@ -64,4 +57,5 @@ public class DeveloperTrainingSessionsListInTrainingModuleService extends Abstra
 
 		super.getResponse().addData(dataset);
 	}
+
 }

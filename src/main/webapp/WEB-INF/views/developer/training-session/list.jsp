@@ -7,4 +7,9 @@
 	<acme:list-column code="developer.training-session.list.label.code" path="code" width="20%"/>
 	<acme:list-column code="developer.training-session.list.label.location" path="location" width="40%"/>
 	<acme:list-column code="developer.training-session.list.label.instructor" path="instructor" width="40%"/>
+	
 </acme:list>
+
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="developer.training-session.list.button.create" action="/developer/training-session/create"/>
+</jstl:if>

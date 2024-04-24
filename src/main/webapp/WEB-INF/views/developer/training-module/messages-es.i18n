@@ -13,7 +13,7 @@ developer.training-module.form.label.totalTime = Tiempo total
 developer.training-module.form.label.draftMode = Modo borrador
 developer.training-module.form.label.project = Proyecto
 
-developer.training-module.form.button.stories = Listado de sesiones
+developer.training-session.list.title = Listado de sesiones de entrenamiento
 developer.training-module.form.button.update = Actualizar
 developer.training-module.form.button.delete = Eliminar
 developer.training-module.form.button.publish = Publicar

@@ -8,6 +8,9 @@
 	<acme:input-textbox code="developer.training-session.form.label.code" path="code"/>
 	<acme:input-textbox code="developer.training-session.form.label.location" path="location"/>
 	<acme:input-textbox code="developer.training-session.form.label.instructor" path="instructor"/>
+	<acme:input-textbox code="developer.training-session.form.label.email" path="email"/>
+	<acme:input-textbox code="developer.training-session.form.label.link" path="link"/>
+	
 
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">

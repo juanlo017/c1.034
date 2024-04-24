@@ -50,7 +50,7 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.developer = Developer
 master.menu.developer.list.all.training-modules = List all training modules
 master.menu.developer.list.mine.training-modules = List my training modules
-master.menu.developer.my-sessions = My Training Sessions
+master.menu.developer.all.training-sessions = All Training Sessions
 master.menu.developer.developer-dashboard = Developer dashboard
 
 # master.menu.manager ##########################################################
