@@ -1,0 +1,15 @@
+developer.training-session.form.title = Detalles de la sesión de entrenamiento
+developer.training-session.form.label.code = Código
+developer.training-session.form.label.location = Localización
+developer.training-session.form.label.instructor = Instructor
+developer.training-session.form.label.email = Email
+developer.training-session.form.label.link = Link
+
+developer.training-session.form.button.delete = Eliminar
+developer.training-session.form.button.update = Actualizar
+
+developer.training-session.list.button.create = Crear
+developer.training-session.list.label.code = Código
+developer.training-session.list.label.location = Localización
+developer.training-session.list.label.instructor = Instructor
+

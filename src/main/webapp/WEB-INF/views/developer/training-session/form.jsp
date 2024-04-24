@@ -17,8 +17,8 @@
 			<acme:submit code="developer.training-session.form.button.create" action="/developer/training-session/create"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show')}">
-			<acme:submit code="developer.training-session.form.button.delete" action="/developer/training-session/delete"/>
 			<acme:submit code="developer.training-session.form.button.update" action="/developer/training-session/update"/>
+			<acme:submit code="developer.training-session.form.button.delete" action="/developer/training-session/delete"/>
 		</jstl:when>	
 	</jstl:choose>
 
