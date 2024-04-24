@@ -1,10 +1,12 @@
 
-package acme.features.authenticated.client.dashboard;
+package acme.features.authenticated.client.clientDashboard;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 
+@Repository
 public interface ClientDashboardRepository extends AbstractRepository {
 
 	@Query("select count(p) from ProgressLog p where p.contract.client.id = :id")
