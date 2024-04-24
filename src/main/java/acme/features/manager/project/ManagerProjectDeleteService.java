@@ -12,18 +12,12 @@
 
 package acme.features.manager.project;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.entities.contracts.Contract;
-import acme.entities.projects.Assignment;
 import acme.entities.projects.Project;
-import acme.entities.sponsorships.Sponsorship;
-import acme.entities.trainings.TrainingModule;
 import acme.roles.Manager;
 
 @Service
@@ -73,29 +67,23 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 	@Override
 	public void validate(final Project object) {
 		assert object != null;
+
+		int numAssignments = this.repository.countAssignmentsByProjectId(object.getId());
+		int numContracts = this.repository.countContractsByContractId(object.getId());
+		int numRisks = this.repository.countRisksByProjectId(object.getId());
+		int numObjectives = this.repository.countObjectivesByProjectId(object.getId());
+		int numSponsorships = this.repository.countSponsorshipsByProjectId(object.getId());
+
+		super.state(numAssignments == 0, "*", "manager.project.delete.exists-assignment");
+		super.state(numContracts == 0, "*", "manager.project.delete.exists-contract");
+		super.state(numRisks == 0, "*", "manager.project.delete.exists-risk");
+		super.state(numObjectives == 0, "*", "manager.project.delete.exists-objective");
+		super.state(numSponsorships == 0, "*", "manager.project.delete.exists-sponsorship");
 	}
 
 	@Override
 	public void perform(final Project object) {
 		assert object != null;
-
-		Collection<Assignment> assignments;
-		Collection<Contract> contracts;
-		Collection<Sponsorship> sponsoships;
-		Collection<TrainingModule> modules;
-
-		//ASSIGNMENT
-		assignments = this.repository.findManyAssignmentsByProjectId(object.getId());
-		this.repository.deleteAll(assignments);
-		//CONTRACT
-		contracts = this.repository.findManyContractsByProjectId(object.getId());
-		this.repository.deleteAll(contracts);
-		//SPONSORSHIPS
-		sponsoships = this.repository.findManySponsorshipsByProjectId(object.getId());
-		this.repository.deleteAll(sponsoships);
-		//TRAINING MODULE
-		modules = this.repository.findManyTrainingModulesByProjectId(object.getId());
-		this.repository.deleteAll(modules);
 
 		this.repository.delete(object);
 	}

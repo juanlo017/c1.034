@@ -59,4 +59,21 @@ public interface ManagerProjectRepository extends AbstractRepository {
 	@Query("select tm from TrainingModule tm where tm.project.id = :id")
 	Collection<TrainingModule> findManyTrainingModulesByProjectId(int id);
 
+	//////////
+
+	@Query("select count(a) from Assignment a where a.project.id = :id")
+	int countAssignmentsByProjectId(int id);
+
+	@Query("select count(a) from Contract a where a.project.id = :id")
+	int countContractsByContractId(int id);
+
+	@Query("select count(a) from Risk a where a.project.id = :id")
+	int countRisksByProjectId(int id);
+
+	@Query("select count(a) from Objective a where a.project.id = :id")
+	int countObjectivesByProjectId(int id);
+
+	@Query("select count(a) from Sponsorship a where a.project.id = :id")
+	int countSponsorshipsByProjectId(int id);
+
 }
