@@ -52,6 +52,15 @@ master.menu.developer.list.mine.training-modules = Listar mis módulos de entren
 master.menu.developer.my-sessions = Mis sesiones de entrenamiento
 master.menu.developer.developer-dashboard = Panel de desarrollador
 
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.list.all.projects = Listar todos los proyectos
+master.menu.manager.list.mine.projects = Listar mis proyectos
+
+master.menu.manager.list.assignment = Listar asignaciones
+master.menu.manager.list.dashboard = Ver Panel de Control
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
