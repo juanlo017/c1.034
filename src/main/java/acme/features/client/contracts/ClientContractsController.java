@@ -16,7 +16,7 @@ public class ClientContractsController extends AbstractController<Client, Contra
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ClientContractsListService		listService;
+	private ClientContractsListMineService		listService;
 
 	@Autowired
 	private ClientContractsShowService		showService;
