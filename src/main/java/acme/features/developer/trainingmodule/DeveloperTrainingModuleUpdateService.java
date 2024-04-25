@@ -62,6 +62,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		project = this.repository.findOneProjectById(projectId);
 
 		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project");
+		object.setUpdateMoment(MomentHelper.getCurrentMoment());
 		object.setProject(project);
 
 	}
