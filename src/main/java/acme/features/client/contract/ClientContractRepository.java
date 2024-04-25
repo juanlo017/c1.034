@@ -30,6 +30,6 @@ public interface ClientContractRepository extends AbstractRepository {
 	Collection<Project> findAllProjects();
 
 	@Query("select p from Project p where p.id = :id")
-	Project findProjectById(int projectId);
+	Project findProjectById(int id);
 
 }
