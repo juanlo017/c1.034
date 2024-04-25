@@ -2,24 +2,23 @@
 package acme.features.developer.trainingmodule;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.projects.Project;
 import acme.entities.trainings.DifficultyLevel;
 import acme.entities.trainings.TrainingModule;
+import acme.entities.trainings.TrainingSession;
 import acme.roles.Developer;
 
 @Service
-public class DeveloperTrainingModuleUpdateService extends AbstractService<Developer, TrainingModule> {
-	// Internal state ---------------------------------------------------------
+public class DeveloperTrainingModulePublishService extends AbstractService<Developer, TrainingModule> {
 
+	// Internal state ---------------------------------------------------------
 	@Autowired
 	private DeveloperTrainingModuleRepository repository;
 
@@ -29,16 +28,18 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 	@Override
 	public void authorise() {
 		boolean status;
-		int id;
+
+		int masterId;
 		TrainingModule trainingModule;
 		Developer developer;
 
-		id = super.getRequest().getData("id", int.class);
-		trainingModule = this.repository.findOneTrainingModuleById(id);
+		masterId = super.getRequest().getData("id", int.class);
+		trainingModule = this.repository.findOneTrainingModuleById(masterId);
 		developer = trainingModule == null ? null : trainingModule.getDeveloper();
 		status = trainingModule != null && trainingModule.isDraftMode() && super.getRequest().getPrincipal().hasRole(developer);
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -55,45 +56,43 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 	@Override
 	public void bind(final TrainingModule object) {
 		assert object != null;
+		Project project;
+		int projectId;
 
-		int projectId = super.getRequest().getData("project", int.class);
-		Project project = this.repository.findOneProjectById(projectId);
-
-		Date currentMoment = MomentHelper.getCurrentMoment();
-		Date updateMoment = new Date(currentMoment.getTime() - 5000);
-
+		projectId = super.getRequest().getData("project", int.class);
+		project = this.repository.findOneProjectById(projectId);
 		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project");
-
-		object.setUpdateMoment(updateMoment);
 		object.setProject(project);
-	}
 
+	}
 	@Override
 	public void validate(final TrainingModule object) {
 		assert object != null;
+		Collection<TrainingSession> trainingSessions;
+		boolean existsTrainingSessions;
+		int id;
 
-		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			TrainingModule existing;
+		id = super.getRequest().getData("id", int.class);
+		trainingSessions = this.repository.findManyTrainingSessionsByTrainingModuleId(id);
+		existsTrainingSessions = trainingSessions.size() > 0;
 
-			existing = this.repository.findOneTrainingModuleByCode(object.getCode());
-			super.state(existing == null || existing.equals(object), "code", "developer.training-module.form.error.duplicated");
-		}
+		super.state(existsTrainingSessions, "*", "developer.training-module.form.error.existsTrainingSessions");
 	}
 
 	@Override
 	public void perform(final TrainingModule object) {
 		assert object != null;
 
+		object.setDraftMode(false);
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final TrainingModule object) {
 		assert object != null;
-
 		Collection<Project> projects;
-		SelectChoices levelChoices;
 		SelectChoices projectChoices;
+		SelectChoices levelChoices;
 		Dataset dataset;
 
 		projects = this.repository.findAllProjects();
@@ -107,4 +106,5 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 
 		super.getResponse().addData(dataset);
 	}
+
 }
