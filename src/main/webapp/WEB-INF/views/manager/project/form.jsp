@@ -21,7 +21,7 @@
 	<acme:input-textbox code="manager.project.form.label.abstractText" path="abstractText"/>
 	<acme:input-textbox code="manager.project.form.label.fatalErrors" path="fatalErrors"/>
 	<acme:input-url code="manager.project.form.label.link" path="link"/>
-	<acme:input-integer code="manager.project.form.label.cost" path="cost"/>
+	<acme:input-money code="manager.project.form.label.cost" path="cost"/>
 	<acme:hidden-data path="draftMode"/>
 
 	<jstl:choose>	 
