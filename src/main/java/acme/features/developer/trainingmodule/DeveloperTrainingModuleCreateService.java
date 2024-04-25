@@ -2,11 +2,11 @@
 package acme.features.developer.trainingmodule;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
@@ -29,6 +29,7 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 
 	@Override
 	public void authorise() {
+
 		super.getResponse().setAuthorised(true);
 	}
 
@@ -37,8 +38,8 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		TrainingModule object;
 		Developer developer;
 
-		developer = this.repository.findOneDeveloperById(super.getRequest().getPrincipal().getActiveRoleId());
-
+		Principal principal = super.getRequest().getPrincipal();
+		developer = this.repository.findOneDeveloperById(principal.getActiveRoleId());
 		object = new TrainingModule();
 		object.setDraftMode(true);
 		object.setDeveloper(developer);
@@ -57,11 +58,6 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		project = this.repository.findOneProjectById(projectId);
 
 		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project");
-
-		Date currentMoment = MomentHelper.getCurrentMoment();
-		Date creationMoment = new Date(currentMoment.getTime() - 600000);
-
-		object.setCreationMoment(creationMoment);
 		object.setProject(project);
 
 	}
@@ -70,39 +66,40 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	public void validate(final TrainingModule object) {
 		assert object != null;
 
-		//		boolean sameCode;
-		//
-		//		if (!super.getBuffer().getErrors().hasErrors("code")) {
-		//			sameCode = this.repository.findAllTrainingModules().stream().anyMatch(t -> t.getCode().equals(object.getCode()));
-		//
-		//			super.state(!sameCode, "code", "developer.training-module.form.error.same-code");
-		//
-		//		}
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			TrainingModule existing;
+
+			existing = this.repository.findOneTrainingModuleByCode(object.getCode());
+			super.state(existing == null, "code", "developer.training-module.form.error.duplicated");
+		}
+
+		if (object.getUpdateMoment() != null && !super.getBuffer().getErrors().hasErrors("updateMoment"))
+			super.state(MomentHelper.isAfter(object.getUpdateMoment(), object.getCreationMoment()), "updateMoment", "developer.training-module.form.error.update-date-not-valid");
 	}
+
 	@Override
 	public void perform(final TrainingModule object) {
 		assert object != null;
+
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final TrainingModule object) {
 		assert object != null;
-
+		SelectChoices choices;
+		SelectChoices projectsChoices;
 		Collection<Project> projects;
-		SelectChoices levelChoices;
-		SelectChoices projectChoices;
+
 		Dataset dataset;
-
-		projects = this.repository.findManyProjectsByDraftMode();
-		projectChoices = SelectChoices.from(projects, "code", object.getProject());
-		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
-
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project", "draftMode");
-		dataset.put("project", projectChoices.getSelected().getKey());
-		dataset.put("projects", projectChoices);
-		dataset.put("difficultyLevels", levelChoices);
-
+		choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
+		projects = this.repository.findAllProjects();
+		projectsChoices = SelectChoices.from(projects, "code", object.getProject());
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "TotalTime", "draftMode", "project");
+		dataset.put("difficulty", choices);
+		dataset.put("project", projectsChoices.getSelected().getKey());
+		dataset.put("projects", projectsChoices);
 		super.getResponse().addData(dataset);
+
 	}
 }

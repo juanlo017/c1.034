@@ -25,10 +25,19 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 	// AbstractService interface ----------------------------------------------
 
 
-	//Esto ahora mismo acepta todas las peticiones que lleguen
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Boolean status;
+		int masterId;
+		TrainingModule tm;
+		Developer developer;
+
+		masterId = super.getRequest().getData("id", int.class);
+		tm = this.repository.findOneTrainingModuleById(masterId);
+		developer = tm == null ? null : tm.getDeveloper();
+		status = super.getRequest().getPrincipal().hasRole(developer) || tm != null && !tm.isDraftMode();
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -41,23 +50,23 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 
 		super.getBuffer().addData(object);
 	}
+
 	@Override
 	public void unbind(final TrainingModule object) {
 		assert object != null;
+		SelectChoices choices;
+		SelectChoices projectsChoices;
 		Collection<Project> projects;
-		SelectChoices projectChoices;
-		SelectChoices levelChoices;
+
 		Dataset dataset;
-
+		choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 		projects = this.repository.findAllProjects();
-		projectChoices = SelectChoices.from(projects, "code", object.getProject());
-		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
-
+		projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode", "project");
-		dataset.put("project", projectChoices.getSelected().getKey());
-		dataset.put("projects", projectChoices);
-		dataset.put("difficultyLevels", levelChoices);
-
+		dataset.put("difficulty", choices);
+		dataset.put("project", projectsChoices.getSelected().getKey());
+		dataset.put("projects", projectsChoices);
 		super.getResponse().addData(dataset);
+
 	}
 }

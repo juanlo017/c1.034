@@ -2,12 +2,17 @@
 package acme.features.developer.trainingmodule;
 
 import java.util.Collection;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
+import acme.entities.projects.Project;
+import acme.entities.trainings.DifficultyLevel;
 import acme.entities.trainings.TrainingModule;
 import acme.roles.Developer;
 
@@ -29,21 +34,39 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 
 	@Override
 	public void load() {
-		Collection<TrainingModule> objects;
-		int id;
+		Collection<TrainingModule> modules;
+		Principal principal;
 
-		id = super.getRequest().getPrincipal().getActiveRoleId();
-		objects = this.repository.findAllTrainingModulesByDeveloperId(id);
+		principal = super.getRequest().getPrincipal();
+		modules = this.repository.findAllTrainigModulesByDeveloperId(principal.getActiveRoleId());
 
-		super.getBuffer().addData(objects);
+		super.getBuffer().addData(modules);
 	}
 
 	@Override
 	public void unbind(final TrainingModule object) {
 		assert object != null;
+		SelectChoices choices;
+		SelectChoices projectsChoices;
+		Collection<Project> projects;
 
-		final Dataset dataset = super.unbind(object, "code", "details", "totalTime");
+		Dataset dataset;
+		choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
+		projects = this.repository.findAllProjects();
+		projectsChoices = SelectChoices.from(projects, "code", object.getProject());
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode", "project");
 
+		if (object.isDraftMode()) {
+			final Locale local = super.getRequest().getLocale();
+
+			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
+		} else
+			dataset.put("draftMode", "No");
+
+		dataset.put("difficulty", choices);
+		dataset.put("project", projectsChoices.getSelected().getKey());
+		dataset.put("projects", projectsChoices);
 		super.getResponse().addData(dataset);
+
 	}
 }
