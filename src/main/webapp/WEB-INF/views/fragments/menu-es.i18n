@@ -44,6 +44,14 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.developer #########################################################
+
+master.menu.developer = Developer
+master.menu.developer.list.all.training-modules = Listar todos los módulos de entrenamiento
+master.menu.developer.list.mine.training-modules = Listar mis módulos de entrenamiento
+master.menu.developer.all.training-sessions = All Training Sessions
+master.menu.developer.developer-dashboard = Panel de desarrollador
+
 # master.menu.manager ##########################################################
 
 master.menu.manager = Gerente

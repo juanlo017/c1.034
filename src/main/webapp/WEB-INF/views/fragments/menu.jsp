@@ -44,6 +44,13 @@
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
 		
+		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">
+			<acme:menu-suboption code="master.menu.developer.list.all.training-modules" action="/developer/training-module/list-all"/>
+			<acme:menu-suboption code="master.menu.developer.list.mine.training-modules" action="/developer/training-module/list-mine"/>
+			<acme:menu-separator/>	
+			<acme:menu-suboption code="master.menu.developer.developer-dashboard" action="/developer/developer-dashboard/show"/>
+		</acme:menu-option>
+		
 		<acme:menu-option code="master.menu.manager" access="hasRole('Manager')">
 			<acme:menu-suboption code="master.menu.manager.list.mine.projects" action="/manager/project/list-mine"/>
 			<acme:menu-suboption code="master.menu.manager.list.dashboard" action="/manager/manager-dashboard/show"/>
