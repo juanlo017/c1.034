@@ -25,10 +25,10 @@ public class DeveloperTrainingSessionController extends AbstractController<Devel
 	//	private DeveloperTrainingSessionUpdateService	updateService;
 
 	@Autowired
-	private DeveloperTrainingSessionListService listService;
+	private DeveloperTrainingSessionListService	listService;
 
-	//	@Autowired
-	//	private DeveloperTrainingSessionShowService		showService;
+	@Autowired
+	private DeveloperTrainingSessionShowService	showService;
 
 	//	@Autowired
 	//	private DeveloperTrainingSessionPublishService	publishService;
@@ -40,7 +40,7 @@ public class DeveloperTrainingSessionController extends AbstractController<Devel
 		//		super.addBasicCommand("delete", this.deleteService);
 		//		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("list", this.listService);
-		//		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("show", this.showService);
 		//		super.addCustomCommand("publish", "update", this.publishService);
 	}
 }
