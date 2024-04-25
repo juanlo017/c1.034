@@ -28,7 +28,17 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Boolean status;
+		int masterId;
+		TrainingModule tm;
+		Developer developer;
+
+		masterId = super.getRequest().getData("id", int.class);
+		tm = this.repository.findOneTrainingModuleById(masterId);
+		developer = tm == null ? null : tm.getDeveloper();
+		status = tm != null && tm.isDraftMode() && super.getRequest().getPrincipal().hasRole(developer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -53,8 +63,8 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 		project = this.repository.findOneProjectById(projectId);
 
 		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project");
-
 		object.setProject(project);
+
 	}
 
 	@Override
@@ -66,31 +76,29 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 	public void perform(final TrainingModule object) {
 		assert object != null;
 
-		Collection<TrainingSession> objects = this.repository.findManyTrainingSessionsByTrainingModuleId(object.getId());
+		Collection<TrainingSession> sessions;
 
-		this.repository.deleteAll(objects);
+		sessions = this.repository.findAllTrainingSessionsByTrainingModuleId(object.getId());
+		this.repository.deleteAll(sessions);
 		this.repository.delete(object);
 	}
 
 	@Override
 	public void unbind(final TrainingModule object) {
 		assert object != null;
-
+		SelectChoices choices;
+		SelectChoices projectsChoices;
 		Collection<Project> projects;
-		SelectChoices levelChoices;
-		SelectChoices projectChoices;
+
 		Dataset dataset;
-
+		choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 		projects = this.repository.findAllProjects();
-		projectChoices = SelectChoices.from(projects, "code", object.getProject());
-		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
-
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode");
-		dataset.put("project", projectChoices.getSelected().getKey());
-		dataset.put("projects", projectChoices);
-		dataset.put("difficultyLevels", levelChoices);
-
+		projectsChoices = SelectChoices.from(projects, "code", object.getProject());
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optinalLink", "totalTime", "draftMode", "project");
+		dataset.put("difficulty", choices);
+		dataset.put("project", projectsChoices.getSelected().getKey());
+		dataset.put("projects", projectsChoices);
 		super.getResponse().addData(dataset);
-	}
 
+	}
 }
