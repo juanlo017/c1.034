@@ -29,3 +29,5 @@ manager.user-story.form.button.create = Create
 
 manager.user-story.form.label.description = Description	
 manager.user-story.form.title = Title
+
+manager.project.delete.draft-mode = Published project

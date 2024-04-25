@@ -63,9 +63,9 @@ public class ManagerProjectPublishService extends AbstractService<Manager, Proje
 
 			boolean hasAllStoriesPublished = stories.stream().allMatch(x -> !x.isDraftMode());
 
-			super.state(hasAllStoriesPublished, "code", "manager.project.form.error.notAllStoriesPublished");
-			super.state(!object.isFatalErrors(), "code", "manager.project.form.error.hasFatalErrors");
-			super.state(!stories.isEmpty(), "code", "manager.project.form.error.numberOfUserStories");
+			super.state(hasAllStoriesPublished, "*", "manager.project.form.error.notAllStoriesPublished");
+			super.state(!object.isFatalErrors(), "*", "manager.project.form.error.hasFatalErrors");
+			super.state(!stories.isEmpty(), "*", "manager.project.form.error.numberOfUserStories");
 		}
 	}
 

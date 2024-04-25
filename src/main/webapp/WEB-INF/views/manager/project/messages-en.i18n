@@ -27,8 +27,6 @@ manager.project.form.button.delete = Delete
 manager.project.form.button.publish = Publish
 manager.project.form.button.create = Create
 
-
-
 manager.project.list.title = Listing of projects
 manager.project.list.label.code = Code
 manager.project.list.label.draftMode = DraftMode
@@ -36,6 +34,19 @@ manager.project.list.label.title = Title
 
 manager.project.button.create = Create
 
+manager.project.delete.exists-assignment = Assignment related to project exists
+manager.project.delete.exists-contract = Contract related to project exists
+manager.project.delete.exists-risk = Risk related to project exists
+manager.project.delete.exists-objective = Objective related to project exists
+manager.project.delete.exists-sponsorship = Sponsorship related to project exists
+manager.project.delete.exists-training-module = TrainingModule related to project exists
+
+manager.project.form.error.notAllStoriesPublished = Not all stories are published
+manager.project.form.error.hasFatalErrors = Project has fatal errors
+manager.project.form.error.numberOfUserStories = Project must have at least one user story
+
+manager.project.form.error.duplicated = Duplicated code entry
+manager.project.form.error.currency = Only supported currencies: EUR, GBP & USD
 
 manager.project.form.error.notAllStoriesPublished = Not all associated user stories are published!
 manager.project.form.error.hasFatalErrors = The project contains fatal errors!

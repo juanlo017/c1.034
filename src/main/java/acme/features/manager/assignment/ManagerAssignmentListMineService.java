@@ -36,7 +36,7 @@ public class ManagerAssignmentListMineService extends AbstractService<Manager, A
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
 	}
 
 	@Override
@@ -49,12 +49,14 @@ public class ManagerAssignmentListMineService extends AbstractService<Manager, A
 	}
 
 	@Override
-	public void unbind(final Assignment assignments) {
-		assert assignments != null;
+	public void unbind(final Assignment assignment) {
+		assert assignment != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(assignments, "project", "userStory");
+		dataset = super.unbind(assignment, "project", "userStory");
+		dataset.put("project", assignment.getProject().getTitle());
+		dataset.put("userStory", assignment.getUserStory().getTitle());
 
 		super.getResponse().addData(dataset);
 	}

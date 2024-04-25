@@ -8,24 +8,28 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-manager.user-story.list.title = Listado de historias de usuario
-manager.user-story.list.label.title = Título
-manager.user-story.list.label.description = Descripción
-manager.user-story.list.label.draftMode = Modo Borrador
-manager.user-story.list.label.estimatedCost = Coste Estimado
-manager.user-story.button.create = Crear
+manager.assignment.list.title = Listado de asignaciones
 
-manager.user-story.form.label.title = Título
-manager.user-story.form.label.draftMode = Modo Borrador
-manager.user-story.form.label.estimatedCost = Coste estimado
-manager.user-story.form.label.acceptanceCriteria = Criterios de aceptación
-manager.user-story.form.label.priority = Prioridad
-manager.user-story.form.label.link = Enlace
+manager.assignment.list.label.project = Proyecto
+manager.assignment.list.label.userStory = Historia de usuario
 
-manager.user-story.form.button.update = Actualizar
-manager.user-story.form.button.delete = Eliminar
-manager.user-story.form.button.publish = Publicar
-manager.user-story.form.button.create = Crear
+manager.assignment.list.button.create = Crear
+manager.assignment.list.button.create.project = Crear proyecto
+manager.assignment.list.button.create.user-story = Crear historia de usuario
 
-manager.user-story.form.label.description = Descripción
-manager.user-story.form.title = Título
+manager.assignment.form.title = Listado de asignaciones
+
+manager.assignment.form.title = Asignacion
+manager.assignment.form.label.project = Proyecto
+manager.assignment.form.label.story = Historia de usuario
+
+manager.assignment.form.button.create = Crear
+manager.assignment.form.button.delete = Eliminar
+
+manager.project.delete.projectPublished = Proyecto ya publicado!
+
+manager.assignment.project.notDratfMode = Proyecto ya publicado!
+manager.assignment.project.null = Proyecto no existe!
+manager.assignment.user-story.null = Historia de usuario no existe!
+
+manager.assignment.project.existSame = Asignación ya existe!

@@ -15,3 +15,5 @@ authenticated.manager.form.label.link = Link
 
 authenticated.manager.form.button.create = Create
 authenticated.manager.form.button.update = Update
+
+authenticated.manager.form.title = Manager data

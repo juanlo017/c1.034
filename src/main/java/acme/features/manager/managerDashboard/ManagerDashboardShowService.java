@@ -46,31 +46,34 @@ public class ManagerDashboardShowService extends AbstractService<Manager, Manage
 		int couldUserStories = this.repository.countCouldUserStories(managerId);
 		int wontUserStories = this.repository.countWontUserStories(managerId);
 
-		double avgCostOfUserStory = this.repository.avgCostOfUserStory(managerId);
-		int minCostOfUserStory = this.repository.minCostOfUserStory(managerId);
-		int maxCostOfUserStory = this.repository.maxCostOfUserStory(managerId);
-		double deviationCostOfUserStory = this.repository.deviationCostOfUserStory(managerId);
-
-		double avgCostOfProject = this.repository.avgCostOfProject(managerId);
-		int minCostOfProject = this.repository.minCostOfProject(managerId);
-		int maxCostOfProject = this.repository.maxCostOfProject(managerId);
-		double deviationCostOfProject = this.repository.deviationCostOfProject(managerId);
-
 		dashboard = new ManagerDashboard();
 		dashboard.setMustUserStories(mustUserStories);
 		dashboard.setShouldUserStories(shouldUserStories);
 		dashboard.setCouldUserStories(couldUserStories);
 		dashboard.setWontUserStories(wontUserStories);
 
-		dashboard.setAvgCostOfUserStory(avgCostOfUserStory);
-		dashboard.setMinCostOfUserStory(minCostOfUserStory);
-		dashboard.setMaxCostOfUserStory(maxCostOfUserStory);
-		dashboard.setDeviationCostOfUserStory(deviationCostOfUserStory);
+		dashboard.setAvgCostOfProjectEUR(this.repository.avgCostOfProject("EUR", managerId));
+		dashboard.setAvgCostOfProjectGBP(this.repository.avgCostOfProject("GBP", managerId));
+		dashboard.setAvgCostOfProjectUSD(this.repository.avgCostOfProject("USD", managerId));
 
-		dashboard.setAvgCostOfProject(avgCostOfProject);
-		dashboard.setMinCostOfProject(minCostOfProject);
-		dashboard.setMaxCostOfProject(maxCostOfProject);
-		dashboard.setDeviationCostOfProject(deviationCostOfProject);
+		dashboard.setMinCostOfProjectEUR(this.repository.minCostOfProject("EUR", managerId));
+		dashboard.setMinCostOfProjectGBP(this.repository.minCostOfProject("GBP", managerId));
+		dashboard.setMinCostOfProjectUSD(this.repository.minCostOfProject("USD", managerId));
+
+		dashboard.setMaxCostOfProjectEUR(this.repository.maxCostOfProject("EUR", managerId));
+		dashboard.setMaxCostOfProjectGBP(this.repository.maxCostOfProject("GBP", managerId));
+		dashboard.setMaxCostOfProjectUSD(this.repository.maxCostOfProject("USD", managerId));
+
+		dashboard.setDeviationCostOfProjectEUR(this.repository.deviationCostOfProject("EUR", managerId));
+		dashboard.setDeviationCostOfProjectGBP(this.repository.deviationCostOfProject("GBP", managerId));
+		dashboard.setDeviationCostOfProjectUSD(this.repository.deviationCostOfProject("USD", managerId));
+
+		///
+
+		dashboard.setAvgCostOfUserStory(this.repository.avgCostOfUserStory(managerId));
+		dashboard.setMinCostOfUserStory(this.repository.minCostOfUserStory(managerId));
+		dashboard.setMaxCostOfUserStory(this.repository.maxCostOfUserStory(managerId));
+		dashboard.setDeviationCostOfUserStory(this.repository.deviationCostOfUserStory(managerId));
 
 		super.getBuffer().addData(dashboard);
 	}
@@ -79,8 +82,9 @@ public class ManagerDashboardShowService extends AbstractService<Manager, Manage
 	public void unbind(final ManagerDashboard object) {
 		Dataset dataset;
 
-		dataset = super.unbind(object, "mustUserStories", "shouldUserStories", "couldUserStories", "wontUserStories", "avgCostOfUserStory", "minCostOfUserStory", "maxCostOfUserStory", "deviationCostOfUserStory", "avgCostOfProject", "minCostOfProject",
-			"maxCostOfProject", "deviationCostOfProject");
+		dataset = super.unbind(object, "mustUserStories", "shouldUserStories", "couldUserStories", "wontUserStories", "avgCostOfProjectEUR", "avgCostOfProjectUSD", "avgCostOfProjectGBP", "minCostOfProjectEUR", "minCostOfProjectUSD", "minCostOfProjectGBP",
+			"maxCostOfProjectEUR", "maxCostOfProjectUSD", "maxCostOfProjectGBP", "deviationCostOfProjectEUR", "deviationCostOfProjectUSD", "deviationCostOfProjectGBP", "avgCostOfUserStory", "minCostOfUserStory", "maxCostOfUserStory",
+			"deviationCostOfUserStory");
 
 		super.getResponse().addData(dataset);
 	}
