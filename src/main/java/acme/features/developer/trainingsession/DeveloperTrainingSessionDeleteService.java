@@ -78,5 +78,4 @@ public class DeveloperTrainingSessionDeleteService extends AbstractService<Devel
 
 		super.getResponse().addData(dataset);
 	}
-
 }
