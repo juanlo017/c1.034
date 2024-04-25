@@ -62,7 +62,6 @@ public class ManagerUserStoryShowService extends AbstractService<Manager, UserSt
 
 		dataset = super.unbind(object, "title", "description", "estimatedCost", "acceptanceCriteria", "priority", "link", "draftMode");
 		dataset.put("priorities", priorityChoices);
-
 		super.getResponse().addData(dataset);
 	}
 

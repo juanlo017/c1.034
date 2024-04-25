@@ -24,7 +24,7 @@
 		readonly="${_command != 'create'}" />
 
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|delete')}">
+		<jstl:when test="${acme:anyOf(_command, 'show|delete') && showDelete}">
 			<acme:submit code="manager.assignment.form.button.delete"
 				action="/manager/assignment/delete" />
 		</jstl:when>

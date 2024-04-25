@@ -8,24 +8,27 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-manager.user-story.list.title = User Story List
-manager.user-story.list.label.title = Title
-manager.user-story.list.label.description = Description
-manager.user-story.list.label.draftMode = Draft Mode
-manager.user-story.list.label.estimatedCost = Estimated Cost
-manager.user-story.button.create = Create
+manager.assignment.list.title = Assignment listing
 
-manager.user-story.form.label.title = Title
-manager.user-story.form.label.draftMode = Draft Mode
-manager.user-story.form.label.estimatedCost = Estimated Cost
-manager.user-story.form.label.acceptanceCriteria = AcceptanceCriteria 
-manager.user-story.form.label.priority = Priority
-manager.user-story.form.label.link = Link
+manager.assignment.list.label.project = Project
+manager.assignment.list.label.userStory = User Story
 
-manager.user-story.form.button.update = Update
-manager.user-story.form.button.delete = Delete
-manager.user-story.form.button.publish = Publish
-manager.user-story.form.button.create = Create
+manager.assignment.list.button.create = Create 
+manager.assignment.list.button.create.project = Create project
+manager.assignment.list.button.create.user-story = Create user story
 
-manager.user-story.form.label.description = Description	
-manager.user-story.form.title = Title
+manager.assignment.form.title = Assignment
+manager.assignment.form.label.project = Project
+manager.assignment.form.label.story =  User Story
+
+manager.assignment.form.button.create = Create 
+manager.assignment.form.button.delete = Delete 
+
+manager.project.delete.projectPublished = Published project!
+
+manager.assignment.project.notDratfMode = Published project!
+manager.assignment.project.null = Project null!
+manager.assignment.user-story.null = User Story null!
+manager.assignment.project.existSame = Assignment already exists!
+
+

@@ -76,6 +76,7 @@ public class ManagerAssignmentShowService extends AbstractService<Manager, Assig
 		dataset.put("project", projectChoices.getSelected().getKey());
 		dataset.put("projectChoices", projectChoices);
 
+		dataset.put("showDelete", object.getProject().isDraftMode());
 		super.getResponse().addData(dataset);
 	}
 }

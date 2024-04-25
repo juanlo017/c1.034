@@ -63,17 +63,14 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 
 	@Override
 	public void validate(final Assignment object) {
-		assert object != null;
 
 		if (!super.getBuffer().getErrors().hasErrors("project") && object.getProject() != null)
-			super.state(object.getUserStory().isDraftMode(), "project", "manager.assignment.project.notDratfMode");
+			super.state(object.getProject().isDraftMode(), "project", "manager.assignment.project.notDraftfMode");
 
 		if (!super.getBuffer().getErrors().hasErrors("project"))
 			super.state(object.getProject() != null, "project", "manager.assignment.project.null");
-
 		if (!super.getBuffer().getErrors().hasErrors("userStory"))
 			super.state(object.getUserStory() != null, "userStory", "manager.assignment.user-story.null");
-
 		if (!super.getBuffer().getErrors().hasErrors("project") && object.getProject() != null) {
 			int assignmentsWithSameProjectAndStory = this.repository.existsAssignmentWithSameProjectAndUserStory(object.getProject(), object.getUserStory());
 			super.state(assignmentsWithSameProjectAndStory == 0, "*", "manager.assignment.project.existSame");
@@ -92,10 +89,10 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 	public void unbind(final Assignment object) {
 		assert object != null;
 
-		int managerId = super.getRequest().getPrincipal().getAccountId();
+		int managerId = super.getRequest().getPrincipal().getActiveRoleId();
 
-		Collection<Project> projects = this.repository.findAllProjects();
-		Collection<UserStory> userStories = this.repository.findAllUserStories();
+		Collection<Project> projects = this.repository.findAllPublishedProjectsByManager(managerId);
+		Collection<UserStory> userStories = this.repository.findAllPublishedUserStoriesByManager(managerId);
 
 		SelectChoices projectChoices = SelectChoices.from(projects, "title", object.getProject());
 		SelectChoices userStoriesChoices = SelectChoices.from(userStories, "title", object.getUserStory());
