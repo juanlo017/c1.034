@@ -1,12 +1,16 @@
 
 package acme.features.client.contract;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.contracts.Contract;
+import acme.entities.projects.Project;
 import acme.roles.Client;
 
 @Service
@@ -47,7 +51,12 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 	public void bind(final Contract object) {
 		assert object != null;
 
-		super.bind(object, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		int projectId;
+		Project project;
+
+		projectId = super.getRequest().getData("project", int.class);
+		project = this.repository.findProjectById(projectId);
+		object.setProject(project);
 	}
 
 	@Override
@@ -70,7 +79,16 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 		assert object != null;
 
 		Dataset dataset;
-		dataset = super.unbind(object, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
+		Collection<Project> projects;
+		SelectChoices choices;
+
+		projects = this.repository.findAllProjects();
+		choices = SelectChoices.from(projects, "title", object.getProject());
+
+		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		dataset.put("projects", choices);
+		dataset.put("project", choices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}
