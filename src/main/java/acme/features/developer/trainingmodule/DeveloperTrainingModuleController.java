@@ -32,9 +32,9 @@ public class DeveloperTrainingModuleController extends AbstractController<Develo
 	//
 	@Autowired
 	private DeveloperTrainingModuleShowService		showService;
-	//
-	//	@Autowired
-	//	private DeveloperTrainingModuleUpdateService	updateService;
+
+	@Autowired
+	private DeveloperTrainingModuleUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -42,10 +42,10 @@ public class DeveloperTrainingModuleController extends AbstractController<Develo
 	@PostConstruct
 	protected void initialise() {
 		super.addCustomCommand("list-all", "list", this.listAllService);
+		super.addCustomCommand("list-mine", "list", this.listMineService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("delete", this.deleteService);
-		//		super.addBasicCommand("update", this.updateService);
-		super.addCustomCommand("list-mine", "list", this.listMineService);
+		super.addBasicCommand("update", this.updateService);
 		//		super.addCustomCommand("publish", "update", this.publishService);
 		super.addBasicCommand("show", this.showService);
 
