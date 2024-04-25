@@ -4,22 +4,22 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-
 	<acme:input-textbox code="developer.training-session.form.label.code" path="code"/>
-	<acme:input-textbox code="developer.training-session.form.label.location" path="location"/>
-	<acme:input-textbox code="developer.training-session.form.label.instructor" path="instructor"/>
-	<acme:input-textbox code="developer.training-session.form.label.email" path="email"/>
-	<acme:input-textbox code="developer.training-session.form.label.link" path="link"/>
+	<acme:input-moment code="developer.training-session.form.label.time-period-start" path="timePeriodStart"/>
+	<acme:input-moment code="developer.training-session.form.label.time-period-end" path="timePeriodEnd"/>
+	<acme:input-textbox code="developer.training-session.form.label.location" path="location"/>	
+	<acme:input-textbox code="developer.training-session.form.label.instructor" path="instructor"/>	
+	<acme:input-email code="developer.training-session.form.label.email" path="email"/>
+	<acme:input-url code="developer.training-session.form.label.link" path="link"/>	
 	
-
-	<jstl:choose>
-		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="developer.training-session.form.button.create" action="/developer/training-session/create"/>
-		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show')}">
+	<jstl:choose>	 
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:submit code="developer.training-session.form.button.update" action="/developer/training-session/update"/>
 			<acme:submit code="developer.training-session.form.button.delete" action="/developer/training-session/delete"/>
-		</jstl:when>	
+			<acme:submit code="developer.training-session.form.button.publish" action="/developer/training-session/publish"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="developer.training-session.form.button.create-training-session" action="/developer/training-session/create?masterId=${masterId}"/>
+		</jstl:when>		
 	</jstl:choose>
-
 </acme:form>

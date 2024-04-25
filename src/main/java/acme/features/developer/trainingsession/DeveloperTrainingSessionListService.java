@@ -2,13 +2,13 @@
 package acme.features.developer.trainingsession;
 
 import java.util.Collection;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
 import acme.entities.trainings.TrainingModule;
 import acme.entities.trainings.TrainingSession;
 import acme.roles.Developer;
@@ -26,36 +26,61 @@ public class DeveloperTrainingSessionListService extends AbstractService<Develop
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		TrainingModule module;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		module = this.repository.findOneTrainingModuleById(masterId);
+		status = module != null && (!module.isDraftMode() || super.getRequest().getPrincipal().hasRole(module.getDeveloper()));
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Collection<TrainingSession> objects;
+		Collection<TrainingSession> sessions;
+		int masterId;
 
-		final int trainingModuleId = super.getRequest().getData("trainingModuleId", int.class);
-		objects = this.repository.findAllTrainingSessionsByTrainingModuleId(trainingModuleId);
+		masterId = super.getRequest().getData("masterId", int.class);
+		sessions = this.repository.findAllTrainingSessionsByMasterId(masterId);
 
-		super.getBuffer().addData(objects);
+		super.getBuffer().addData(sessions);
 	}
 
 	@Override
 	public void unbind(final TrainingSession object) {
+
 		assert object != null;
-		int trainingModuleId;
 
-		Collection<TrainingModule> modules = this.repository.findAllTrainingModules();
-		SelectChoices choices = SelectChoices.from(modules, "code", object.getTrainingModule());
+		Dataset dataset;
 
-		final Dataset dataset = super.unbind(object, "code", "instructor", "location");
-		dataset.put("trainingModule", choices.getSelected().getLabel());
-		dataset.put("trainingModules", choices);
+		dataset = super.unbind(object, "code", "timePeriodStart", "timePeriodEnd", "location", "instructor", "email", "link", "draftMode");
 
-		trainingModuleId = super.getRequest().getData("trainingModuleId", int.class);
+		if (object.isDraftMode()) {
+			final Locale local = super.getRequest().getLocale();
 
-		super.getResponse().addGlobal("trainingModuleId", trainingModuleId);
+			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
+		} else
+			dataset.put("draftMode", "No");
 
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void unbind(final Collection<TrainingSession> objects) {
+		assert objects != null;
+
+		int masterId;
+		TrainingModule module;
+		final boolean showCreate;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		module = this.repository.findOneTrainingModuleById(masterId);
+		showCreate = module.isDraftMode() && super.getRequest().getPrincipal().hasRole(module.getDeveloper());
+
+		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("showCreate", showCreate);
 	}
 
 }
