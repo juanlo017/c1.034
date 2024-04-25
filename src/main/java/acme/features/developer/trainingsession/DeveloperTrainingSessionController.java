@@ -33,6 +33,8 @@ public class DeveloperTrainingSessionController extends AbstractController<Devel
 	@Autowired
 	private DeveloperTrainingSessionPublishService	publishService;
 
+	// Constructors -----------------------------------------------------------
+
 
 	@PostConstruct
 	protected void initialise() {
