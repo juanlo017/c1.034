@@ -54,7 +54,7 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 		choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 		projects = this.repository.findAllProjects();
 		projectsChoices = SelectChoices.from(projects, "code", object.getProject());
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode", "project");
+		dataset = super.unbind(object, "code", "details", "difficultyLevel", "totalTime");
 
 		if (object.isDraftMode()) {
 			final Locale local = super.getRequest().getLocale();
