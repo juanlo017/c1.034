@@ -57,7 +57,7 @@ public class ManagerUserStoryUpdateService extends AbstractService<Manager, User
 
 	@Override
 	public void validate(final UserStory object) {
-		assert object != null;
+		super.state(object.isDraftMode(), "*", "manager.project.delete.draft-mode"); //solo se puede si esta en draftmode=true
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 		Project project = this.repository.findProjectById(projectId);
 		object.setProject(project);
 
-		int userStoryId = super.getRequest().getData("project", int.class);
+		int userStoryId = super.getRequest().getData("userStory", int.class);
 		UserStory userStory = this.repository.findUserStoryById(userStoryId);
 		object.setUserStory(userStory);
 	}
@@ -65,10 +65,20 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 	public void validate(final Assignment object) {
 		assert object != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("project"))
+		if (!super.getBuffer().getErrors().hasErrors("project") && object.getProject() != null)
 			super.state(object.getUserStory().isDraftMode(), "project", "manager.assignment.project.notDratfMode");
 
-		//VALIDATE: QUE NO SE PUEDA CON COSAS Q NO SEAN TUYAS
+		if (!super.getBuffer().getErrors().hasErrors("project"))
+			super.state(object.getProject() != null, "project", "manager.assignment.project.null");
+
+		if (!super.getBuffer().getErrors().hasErrors("userStory"))
+			super.state(object.getUserStory() != null, "userStory", "manager.assignment.user-story.null");
+
+		if (!super.getBuffer().getErrors().hasErrors("project") && object.getProject() != null) {
+			int assignmentsWithSameProjectAndStory = this.repository.existsAssignmentWithSameProjectAndUserStory(object.getProject(), object.getUserStory());
+			super.state(assignmentsWithSameProjectAndStory == 0, "*", "manager.assignment.project.existSame");
+		}
+
 	}
 
 	@Override
@@ -84,8 +94,8 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 
 		int managerId = super.getRequest().getPrincipal().getAccountId();
 
-		Collection<Project> projects = this.repository.findAllNotPublishedProjects(managerId);
-		Collection<UserStory> userStories = this.repository.findAllNotPublishedUserStories(managerId);
+		Collection<Project> projects = this.repository.findAllProjects();
+		Collection<UserStory> userStories = this.repository.findAllUserStories();
 
 		SelectChoices projectChoices = SelectChoices.from(projects, "title", object.getProject());
 		SelectChoices userStoriesChoices = SelectChoices.from(userStories, "title", object.getUserStory());
@@ -93,10 +103,10 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 		Dataset dataset;
 		dataset = super.unbind(object, "project", "userStory");
 
-		dataset.put("userStory", userStoriesChoices.getSelected().getKey());
+		dataset.put("userStory", userStoriesChoices.getSelected().getLabel());
 		dataset.put("userStoriesChoices", userStoriesChoices);
 
-		dataset.put("project", projectChoices.getSelected().getKey());
+		dataset.put("project", projectChoices.getSelected().getLabel());
 		dataset.put("projectChoices", projectChoices);
 
 		super.getResponse().addData(dataset);
