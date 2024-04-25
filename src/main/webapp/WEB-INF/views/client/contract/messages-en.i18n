@@ -17,9 +17,15 @@ client.contract.form.label.goals = Goals
 client.contract.form.label.budget = Budget
 client.contract.form.label.project = Project
 
+client.contract.list.title = Contracts list
 client.contract.list.label.code = Code
 client.contract.list.label.budget = Budget
 client.contract.list.label.project = Project
+
+client.contract.button.create = Create
+client.contract.button.update = Update
+client.contract.button.publish = Publish
+client.contract.button.delete = Delete
 
 client.contract.form.button.create = Create
 client.contract.form.button.update = Update
