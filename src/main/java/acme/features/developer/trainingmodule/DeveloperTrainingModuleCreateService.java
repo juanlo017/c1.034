@@ -69,12 +69,19 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	@Override
 	public void validate(final TrainingModule object) {
 		assert object != null;
-	}
 
+		//		boolean sameCode;
+		//
+		//		if (!super.getBuffer().getErrors().hasErrors("code")) {
+		//			sameCode = this.repository.findAllTrainingModules().stream().anyMatch(t -> t.getCode().equals(object.getCode()));
+		//
+		//			super.state(!sameCode, "code", "developer.training-module.form.error.same-code");
+		//
+		//		}
+	}
 	@Override
 	public void perform(final TrainingModule object) {
 		assert object != null;
-
 		this.repository.save(object);
 	}
 
@@ -98,5 +105,4 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 
 		super.getResponse().addData(dataset);
 	}
-
 }

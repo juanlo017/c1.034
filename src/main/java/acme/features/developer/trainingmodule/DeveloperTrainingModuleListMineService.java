@@ -30,8 +30,9 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 	@Override
 	public void load() {
 		Collection<TrainingModule> objects;
+		int id;
 
-		final int id = super.getRequest().getPrincipal().getActiveRoleId();
+		id = super.getRequest().getPrincipal().getActiveRoleId();
 		objects = this.repository.findAllTrainingModulesByDeveloperId(id);
 
 		super.getBuffer().addData(objects);
@@ -45,5 +46,4 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 
 		super.getResponse().addData(dataset);
 	}
-
 }

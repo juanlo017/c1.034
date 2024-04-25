@@ -44,7 +44,6 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 	@Override
 	public void unbind(final TrainingModule object) {
 		assert object != null;
-
 		Collection<Project> projects;
 		SelectChoices projectChoices;
 		SelectChoices levelChoices;
