@@ -1,14 +1,11 @@
 
 package acme.features.developer.trainingsession;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
 import acme.entities.trainings.TrainingModule;
 import acme.entities.trainings.TrainingSession;
 import acme.roles.Developer;
@@ -26,33 +23,39 @@ public class DeveloperTrainingSessionShowService extends AbstractService<Develop
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean status;
+		int sessionId;
+		TrainingModule module;
+
+		sessionId = super.getRequest().getData("id", int.class);
+		module = this.repository.findOneTrainingModuleByTrainingSessionId(sessionId);
+		status = module != null && (!module.isDraftMode() || super.getRequest().getPrincipal().hasRole(module.getDeveloper()));
+
+		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
 	public void load() {
-		TrainingSession object;
+		TrainingSession session;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findOneTrainingSessionById(id);
+		session = this.repository.findOneTrainingSessionById(id);
 
-		super.getBuffer().addData(object);
+		super.getBuffer().addData(session);
 	}
+
 	@Override
 	public void unbind(final TrainingSession object) {
+
 		assert object != null;
 
-		Collection<TrainingModule> trainingModules;
-		SelectChoices trainingModulesChoices;
 		Dataset dataset;
 
-		trainingModules = this.repository.findAllTrainingModules();
-		trainingModulesChoices = SelectChoices.from(trainingModules, "code", object.getTrainingModule());
-
-		dataset = super.unbind(object, "code", "timePeriod", "location", "instructor", "email", "link", "draftMode", "trainingModule");
-		dataset.put("project", trainingModulesChoices.getSelected().getKey());
-		dataset.put("projects", trainingModulesChoices);
+		dataset = super.unbind(object, "code", "timePeriod", "location", "instructor", "email", "link", "draftMode");
+		dataset.put("masterId", object.getTrainingModule().getId());
 
 		super.getResponse().addData(dataset);
 	}
