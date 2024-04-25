@@ -11,6 +11,7 @@
 client.contract.form.title = Formulario de contrato
 
 client.contract.form.label.code = Código
+client.contract.form.label.instantiationMoment = Momento de instanciación
 client.contract.form.label.providerName = Nombre del proveedor
 client.contract.form.label.customerName = Nombre del cliente
 client.contract.form.label.goals = Objetivos

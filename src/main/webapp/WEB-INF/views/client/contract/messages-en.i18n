@@ -11,6 +11,7 @@
 client.contract.form.title = Contract form
 
 client.contract.form.label.code = Code
+client.contract.form.label.instantiationMoment = Instantiation moment
 client.contract.form.label.providerName = Provider name
 client.contract.form.label.customerName = Customer name
 client.contract.form.label.goals = Goals
