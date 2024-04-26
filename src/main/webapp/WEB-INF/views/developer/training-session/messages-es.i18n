@@ -1,7 +1,7 @@
 developer.training-session.form.title = Detalles de la sesión de entrenamiento
 developer.training-session.form.label.code = Código
 developer.training-session.form.label.time-period-start = Inicio Periodo de tiempo
-developer.training-session.form.label.time-period-end = Inicio Periodo de tiempo
+developer.training-session.form.label.time-period-end = Final Periodo de tiempo
 developer.training-session.form.label.location = Localización
 developer.training-session.form.label.instructor = Instructor
 developer.training-session.form.label.email = Email
