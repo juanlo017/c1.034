@@ -15,40 +15,34 @@ import acme.roles.Auditor;
 @Service
 public class AuditorCodeAuditListMineService extends AbstractService<Auditor, CodeAudit> {
 
-	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private AuditorCodeAuditRepository repository;
-
-	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		boolean status = true;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		Collection<CodeAudit> codeAudits;
+		Collection<CodeAudit> objects;
 		Principal principal;
-		principal = super.getRequest().getPrincipal();
-		codeAudits = this.repository.findManycodeAuditsByAuditorId(principal.getActiveRoleId());
 
-		super.getBuffer().addData(codeAudits);
+		principal = super.getRequest().getPrincipal();
+		objects = this.repository.findManyCodeAuditByAuditorId(principal.getActiveRoleId());
+
+		super.getBuffer().addData(objects);
 	}
 
 	@Override
-	public void unbind(final CodeAudit codeAudits) {
-		assert codeAudits != null;
+	public void unbind(final CodeAudit object) {
+		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(codeAudits, "code", "draftMode", "mark", "executionDate");
+		dataset = super.unbind(object, "code", "actions");
 
 		super.getResponse().addData(dataset);
 	}
-
 }

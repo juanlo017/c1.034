@@ -7,27 +7,29 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.auditRecords.AuditRecord;
 import acme.entities.codeAudits.CodeAudit;
 import acme.roles.Auditor;
 
 @Repository
 public interface AuditorCodeAuditRepository extends AbstractRepository {
 
+	@Query("select ca from CodeAudit ca where ca.id = :id")
+	CodeAudit findOneCodeAuditById(int id);
+
 	@Query("select ca from CodeAudit ca where ca.auditor.id = :auditorId")
-	Collection<CodeAudit> findManycodeAuditsByAuditorId(int auditorId);
+	Collection<CodeAudit> findManyCodeAuditByAuditorId(int auditorId);
 
-	@Query("select ca from CodeAudit ca")
-	Collection<CodeAudit> findAllCodeAudits();
+	@Query("select a from Auditor a where a.id = :id")
+	Auditor findOneAuditorById(int id);
 
-	@Query("select ca from CodeAudit ca where ca.id = :codeAuditId")
-	CodeAudit findCodeAuditById(int codeAuditId);
+	@Query("select ar from AuditRecord ar where ar.codeAudit.id = :codeAuditId")
+	Collection<AuditRecord> findManyAuditRecordByCodeAuditId(int codeAuditId);
 
-	@Query("select a from Auditor a where a.id = :auditorId")
-	Auditor findOneAuditorById(int auditorId);
+	@Query("select ca from CodeAudit ca where ca.draftMode = false")
+	Collection<CodeAudit> findManyCodeAuditsByAvailability();
 
-	/*
-	 * @Query("select ca.mark from CodeAudit ca where ca.id = :codeAuditId")
-	 * String findMarkByCodeAuditId(int codeAuditId);
-	 */
+	@Query("select ca from CodeAudit ca where ca.code = :code")
+	CodeAudit findOneCodeAuditByCode(String code);
 
 }

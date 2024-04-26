@@ -1,24 +1,27 @@
 
 package acme.features.auditor.auditRecord;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.auditRecords.AuditRecord;
+import acme.entities.auditRecords.Mark;
+import acme.entities.codeAudits.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
 public class AuditorAuditRecordCreateService extends AbstractService<Auditor, AuditRecord> {
 
-	//Internal state ----------------------------------------------------------
-
+	// Internal state ---------------------------------------------------------
 	@Autowired
-	AuditorAuditRecordRepository repository;
+	private AuditorAuditRecordRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
@@ -31,13 +34,15 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 	@Override
 	public void load() {
 		AuditRecord object;
-		Auditor auditor;
 
-		auditor = this.repository.findOneAuditorById(super.getRequest().getPrincipal().getActiveRoleId());
+		int masterId;
+		CodeAudit codeAudit;
+		masterId = super.getRequest().getData("masterId", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(masterId);
+
 		object = new AuditRecord();
-		object.setDraftMode(true);
-		object.getCodeAudit().setAuditor(auditor);
-
+		object.setCode("");
+		object.setCodeAudit(codeAudit);
 		super.getBuffer().addData(object);
 	}
 
@@ -45,56 +50,44 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 	public void bind(final AuditRecord object) {
 		assert object != null;
 
-		int auditorId;
-		Auditor auditor;
+		super.bind(object, "code", "startTime", "endTime", "mark", "link");
 
-		// Assuming you have a method to retrieve data from the request
-		auditorId = super.getRequest().getData("auditor", int.class);
-		auditor = this.repository.findOneAuditorById(auditorId);
-
-		// Assuming you have a method to bind specific attributes
-		super.bind(object, "code", "auditPeriod", "mark", "link", "draftMode");
-
-		// Set the auditor
-		object.getCodeAudit().setAuditor(auditor);
 	}
 
 	@Override
 	public void validate(final AuditRecord object) {
 		assert object != null;
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			AuditRecord existing;
 
-		if (!super.getBuffer().getErrors().hasErrors("auditPeriod")) {
-			// Check if execution date is in the past
-			// Convert executionDate to LocalDate
-			LocalDate startTime = object.getStartTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			LocalDate endTime = object.getEndTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			// Check if execution date is in the past
-			LocalDate currentDate = LocalDate.now(); // Current date
-			super.state(startTime.isBefore(currentDate) && endTime.isBefore(currentDate) && object.getAuditPeriod() > 3600, "executionDate", "validation.auditrecord.auditperiod");
+			existing = this.repository.findOneAuditRecordByCode(object.getCode());
+			super.state(existing == null, "code", "auditor.audit-record.form.error.duplicated");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("endTime")) {
+			Date minimumEnd;
 
+			minimumEnd = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.HOURS);
+			super.state(MomentHelper.isBefore(object.getEndTime(), minimumEnd), "endTime", "auditor.audit-record.form.error.too-close");
 		}
 	}
 
 	@Override
 	public void perform(final AuditRecord object) {
 		assert object != null;
-
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final AuditRecord object) {
 		assert object != null;
-
-		int auditorId;
-		Auditor auditor;
+		SelectChoices choices;
 		Dataset dataset;
 
-		auditorId = super.getRequest().getPrincipal().getActiveRoleId();
-		auditor = this.repository.findOneAuditorById(auditorId);
+		choices = SelectChoices.from(Mark.class, object.getMark());
 
-		dataset = super.unbind(object, "code", "auditPeriod", "mark", "link", "draftMode");
-		dataset.put("auditor", auditor);
+		dataset = super.unbind(object, "code", "startTime", "endTime", "mark", "link");
+		dataset.put("marks", choices);
+		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 
 		super.getResponse().addData(dataset);
 	}

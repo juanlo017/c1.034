@@ -24,27 +24,25 @@ public class AuditorCodeAuditListAllService extends AbstractService<Auditor, Cod
 
 	@Override
 	public void authorise() {
-		boolean status = true;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		Collection<CodeAudit> codeAudits;
+		Collection<CodeAudit> objects;
 
-		codeAudits = this.repository.findAllCodeAudits();
+		objects = this.repository.findManyCodeAuditsByAvailability();
 
-		super.getBuffer().addData(codeAudits);
+		super.getBuffer().addData(objects);
 	}
 
 	@Override
-	public void unbind(final CodeAudit codeAudits) {
-		assert codeAudits != null;
+	public void unbind(final CodeAudit object) {
+		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(codeAudits, "code", "draftMode", "mark", "executionDate");
+		dataset = super.unbind(object, "code", "actions");
 
 		super.getResponse().addData(dataset);
 	}

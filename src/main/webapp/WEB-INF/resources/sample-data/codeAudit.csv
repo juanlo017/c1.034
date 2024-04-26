@@ -4,3 +4,8 @@ codeAudit-02,AA-001,2000/12/31 23:58,DYNAMIC,Code quality check,http://www.codeA
 codeAudit-03,AAA-002,2021/05/14 19:00,STATIC,Performance and scalability check/Potential maintenance issues detection/Code quality check/Summary,https://www.adservio.fr/post/meaning-of-code-audit-when-and-why-we-needed-it,true,auditor-01
 codeAudit-04,AAA-003,2021/01/01 17:00,STATIC,การออกแบบและการทดสอบสองอย่างถือเป็นขยะ,http://www.codeAudit.com,true,auditor-02
 codeAudit-05,AAA-004,2021/01/01 17:00,STATIC,Code quality check,http://www.auditor4.commmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm,true,auditor-02
+codeAudit-06,AAA-005,2021/01/01 17:00,STATIC,Code quality check,http://www.codeAudit.com,false,auditor-01
+codeAudit-07,AAA-006,2021/01/01 17:00,STATIC,Code quality check,http://www.codeAudit.com,false,auditor-01
+codeAudit-08,AAA-007,2021/01/01 17:00,STATIC,Code quality check,http://www.codeAudit.com,false,auditor-01
+codeAudit-09,AAA-008,2021/01/01 17:00,STATIC,Code quality check,http://www.codeAudit.com,false,auditor-01
+codeAudit-10,AAA-009,2021/01/01 17:00,STATIC,Code quality check,http://www.codeAudit.com,false,auditor-01

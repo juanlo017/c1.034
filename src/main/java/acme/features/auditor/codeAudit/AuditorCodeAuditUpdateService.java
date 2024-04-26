@@ -1,85 +1,65 @@
 
 package acme.features.auditor.codeAudit;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.codeAudits.CodeAudit;
+import acme.entities.codeAudits.Type;
 import acme.roles.Auditor;
 
 @Service
 public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, CodeAudit> {
 
-	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private AuditorCodeAuditRepository repository;
-
-	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
 		boolean status;
-		int codeAuditId;
-		CodeAudit ca;
+		int masterId;
+		CodeAudit codeAudit;
 		Auditor auditor;
 
-		codeAuditId = super.getRequest().getData("id", int.class);
-		ca = this.repository.findCodeAuditById(codeAuditId);
-		auditor = ca == null ? null : ca.getAuditor();
-		status = ca != null && ca.isDraftMode() && super.getRequest().getPrincipal().hasRole(auditor) && ca.getMark().compareTo("C") >= 0;
+		masterId = super.getRequest().getData("id", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(masterId);
+		auditor = codeAudit == null ? null : codeAudit.getAuditor();
+		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(auditor);
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		CodeAudit ca;
+		CodeAudit object;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		ca = this.repository.findCodeAuditById(id);
+		object = this.repository.findOneCodeAuditById(id);
 
-		super.getBuffer().addData(ca);
+		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final CodeAudit object) {
 		assert object != null;
 
-		int auditorId;
-		Auditor auditor;
+		super.bind(object, "code", "executionDate", "type", "actions", "link", "draftMode");
 
-		// Assuming you have a method to retrieve data from the request
-		auditorId = super.getRequest().getData("auditor", int.class);
-		auditor = this.repository.findOneAuditorById(auditorId);
-
-		// Assuming you have a method to bind specific attributes
-		super.bind(object, "code", "executionDate", "type", "actions", "mark", "link", "draftMode");
-
-		// Set the auditor
-		object.setAuditor(auditor);
 	}
 
 	@Override
 	public void validate(final CodeAudit object) {
 		assert object != null;
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			CodeAudit existing;
 
-		if (!super.getBuffer().getErrors().hasErrors("executionDate")) {
-			// Check if execution date is in the past
-			// Convert executionDate to LocalDate
-			LocalDate executionLocalDate = object.getExecutionDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-			// Check if execution date is in the past
-			LocalDate currentDate = LocalDate.now(); // Current date
-			super.state(executionLocalDate.isBefore(currentDate), "executionDate", "validation.codeaudit.executiondate");
-
+			existing = this.repository.findOneCodeAuditByCode(object.getCode());
+			super.state(existing == null || existing.equals(object), "code", "auditor.code-audit.form.error.duplicated");
 		}
 	}
 
@@ -93,16 +73,13 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	@Override
 	public void unbind(final CodeAudit object) {
 		assert object != null;
-
-		int auditorId;
-		Auditor auditor;
+		SelectChoices choices;
 		Dataset dataset;
 
-		auditorId = super.getRequest().getPrincipal().getActiveRoleId();
-		auditor = this.repository.findOneAuditorById(auditorId);
+		choices = SelectChoices.from(Type.class, object.getType());
 
-		dataset = super.unbind(object, "code", "executionDate", "type", "actions", "mark", "link", "draftMode");
-		dataset.put("auditor", auditor);
+		dataset = super.unbind(object, "code", "executionDate", "type", "actions", "link", "draftMode");
+		dataset.put("types", choices);
 
 		super.getResponse().addData(dataset);
 	}

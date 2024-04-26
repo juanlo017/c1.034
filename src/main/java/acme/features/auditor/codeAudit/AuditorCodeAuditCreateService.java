@@ -1,22 +1,23 @@
 
 package acme.features.auditor.codeAudit;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.codeAudits.CodeAudit;
+import acme.entities.codeAudits.Type;
 import acme.roles.Auditor;
 
 @Service
 public class AuditorCodeAuditCreateService extends AbstractService<Auditor, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private AuditorCodeAuditRepository repository;
 
@@ -32,12 +33,17 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 	public void load() {
 		CodeAudit object;
 		Auditor auditor;
+		Date moment;
 
 		auditor = this.repository.findOneAuditorById(super.getRequest().getPrincipal().getActiveRoleId());
-		object = new CodeAudit();
-		object.setDraftMode(true);
-		object.setAuditor(auditor);
 
+		moment = MomentHelper.getCurrentMoment();
+		object = new CodeAudit();
+		object.setCode("");
+		object.setActions("");
+		object.setDraftMode(true);
+		object.setExecutionDate(moment);
+		object.setAuditor(auditor);
 		super.getBuffer().addData(object);
 	}
 
@@ -45,56 +51,38 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 	public void bind(final CodeAudit object) {
 		assert object != null;
 
-		int auditorId;
-		Auditor auditor;
+		super.bind(object, "code", "executionDate", "type", "actions", "link");
 
-		// Assuming you have a method to retrieve data from the request
-		auditorId = super.getRequest().getData("auditor", int.class);
-		auditor = this.repository.findOneAuditorById(auditorId);
-
-		// Assuming you have a method to bind specific attributes
-		super.bind(object, "code", "executionDate", "type", "actions", "mark", "link", "draftMode");
-
-		// Set the auditor
-		object.setAuditor(auditor);
 	}
 
 	@Override
 	public void validate(final CodeAudit object) {
 		assert object != null;
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			CodeAudit existing;
 
-		if (!super.getBuffer().getErrors().hasErrors("executionDate")) {
-			// Check if execution date is in the past
-			// Convert executionDate to LocalDate
-			LocalDate executionLocalDate = object.getExecutionDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-			// Check if execution date is in the past
-			LocalDate currentDate = LocalDate.now(); // Current date
-			super.state(executionLocalDate.isBefore(currentDate), "executionDate", "validation.codeaudit.executiondate");
-
+			existing = this.repository.findOneCodeAuditByCode(object.getCode());
+			super.state(existing == null, "code", "auditor.code-audit.form.error.duplicated");
 		}
 	}
 
 	@Override
 	public void perform(final CodeAudit object) {
 		assert object != null;
-
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final CodeAudit object) {
 		assert object != null;
+		SelectChoices choices;
 
-		int auditorId;
-		Auditor auditor;
 		Dataset dataset;
 
-		auditorId = super.getRequest().getPrincipal().getActiveRoleId();
-		auditor = this.repository.findOneAuditorById(auditorId);
+		choices = SelectChoices.from(Type.class, object.getType());
 
-		dataset = super.unbind(object, "code", "executionDate", "type", "actions", "mark", "link", "draftMode");
-		dataset.put("auditor", auditor);
+		dataset = super.unbind(object, "code", "executionDate", "type", "actions", "link", "draftMode");
+		dataset.put("types", choices);
 
 		super.getResponse().addData(dataset);
 	}

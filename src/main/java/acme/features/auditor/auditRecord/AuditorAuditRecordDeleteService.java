@@ -12,56 +12,42 @@ import acme.roles.Auditor;
 @Service
 public class AuditorAuditRecordDeleteService extends AbstractService<Auditor, AuditRecord> {
 
-	//Internal state ----------------------------------------------------------
-
 	@Autowired
-	AuditorAuditRecordRepository repository;
-
-	// AbstractService interface ----------------------------------------------
+	private AuditorAuditRecordRepository repository;
 
 
 	@Override
 	public void authorise() {
 		boolean status;
-		int auditRecordId;
-		AuditRecord ar;
+		int masterId;
+		AuditRecord auditRecord;
 		Auditor auditor;
 
-		auditRecordId = super.getRequest().getData("id", int.class);
-		ar = this.repository.findAuditRecordById(auditRecordId);
-		auditor = ar == null ? null : ar.getCodeAudit().getAuditor();
-		status = ar != null && super.getRequest().getPrincipal().hasRole(auditor);
+		masterId = super.getRequest().getData("id", int.class);
+		auditRecord = this.repository.findOneAuditRecordById(masterId);
+		auditor = auditRecord == null ? null : auditRecord.getCodeAudit().getAuditor();
+		status = auditRecord != null && super.getRequest().getPrincipal().hasRole(auditor);
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		AuditRecord ar;
+		AuditRecord object;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		ar = this.repository.findAuditRecordById(id);
+		object = this.repository.findOneAuditRecordById(id);
 
-		super.getBuffer().addData(ar);
+		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final AuditRecord object) {
 		assert object != null;
 
-		int auditorId;
-		Auditor auditor;
+		super.bind(object, "code", "startTime", "endTime", "mark", "link");
 
-		// Assuming you have a method to retrieve data from the request
-		auditorId = super.getRequest().getData("auditor", int.class);
-		auditor = this.repository.findOneAuditorById(auditorId);
-
-		// Assuming you have a method to bind specific attributes
-		super.bind(object, "code", "auditPeriod", "mark", "link", "draftMode");
-
-		// Set the auditor
-		object.getCodeAudit().setAuditor(auditor);
 	}
 
 	@Override
@@ -74,21 +60,16 @@ public class AuditorAuditRecordDeleteService extends AbstractService<Auditor, Au
 		assert object != null;
 
 		this.repository.delete(object);
+
 	}
 
 	@Override
 	public void unbind(final AuditRecord object) {
 		assert object != null;
 
-		int auditorId;
-		Auditor auditor;
 		Dataset dataset;
 
-		auditorId = super.getRequest().getPrincipal().getActiveRoleId();
-		auditor = this.repository.findOneAuditorById(auditorId);
-
-		dataset = super.unbind(object, "code", "auditPeriod", "mark", "link", "draftMode");
-		dataset.put("auditor", auditor);
+		dataset = super.unbind(object, "code", "startTime", "endTime", "mark", "link");
 
 		super.getResponse().addData(dataset);
 	}
