@@ -24,7 +24,12 @@
 			<acme:menu-suboption code="master.menu.anonymous.juan-del-junco" action="https://www.hermandaddelosgitanos.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.pablo-mejias" action="https://www.centropkmn.com/pokemon-bw/?"/>
 			<acme:menu-suboption code="master.menu.anonymous.david-blanco" action="https://www.fcbarcelona.es/es/"/>
-			
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.anonymous.published-modules" action="/any/training-module/list"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
+		    <acme:menu-suboption code= "master.menu.authenticated.published-modules" action="/any/training-module/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
