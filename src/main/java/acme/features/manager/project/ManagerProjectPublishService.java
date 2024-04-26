@@ -2,7 +2,9 @@
 package acme.features.manager.project;
 
 import java.util.Collection;
+import java.util.List;
 
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +23,11 @@ public class ManagerProjectPublishService extends AbstractService<Manager, Proje
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int projectId;
-		Project project;
-		Manager manager;
+		int projectId = super.getRequest().getData("id", int.class);
+		Project project = this.repository.findOneProjectById(projectId);
 
-		projectId = super.getRequest().getData("id", int.class);
-		project = this.repository.findOneProjectById(projectId);
-		manager = project == null ? null : project.getManager();
-
-		status = project != null && project.isDraftMode() && super.getRequest().getPrincipal().hasRole(manager);
+		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
+		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && project.getManager().equals(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -67,6 +64,21 @@ public class ManagerProjectPublishService extends AbstractService<Manager, Proje
 			super.state(!object.isFatalErrors(), "*", "manager.project.form.error.hasFatalErrors");
 			super.state(!stories.isEmpty(), "*", "manager.project.form.error.numberOfUserStories");
 		}
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Project existing = this.repository.findOneProjectByCode(object.getCode());
+			if (existing != null)
+				super.state(existing.equals(object), "code", "manager.project.form.error.duplicated");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("cost")) {
+			String acceptedCurrencies = this.repository.findValidCurrencies(object.getCode());
+			List<Object> currencies = Arrays.asList(acceptedCurrencies.split(","));
+			super.state(currencies.contains(object.getCost().getCurrency()), "cost", "manager.project.form.error.currency");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("cost"))
+			super.state(object.getCost().getAmount() >= 0., "cost", "manager.project.error.cost.negative-price");
 	}
 
 	@Override

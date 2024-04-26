@@ -38,7 +38,11 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
+		Assignment object = this.repository.findAssignmentById(super.getRequest().getData("id", int.class));
+		Manager manager = this.repository.findManagerById(super.getRequest().getPrincipal().getActiveRoleId());
+
+		//solo el dueño del assignment puede borrarlo
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class) && object.getProject().getManager().equals(manager));
 	}
 
 	@Override

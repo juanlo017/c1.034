@@ -25,3 +25,16 @@ manager.dashboard.form.label.minCostOfProject = Minimum Cost of Project
 manager.dashboard.form.label.maxCostOfProject = Maximum Cost of Project
 manager.dashboard.form.label.devCostOfProject = Standard Deviation Cost of Project
 
+manager.dashboard.form.label.avgCostOfProjectEUR = Average cost of project (EUR)
+manager.dashboard.form.label.avgCostOfProjectGBP = Average cost of project (GBP)
+manager.dashboard.form.label.avgCostOfProjectUSD = Average cost of project (USD)
+manager.dashboard.form.label.minCostOfProjectEUR = Minimum cost of project (EUR)
+manager.dashboard.form.label.minCostOfProjectGBP = Minimum cost of project (GBP)
+manager.dashboard.form.label.minCostOfProjectUSD = Minimum cost of project (USD)
+manager.dashboard.form.label.maxCostOfProjectEUR = Maximum cost of project (EUR)
+manager.dashboard.form.label.maxCostOfProjectGBP = Maximum cost of project (GBP)
+manager.dashboard.form.label.maxCostOfProjectUSD = Maximum cost of project (USD)
+manager.dashboard.form.label.devCostOfProjectEUR = Deviation cost of project (EUR)
+manager.dashboard.form.label.devCostOfProjectGBP = Deviation cost of project (GBP)
+manager.dashboard.form.label.devCostOfProjectUSD = Deviation cost of project (USD)
+

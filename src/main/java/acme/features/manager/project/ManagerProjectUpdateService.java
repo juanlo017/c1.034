@@ -34,7 +34,13 @@ public class ManagerProjectUpdateService extends AbstractService<Manager, Projec
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int projectId = super.getRequest().getData("id", int.class);
+		Project project = this.repository.findOneProjectById(projectId);
+
+		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
+		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && project.getManager().equals(manager);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -70,6 +76,9 @@ public class ManagerProjectUpdateService extends AbstractService<Manager, Projec
 			List<Object> currencies = Arrays.asList(acceptedCurrencies.split(","));
 			super.state(currencies.contains(object.getCost().getCurrency()), "cost", "manager.project.form.error.currency");
 		}
+
+		if (!super.getBuffer().getErrors().hasErrors("cost"))
+			super.state(object.getCost().getAmount() >= 0., "retailPrice", "manager.project.error.cost.negative-price");
 	}
 
 	@Override

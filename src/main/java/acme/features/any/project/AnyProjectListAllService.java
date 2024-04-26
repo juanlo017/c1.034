@@ -10,42 +10,39 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.manager.project;
+package acme.features.any.project;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
+import acme.client.data.accounts.Any;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.projects.Project;
-import acme.roles.Manager;
 
 @Service
-public class ManagerProjectListMineService extends AbstractService<Manager, Project> {
+public class AnyProjectListAllService extends AbstractService<Any, Project> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ManagerProjectRepository repository;
+	private AnyProjectRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		Collection<Project> projects;
-		Principal principal;
 
-		principal = super.getRequest().getPrincipal();
-		projects = this.repository.findManyProjectsByManagerId(principal.getActiveRoleId());
+		projects = this.repository.findAllPublishedProjects();
 
 		super.getBuffer().addData(projects);
 	}
