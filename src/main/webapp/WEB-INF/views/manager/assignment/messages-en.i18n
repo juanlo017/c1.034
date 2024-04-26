@@ -1,0 +1,34 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2024 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+manager.assignment.list.title = Assignment listing
+
+manager.assignment.list.label.project = Project
+manager.assignment.list.label.userStory = User Story
+
+manager.assignment.list.button.create = Create 
+manager.assignment.list.button.create.project = Create project
+manager.assignment.list.button.create.user-story = Create user story
+
+manager.assignment.form.title = Assignment
+manager.assignment.form.label.project = Project
+manager.assignment.form.label.story =  User Story
+
+manager.assignment.form.button.create = Create 
+manager.assignment.form.button.delete = Delete 
+
+manager.project.delete.projectPublished = Published project!
+
+manager.assignment.project.notDratfMode = Published project!
+manager.assignment.project.null = Project null!
+manager.assignment.user-story.null = User Story null!
+manager.assignment.project.existSame = Assignment already exists!
+
+

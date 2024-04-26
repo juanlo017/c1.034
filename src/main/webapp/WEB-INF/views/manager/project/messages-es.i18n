@@ -8,10 +8,9 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-manager.project.form.title = Detalles de projecto
-manager.project.list.title = Lista de proyectos
-anager.project.list.code = Código
-anager.project.list.draftmode = Modo borrador
+manager.project.form.title = Detalles de proyecto
+manager.project.list.code = Código
+manager.project.list.draftmode = Modo borrador
 
 manager.project.form.label.code = Código
 manager.project.form.label.title = Título 
@@ -27,11 +26,29 @@ manager.project.form.button.delete = Eliminar
 manager.project.form.button.publish = Publicar
 manager.project.form.button.create = Crear
 
+manager.project.list.title = Listado de proyectos
+manager.project.list.label.code = Código
+manager.project.list.label.draftMode = Modo borrador
+manager.project.list.label.title = Título 
 
+manager.project.button.create = Crear
 
-manager.project.list.title = Listing of projects
-manager.project.list.label.code = Code
-manager.project.list.label.draftMode = DraftMode
-manager.project.list.label.title = Title
+manager.project.delete.exists-assignment = Hay asignaciones relacionados al proyecto
+manager.project.delete.exists-contract = Hay contratos relacionados al proyecto
+manager.project.delete.exists-risk = Hay riesgos relacionados al proyecto
+manager.project.delete.exists-objective = Hay objetivos relacionados al proyecto
+manager.project.delete.exists-sponsorship = Hay patrocinios relacionados al proyecto
+manager.project.delete.exists-training-module = Hay modulos de entrenamiento relacionados al proyecto
 
-manager.project.button.create = Create
+manager.project.form.error.notAllStoriesPublished = No todas las historias de usuario están publicadas
+manager.project.form.error.hasFatalErrors = Hay errores fatales en el proyecto
+manager.project.form.error.numberOfUserStories = Debe haber al menos una historia de usuario
+
+manager.project.form.error.duplicated = Código duplicado
+manager.project.form.error.currency = Solo se aceptan las divisas: EUR, GBP y USD
+
+manager.project.form.error.notAllStoriesPublished = No todas las historias de usuario asociadas están publicadas!
+manager.project.form.error.hasFatalErrors = El proyecto contiene errores fatales!
+manager.project.form.error.numberOfUserStories = El proyecto debe tener al menos 1 historia de usuario antes de ser publicada!
+
+manager.project.error.cost.negative-price = El coste no puede ser negativo!

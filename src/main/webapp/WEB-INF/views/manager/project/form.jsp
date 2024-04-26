@@ -16,17 +16,17 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form> 
-	<acme:input-textbox code="manager.project.form.label.code" path="code"/>
+	<acme:input-textbox code="manager.project.form.label.code" path="code" placeholder="ABC-1234"/>
 	<acme:input-textbox code="manager.project.form.label.title" path="title"/>
 	<acme:input-textbox code="manager.project.form.label.abstractText" path="abstractText"/>
 	<acme:input-textbox code="manager.project.form.label.fatalErrors" path="fatalErrors"/>
 	<acme:input-url code="manager.project.form.label.link" path="link"/>
-	<acme:input-textbox code="manager.project.form.label.draftMode" path="draftMode"/>
-	<acme:input-integer code="manager.project.form.label.cost" path="cost"/>
+	<acme:input-money code="manager.project.form.label.cost" path="cost"/>
+	<acme:hidden-data path="draftMode"/>
 
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:button code="employer.job.form.button.stories" action="/manager/user-story/list?masterId=${id}"/>			
+			<acme:button code="manager.project.form.button.stories" action="/manager/user-story/list?masterId=${id}"/>			
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:button code="manager.project.form.button.stories" action="/manager/user-story/list?masterId=${id}"/>
@@ -35,7 +35,7 @@
 			<acme:submit code="manager.project.form.button.publish" action="/manager/project/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="manager.project.form.button.create" action="/manager/job/create"/>
+			<acme:submit code="manager.project.form.button.create" action="/manager/project/create"/>
 		</jstl:when>		
 	</jstl:choose>
 </acme:form>
