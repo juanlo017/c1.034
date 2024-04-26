@@ -1,0 +1,14 @@
+any.training-module.form.label.code = Código
+any.training-module.form.label.creation-moment = Momento de creación
+any.training-module.form.label.details = Detalles
+any.training-module.form.label.difficulty-level = Nivel de dificultad
+any.training-module.form.label.update-moment = Momento de actualización
+any.training-module.form.label.optionalLink = Link opcional
+any.training-module.form.label.estimated-total-time = Tiempo total
+
+any.training-module.form.title = Módulo de entrenamient
+any.training-module.list.title = Módulos de entrenamiento
+
+any.training-module.list.label.code = Código
+any.training-module.list.label.totalTime = Tiempo total
+any.training-module.list.label.project = Proyecto

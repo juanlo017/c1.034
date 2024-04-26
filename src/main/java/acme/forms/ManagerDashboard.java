@@ -20,17 +20,24 @@ public class ManagerDashboard extends AbstractForm {
 	int							wontUserStories;
 
 	double						avgCostOfUserStory;
-	int							minCostOfUserStory;
-	int							maxCostOfUserStory;
+	double						minCostOfUserStory;
+	double						maxCostOfUserStory;
 	double						deviationCostOfUserStory;
 
-	double						avgCostOfProject;
-	int							minCostOfProject;
-	int							maxCostOfProject;
-	double						deviationCostOfProject;
+	double						avgCostOfProjectEUR;
+	double						avgCostOfProjectUSD;
+	double						avgCostOfProjectGBP;
 
-	// Derived attributes -----------------------------------------------------
+	double						minCostOfProjectEUR;
+	double						minCostOfProjectUSD;
+	double						minCostOfProjectGBP;
 
-	// Relationships ----------------------------------------------------------
+	double						maxCostOfProjectEUR;
+	double						maxCostOfProjectUSD;
+	double						maxCostOfProjectGBP;
+
+	double						deviationCostOfProjectEUR;
+	double						deviationCostOfProjectUSD;
+	double						deviationCostOfProjectGBP;
 
 }

@@ -1,0 +1,44 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2024 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+manager.manager-dashboard.form.title = Panel de Gerente
+
+manager.dashboard.form.label.mustUserStories = Nº Historias de usuario 'Must'
+manager.dashboard.form.label.shouldUserStories = Nº Historias de usuario 'Should'
+manager.dashboard.form.label.couldUserStories = Nº Historias de usuario 'Could'
+manager.dashboard.form.label.wontUserStories = Nº Historias de usuario 'Wont'
+
+manager.dashboard.form.label.avgCostOfUserStory = Coste promedio de Historias de usuario
+manager.dashboard.form.label.minCostOfUserStory = Coste mínimo de Historias de usuario
+manager.dashboard.form.label.maxCostOfUserStory = Coste máximo de Historias de usuario
+manager.dashboard.form.label.devCostOfUserStory = Desviación estándar de coste de Historias de usuario
+
+manager.dashboard.form.label.avgCostOfProject = Coste promedio de Proyecto
+manager.dashboard.form.label.minCostOfProject = Coste mínimo de Proyecto
+manager.dashboard.form.label.maxCostOfProject = Coste máximo de Proyecto
+manager.dashboard.form.label.devCostOfProject = Desviación estándar de coste de Proyecto
+
+manager.dashboard.form.label.avgCostOfProjectEUR = Coste promedio de Proyecto (EUR)
+manager.dashboard.form.label.avgCostOfProjectGBP = Coste promedio de Proyecto (GBP)
+manager.dashboard.form.label.avgCostOfProjectUSD = Coste promedio de Proyecto (USD)
+manager.dashboard.form.label.minCostOfProjectEUR = Coste mínimo de Proyecto (EUR)
+manager.dashboard.form.label.minCostOfProjectGBP = Coste mínimo de Proyecto (GBP)
+manager.dashboard.form.label.minCostOfProjectUSD = Coste mínimo de Proyecto (USD)
+manager.dashboard.form.label.maxCostOfProjectEUR = Coste máximo de Proyecto (EUR)
+manager.dashboard.form.label.maxCostOfProjectGBP = Coste máximo de Proyecto (GBP)
+manager.dashboard.form.label.maxCostOfProjectUSD = Coste máximo de Proyecto (USD)
+manager.dashboard.form.label.devCostOfProjectEUR = Desviación estándar de coste de Proyecto (EUR)
+manager.dashboard.form.label.devCostOfProjectGBP = Desviación estándar de coste de Proyecto (GBP)
+manager.dashboard.form.label.devCostOfProjectUSD = Desviación estándar de coste de Proyecto (USD)
+
+
+
+
+
