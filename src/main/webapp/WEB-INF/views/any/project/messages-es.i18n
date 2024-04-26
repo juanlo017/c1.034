@@ -51,4 +51,5 @@ manager.project.form.error.notAllStoriesPublished = No todas las historias de us
 manager.project.form.error.hasFatalErrors = El proyecto contiene errores fatales!
 manager.project.form.error.numberOfUserStories = El proyecto debe tener al menos 1 historia de usuario antes de ser publicada!
 
-manager.project.error.cost.negative-price = El coste no puede ser negativo!
+any.project.list.title = Proyectos publicados
+any.project.form.title = Proyecto

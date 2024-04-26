@@ -17,7 +17,7 @@ developer.training-module.form.button.sessions = List Training Sessions
 developer.training-module.form.button.update = Update
 developer.training-module.form.button.delete = Delete
 developer.training-module.form.button.publish = Publish
-developer.training-module.form.button.create = Create
+developer.training-module.form.button.create-training-module = Create
 developer.training-module.form.button.trainingSessions = Training Sessions
 
 developer.training-module.list.label.code = Code
@@ -29,3 +29,4 @@ developer.training-module.list.button.create-form = Create
 
 developer.training-module.form.error.duplicated = This code is taken
 developer.training-module.form.error.noSession = Must have a training session associated
+developer.training-module.form.error.not-enough-training-sessions = Not enough Training Sessions

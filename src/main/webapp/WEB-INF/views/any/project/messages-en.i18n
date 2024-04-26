@@ -51,5 +51,7 @@ manager.project.form.error.currency = Only supported currencies: EUR, GBP & USD
 manager.project.form.error.notAllStoriesPublished = Not all associated user stories are published!
 manager.project.form.error.hasFatalErrors = The project contains fatal errors!
 manager.project.form.error.numberOfUserStories = You must have at least 1 user story associated to a project to publish it!
+
+any.project.list.title = Published projects
+any.project.form.title = Project
 	
-manager.project.error.cost.negative-price = Cost cannot be negative!

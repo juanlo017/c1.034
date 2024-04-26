@@ -33,7 +33,7 @@ public class ManagerDashboardShowService extends AbstractService<Manager, Manage
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
 	}
 
 	@Override

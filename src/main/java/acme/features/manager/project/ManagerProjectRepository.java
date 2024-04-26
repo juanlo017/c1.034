@@ -82,4 +82,10 @@ public interface ManagerProjectRepository extends AbstractRepository {
 	@Query("select c.acceptedCurrencies from Configuration c")
 	String findValidCurrencies(String code);
 
+	@Query("select count(a) from Assignment a where a.project.id = :id")
+	int findNumberAssignmentOfProject(int id);
+
+	@Query("select count(a) from Assignment a where a.project.id = :id and a.userStory.draftMode = 1")
+	int findNumberUserStoryNotPublishedOfProject(int id);
+
 }

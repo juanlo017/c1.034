@@ -43,7 +43,7 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		manager = project == null ? null : project.getManager();
 		status = project != null && project.isDraftMode() && super.getRequest().getPrincipal().hasRole(manager);
 
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
