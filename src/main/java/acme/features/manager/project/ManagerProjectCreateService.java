@@ -36,7 +36,7 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
 	}
 
 	@Override
@@ -76,6 +76,9 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 			List<Object> currencies = Arrays.asList(acceptedCurrencies.split(","));
 			super.state(currencies.contains(object.getCost().getCurrency()), "cost", "manager.project.form.error.currency");
 		}
+
+		if (!super.getBuffer().getErrors().hasErrors("cost"))
+			super.state(object.getCost().getAmount() >= 0., "retailPrice", "manager.project.error.cost.negative-price");
 	}
 
 	@Override
