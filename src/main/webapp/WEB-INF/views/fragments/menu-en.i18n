@@ -24,7 +24,16 @@ master.menu.anonymous.jose-castro = 29515985Q: Castro Vázquez, Jose Ignacio
 master.menu.anonymous.juan-del-junco = 76057243S: del Junco Obregón, Juan
 master.menu.anonymous.pablo-mejias = 77849082Q: Mejías Buitrago, Pablo
 master.menu.anonymous.david-blanco = 30269225Y: Blanco Mora, David
+master.menu.anonymous.published-modules = List all published Training modules
 
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Authenticated
+master.menu.authenticated.published-modules = List all published Training modules
+
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Authenticated
 
 # master.menu.administrator ###################################################
 
@@ -71,6 +80,8 @@ master.menu.user-account = Account
 master.menu.user-account.general-data = General data
 master.menu.user-account.manager = Manager data
 master.menu.user-account.become-manager = Become a manager
+master.menu.user-account.developer = Developer data
+master.menu.user-account.become-developer = Become a developer
 master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
