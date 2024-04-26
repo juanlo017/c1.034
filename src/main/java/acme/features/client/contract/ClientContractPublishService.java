@@ -57,6 +57,8 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
 		object.setProject(project);
+		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
 	}
 
 	@Override

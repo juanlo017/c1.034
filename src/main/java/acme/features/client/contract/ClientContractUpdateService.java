@@ -47,6 +47,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
+		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 		object.setProject(project);
 	}
 

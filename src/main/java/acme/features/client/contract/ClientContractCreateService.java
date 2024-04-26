@@ -33,17 +33,14 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	@Override
 	public void load() {
 		Contract object;
-		Principal principal;
-		int clientId;
 		Client client;
 
-		principal = super.getRequest().getPrincipal();
-		clientId = principal.getActiveRoleId();
-		client = this.repository.findClientById(clientId);
+		Principal principal = super.getRequest().getPrincipal();
+		client = this.repository.findClientById(principal.getActiveRoleId());
 
 		object = new Contract();
 		object.setClient(client);
-
+		object.setDraftMode(true);
 		super.getBuffer().addData(object);
 	}
 
@@ -56,6 +53,8 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
+
+		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 		object.setProject(project);
 	}
 
