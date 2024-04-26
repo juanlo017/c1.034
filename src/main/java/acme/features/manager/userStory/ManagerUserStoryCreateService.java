@@ -34,7 +34,7 @@ public class ManagerUserStoryCreateService extends AbstractService<Manager, User
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
 	}
 
 	@Override

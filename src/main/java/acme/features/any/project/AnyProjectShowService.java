@@ -1,5 +1,5 @@
 /*
- * AuthenticatedAnnouncementListService.java
+ * AuthenticatedAnnouncementShowService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,50 +10,56 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.manager.project;
-
-import java.util.Collection;
+package acme.features.any.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Any;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.projects.Project;
-import acme.roles.Manager;
 
 @Service
-public class ManagerProjectListAllService extends AbstractService<Manager, Project> {
+public class AnyProjectShowService extends AbstractService<Any, Project> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ManagerProjectRepository repository;
+	private AnyProjectRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int id = super.getRequest().getData("id", int.class);
+		Project project = this.repository.findOneProjectById(id);
+
+		super.getResponse().setAuthorised(!project.isDraftMode());
 	}
 
 	@Override
 	public void load() {
-		Collection<Project> projects;
+		Project project;
+		int id;
 
-		projects = this.repository.findAllProjects();
+		id = super.getRequest().getData("id", int.class);
+		project = this.repository.findOneProjectById(id);
 
-		super.getBuffer().addData(projects);
+		super.getBuffer().addData(project);
 	}
 
 	@Override
-	public void unbind(final Project projects) {
-		assert projects != null;
+	public void unbind(final Project project) {
+		assert project != null;
+
+		//CALCULAR PROPIEDADES DERIVADAS EN EL UNBIND
+		int cost = 0;
 
 		Dataset dataset;
-
-		dataset = super.unbind(projects, "code", "title", "draftMode");
+		//atributos a pasar a la vista
+		dataset = super.unbind(project, "code", "title", "abstractText", "fatalErrors", "link", "cost", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

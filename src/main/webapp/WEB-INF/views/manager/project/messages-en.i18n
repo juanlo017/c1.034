@@ -52,3 +52,4 @@ manager.project.form.error.notAllStoriesPublished = Not all associated user stor
 manager.project.form.error.hasFatalErrors = The project contains fatal errors!
 manager.project.form.error.numberOfUserStories = You must have at least 1 user story associated to a project to publish it!
 	
+manager.project.error.cost.negative-price = Cost cannot be negative!
