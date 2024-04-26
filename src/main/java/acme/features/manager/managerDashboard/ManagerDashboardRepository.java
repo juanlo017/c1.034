@@ -20,40 +20,42 @@ import acme.client.repositories.AbstractRepository;
 @Repository
 public interface ManagerDashboardRepository extends AbstractRepository {
 
-	@Query("select count(us) from UserStory us where lower(us.priority) = lower('MUST') AND us.manager.id = :managerId")
+	@Query("select count(us) from UserStory us where us.priority = 0 AND us.manager.id = :managerId")
 	int countMustUserStories(int managerId);
 
-	@Query("select count(us) from UserStory us where lower(us.priority) = lower('SHOULD') AND us.manager.id = :managerId")
+	@Query("select count(us) from UserStory us where us.priority = 1 AND us.manager.id = :managerId")
 	int countShouldUserStories(int managerId);
 
-	@Query("select count(us) from UserStory us where lower(us.priority) = lower('COULD') AND us.manager.id = :managerId")
+	@Query("select count(us) from UserStory us where us.priority = 2 AND us.manager.id = :managerId")
 	int countCouldUserStories(int managerId);
 
-	@Query("select count(us) from UserStory us where lower(us.priority) = lower('WONT') AND us.manager.id = :managerId")
+	@Query("select count(us) from UserStory us where us.priority = 3 AND us.manager.id = :managerId")
 	int countWontUserStories(int managerId);
 
-	@Query("select avg(us.estimatedCost) from UserStory us where us.manager.id = :managerId")
+	/////
+
+	@Query("select coalesce(avg(us.estimatedCost),0) from UserStory us where us.manager.id = :managerId")
 	double avgCostOfUserStory(int managerId);
 
-	@Query("select min(us.estimatedCost) from UserStory us where us.manager.id = :managerId")
+	@Query("select coalesce(min(us.estimatedCost),0) from UserStory us where us.manager.id = :managerId")
 	int minCostOfUserStory(int managerId);
 
-	@Query("select max(us.estimatedCost) from UserStory us where us.manager.id = :managerId")
+	@Query("select coalesce(max(us.estimatedCost),0) from UserStory us where us.manager.id = :managerId")
 	int maxCostOfUserStory(int managerId);
 
-	@Query("select stddev(us.estimatedCost) from UserStory us where us.manager.id = :managerId")
+	@Query("select coalesce(stddev(us.estimatedCost),0) from UserStory us where us.manager.id = :managerId")
 	double deviationCostOfUserStory(int managerId);
 
-	@Query("select avg(p.cost) from Project p where p.manager.id = :managerId")
-	double avgCostOfProject(int managerId);
+	@Query("select coalesce(avg(p.cost.amount),0) from Project p where p.cost.currency = :currency and p.manager.id = :managerId")
+	double avgCostOfProject(String currency, int managerId);
 
-	@Query("select min(p.cost) from Project p where p.manager.id = :managerId")
-	int minCostOfProject(int managerId);
+	@Query("select coalesce(min(p.cost.amount),0) from Project p where p.cost.currency = :currency and p.manager.id = :managerId")
+	double minCostOfProject(String currency, int managerId);
 
-	@Query("select max(p.cost) from Project p where p.manager.id = :managerId")
-	int maxCostOfProject(int managerId);
+	@Query("select coalesce(max(p.cost.amount),0) from Project p where p.cost.currency = :currency and p.manager.id = :managerId")
+	double maxCostOfProject(String currency, int managerId);
 
-	@Query("select stddev(p.cost) from Project p where p.manager.id = :managerId")
-	double deviationCostOfProject(int managerId);
+	@Query("select coalesce(stddev(p.cost.amount),0) from Project p where p.cost.currency = :currency and p.manager.id = :managerId")
+	double deviationCostOfProject(String currency, int managerId);
 
 }

@@ -1,0 +1,22 @@
+developer.training-session.form.title = Training session details
+developer.training-session.form.label.code = Code
+developer.training-session.form.label.time-period-start = Time period Start
+developer.training-session.form.label.time-period-end = Time period End
+developer.training-session.form.label.location = Location
+developer.training-session.form.label.instructor = Instructor
+developer.training-session.form.label.email = Email
+developer.training-session.form.label.link = Link
+
+developer.training-session.form.button.create-training-session = Create Training Session
+developer.training-session.form.button.delete = Delete
+developer.training-session.form.button.update = Update
+developer.training-session.form.button.publish = Publish
+developer.training-session.form.error.duplicated = Duplicated code
+developer.training-session.form.error.creation-moment-invalid = Invalid creation moment
+developer.training-session.form.error.too-close = Time Period very close to each other
+
+developer.training-session.list.title = Training session Listing
+developer.training-session.list.button.create-form = Create
+developer.training-session.list.label.code = Code
+developer.training-session.list.label.location = Location
+developer.training-session.list.label.instructor = Instructor

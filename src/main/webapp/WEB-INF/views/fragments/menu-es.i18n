@@ -24,6 +24,16 @@ master.menu.anonymous.jose-castro = 29515985Q: Castro Vázquez, Jose Ignacio
 master.menu.anonymous.juan-del-junco = 76057243S: del Junco Obregón, Juan
 master.menu.anonymous.pablo-mejias = 77849082Q: Mejías Buitrago, Pablo
 master.menu.anonymous.david-blanco = 30269225Y: Blanco Mora, David
+master.menu.anonymous.published-modules = Ver todos los módulos de entrenamiento publicados
+
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Autenticado
+master.menu.authenticated.published-modules = Ver todos los módulos de entrenamiento publicados
+
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Autenticado
 
 # master.menu.administrator ###################################################
 
@@ -44,9 +54,17 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.developer #########################################################
+
+master.menu.developer = Desarrollador
+master.menu.developer.list.all.training-modules = Listar todos los módulos de entrenamiento
+master.menu.developer.list.mine.training-modules = Listar mis módulos de entrenamiento
+master.menu.developer.all.training-sessions = All Training Sessions
+master.menu.developer.developer-dashboard = Panel de desarrollador
+
 # master.menu.manager ##########################################################
 
-master.menu.manager = Manager
+master.menu.manager = Gerente
 master.menu.manager.list.all.projects = Listar todos los proyectos
 master.menu.manager.list.mine.projects = Listar mis proyectos
 
@@ -57,6 +75,10 @@ master.menu.manager.list.dashboard = Ver Panel de Control
 
 master.menu.user-account = Cuenta
 master.menu.user-account.general-data = Datos generales
+master.menu.user-account.manager = Datos de gerente
+master.menu.user-account.become-manager = Conviértete en gerente
+master.menu.user-account.developer = Datos de desarrollador
+master.menu.user-account.become-developer = Hazte desarrollador
 master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor

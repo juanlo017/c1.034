@@ -73,12 +73,14 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		int numRisks = this.repository.countRisksByProjectId(object.getId());
 		int numObjectives = this.repository.countObjectivesByProjectId(object.getId());
 		int numSponsorships = this.repository.countSponsorshipsByProjectId(object.getId());
+		int numTrainingModules = this.repository.countTrainingModuleId(object.getId());
 
 		super.state(numAssignments == 0, "*", "manager.project.delete.exists-assignment");
 		super.state(numContracts == 0, "*", "manager.project.delete.exists-contract");
 		super.state(numRisks == 0, "*", "manager.project.delete.exists-risk");
 		super.state(numObjectives == 0, "*", "manager.project.delete.exists-objective");
 		super.state(numSponsorships == 0, "*", "manager.project.delete.exists-sponsorship");
+		super.state(numTrainingModules == 0, "*", "manager.project.delete.exists-training-module");
 	}
 
 	@Override

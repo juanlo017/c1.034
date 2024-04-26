@@ -20,4 +20,8 @@
 	<acme:list-column code="manager.assignment.list.label.userStory" path="userStory" width="50%"/>	
 </acme:list>
 
-<acme:button code="manager.user-story.button.create" action="/manager/assignment/create"/>
+<acme:button code="manager.assignment.list.button.create" action="/manager/assignment/create"/>
+
+<acme:button code="manager.assignment.list.button.create.project" action="/manager/project/create"/>
+
+<acme:button code="manager.assignment.list.button.create.user-story" action="/manager/user-story/create"/>
