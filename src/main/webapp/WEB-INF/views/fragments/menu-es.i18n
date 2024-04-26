@@ -15,6 +15,8 @@ master.menu.sign-up = Registrarse
 master.menu.sign-in = Entrar
 master.menu.sign-out = Salir
 
+master.menu.authenticated = Autenticado
+
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anónimo
@@ -24,6 +26,8 @@ master.menu.anonymous.jose-castro = 29515985Q: Castro Vázquez, Jose Ignacio
 master.menu.anonymous.juan-del-junco = 76057243S: del Junco Obregón, Juan
 master.menu.anonymous.pablo-mejias = 77849082Q: Mejías Buitrago, Pablo
 master.menu.anonymous.david-blanco = 30269225Y: Blanco Mora, David
+
+master.menu.anonymous.all-projects = Listar proyectos publicados
 
 # master.menu.administrator ###################################################
 

@@ -25,3 +25,20 @@ manager.dashboard.form.label.minCostOfProject = Coste mínimo de Proyecto
 manager.dashboard.form.label.maxCostOfProject = Coste máximo de Proyecto
 manager.dashboard.form.label.devCostOfProject = Desviación estándar de coste de Proyecto
 
+manager.dashboard.form.label.avgCostOfProjectEUR = Coste promedio de Proyecto (EUR)
+manager.dashboard.form.label.avgCostOfProjectGBP = Coste promedio de Proyecto (GBP)
+manager.dashboard.form.label.avgCostOfProjectUSD = Coste promedio de Proyecto (USD)
+manager.dashboard.form.label.minCostOfProjectEUR = Coste mínimo de Proyecto (EUR)
+manager.dashboard.form.label.minCostOfProjectGBP = Coste mínimo de Proyecto (GBP)
+manager.dashboard.form.label.minCostOfProjectUSD = Coste mínimo de Proyecto (USD)
+manager.dashboard.form.label.maxCostOfProjectEUR = Coste máximo de Proyecto (EUR)
+manager.dashboard.form.label.maxCostOfProjectGBP = Coste máximo de Proyecto (GBP)
+manager.dashboard.form.label.maxCostOfProjectUSD = Coste máximo de Proyecto (USD)
+manager.dashboard.form.label.devCostOfProjectEUR = Desviación estándar de coste de Proyecto (EUR)
+manager.dashboard.form.label.devCostOfProjectGBP = Desviación estándar de coste de Proyecto (GBP)
+manager.dashboard.form.label.devCostOfProjectUSD = Desviación estándar de coste de Proyecto (USD)
+
+
+
+
+
