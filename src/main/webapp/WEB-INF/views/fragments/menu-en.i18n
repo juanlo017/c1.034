@@ -51,6 +51,12 @@ master.menu.manager = Manager
 master.menu.manager.list.all.projects = List all projects
 master.menu.manager.list.mine.projects = List my projects
 
+# master.menu.sponsor ##########################################################
+
+master.menu.sponsor = Sponsor
+master.menu.sponsor.list.all.sponsorships = List all sponsorships
+master.menu.sponsor.list.mine.sponsorships = List my sponsorships
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
