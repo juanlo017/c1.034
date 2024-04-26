@@ -11,6 +11,7 @@
 sponsor.sponsorship.list.title = Listado de tus patrocinios
 sponsor.sponsorship.form.title = Formulario
 
+any.sponsorship.list.title = Lista de patrocinios publicados
 any.sponsorship.list.label.code = Código
 any.sponsorship.list.label.moment = Momento
 any.sponsorship.list.label.startTime = Inicio de la duración
@@ -21,6 +22,7 @@ any.sponsorship.list.label.optionalEmail = Correo (opcional)
 any.sponsorship.list.label.optionalLink = Enlace (opcional)
 any.sponsorship.list.label.project = Proyecto
 
+any.sponsorship.form.title = Formulario de patrocinios
 any.sponsorship.form.label.code = Código:
 any.sponsorship.form.label.moment = Momento:
 any.sponsorship.form.label.startTime = Inicio de la duración:
