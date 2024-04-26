@@ -1,14 +1,20 @@
 
 package acme.entities.codeAudits;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
@@ -16,6 +22,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.entities.auditRecords.AuditRecord;
+import acme.entities.auditRecords.Mark;
+import acme.roles.Auditor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,33 +62,37 @@ public class CodeAudit extends AbstractEntity {
 	private boolean				draftMode;
 
 	// Relationships -----------------------------------
-	/*
-	 * @OneToMany
-	 * private List<AuditRecord> auditRecords;
-	 */
-	/*
-	 * //Derived atributes
-	 * public void computeModeMark() { ¿En el service?
-	 * if (this.auditRecords == null || this.auditRecords.isEmpty())
-	 * this.mark = null; // No audit records, mark cannot be computed
-	 * 
-	 * // Count occurrences of each mark
-	 * Map<String, Integer> markCount = new HashMap<>();
-	 * for (AuditRecord ar : this.auditRecords) {
-	 * String m = ar.getMark().toString();
-	 * markCount.put(m, markCount.getOrDefault(m, 0) + 1);
-	 * }
-	 * 
-	 * // Find the mark with the highest count (mode)
-	 * String modeMark = null;
-	 * int maxCount = 0;
-	 * for (Map.Entry<String, Integer> entry : markCount.entrySet())
-	 * if (entry.getValue() > maxCount) {
-	 * modeMark = entry.getKey();
-	 * maxCount = entry.getValue();
-	 * }
-	 * 
-	 * this.mark = modeMark;
-	 * }
-	 */
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Auditor				auditor;
+
+
+	//Derived atributes
+	public Mark getMark(final Collection<AuditRecord> auditRecords) {
+
+		Mark mark;
+		if (auditRecords == null || auditRecords.isEmpty())
+			mark = null; // No audit records, mark cannot be computed
+
+		// Count occurrences of each mark
+		Map<Mark, Integer> markCount = new HashMap<>();
+		for (AuditRecord ar : auditRecords) {
+			Mark m = ar.getMark();
+			markCount.put(m, markCount.getOrDefault(m, 0) + 1);
+		}
+
+		// Find the mark with the highest count (mode)
+		Mark modeMark = null;
+		int maxCount = 0;
+		for (Map.Entry<Mark, Integer> entry : markCount.entrySet())
+			if (entry.getValue() > maxCount) {
+				modeMark = entry.getKey();
+				maxCount = entry.getValue();
+			}
+
+		mark = modeMark;
+		return mark;
+	}
+
 }

@@ -99,7 +99,17 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 
 master.menu.user-account.become-consumer = Become a consumer
+
 master.menu.user-account.become-sponsor = Become a sponsor
 master.menu.user-account.sponsor = Sponsor data
+
+# master.menu.auditor ####################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.all-code-audit = List all code audits
+master.menu.auditor.my-code-audit = List my code audits
+master.menu.auditor.my-dashboard= See my auditor dashboards
+
+
 
 

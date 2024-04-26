@@ -1,0 +1,33 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2024 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+auditor.code-audit.list.title = Listing of code audits
+
+auditor.code-audit.list.label.code = Code
+auditor.code-audit.list.label.actions = Corrective actions
+
+auditor.code-audit.form.title = Details of code audit
+
+auditor.code-audit.form.label.code= Code
+auditor.code-audit.form.label.executionDate= Date of execution
+auditor.code-audit.form.label.type= Type
+auditor.code-audit.form.label.actions= Corrective actions
+auditor.code-audit.form.label.link= Link
+
+
+
+auditor.code-audit.list.button.create= Create Code audit
+auditor.codeAudit.form.button.create= Create
+auditor.code-audit.form.button.delete= Delete
+auditor.code-audit.form.button.update= Update
+auditor.code-audit.form.button.publish = Publish
+
+auditor.code-audit.form.error.duplicated= Code is already taken
+auditor.code-audit.form.error.notEnoughMark = Mark needs to be at least C
