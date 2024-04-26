@@ -1,0 +1,22 @@
+developer.training-session.form.title = Detalles de la sesión de entrenamiento
+developer.training-session.form.label.code = Código
+developer.training-session.form.label.time-period-start = Inicio Periodo de tiempo
+developer.training-session.form.label.time-period-end = Final Periodo de tiempo
+developer.training-session.form.label.location = Localización
+developer.training-session.form.label.instructor = Instructor
+developer.training-session.form.label.email = Email
+developer.training-session.form.label.link = Link
+
+developer.training-session.form.button.create-training-session = Crear Sesión de entrenamiento
+developer.training-session.form.button.delete = Eliminar
+developer.training-session.form.button.update = Actualizar
+developer.training-session.form.button.publish = Publicar
+developer.training-session.form.error.duplicated = Código duplicado
+developer.training-session.form.error.creation-moment-invalid = Momento de creación inválido
+developer.training-session.form.error.too-close = Periodo de tiempo muy cercano entre sí
+
+developer.training-session.list.title = Listado de Sesiones de entrenamiento
+developer.training-session.list.button.create-form = Crear
+developer.training-session.list.label.code = Código
+developer.training-session.list.label.location = Localización
+developer.training-session.list.label.instructor = Instructor
