@@ -37,7 +37,7 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 
 		int masterId;
 		CodeAudit codeAudit;
-		masterId = super.getRequest().getData("masterId", int.class);
+		masterId = super.getRequest().getData("id", int.class);
 		codeAudit = this.repository.findOneCodeAuditById(masterId);
 
 		object = new AuditRecord();
@@ -87,7 +87,7 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 
 		dataset = super.unbind(object, "code", "startTime", "endTime", "mark", "link");
 		dataset.put("marks", choices);
-		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		//dataset.put("id", super.getRequest().getData("masterId", int.class));
 
 		super.getResponse().addData(dataset);
 	}

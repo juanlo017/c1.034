@@ -18,6 +18,7 @@ public class AuditorAuditRecordDeleteService extends AbstractService<Auditor, Au
 
 	@Override
 	public void authorise() {
+
 		boolean status;
 		int masterId;
 		AuditRecord auditRecord;

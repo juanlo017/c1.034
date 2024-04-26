@@ -12,13 +12,17 @@ auditor.audit-record.list.title = Listing of audit records
 auditor.audit-record.form.label.code = Code
 auditor.audit-record.form.label.startTime = Period start
 auditor.audit-record.form.label.endTime = Period end
-auditor.audit-record.form.label.link
-auditor.audit-record.form.label.mark
+auditor.audit-record.form.label.link = Link
+auditor.audit-record.form.label.mark = Mark
 
 auditor.audit-record.form.button.update = Update
 auditor.audit-record.form.button.delete = Delete
 auditor.auditRecord.form.button.create = Create
 
+auditor.audit-record.list.label.code = Code
+auditor.audit-record.list.label.mark = Mark
+
+auditor.audit-record.list.button.create = Create
 
 
 

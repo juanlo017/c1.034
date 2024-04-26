@@ -9,7 +9,6 @@ import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.auditRecords.AuditRecord;
 import acme.entities.auditRecords.Mark;
-import acme.entities.codeAudits.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
@@ -25,13 +24,7 @@ public class AuditorAuditRecordShowService extends AbstractService<Auditor, Audi
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int auditRecordId;
-		CodeAudit codeAudit;
-
-		auditRecordId = super.getRequest().getData("id", int.class);
-		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(auditRecordId);
-		status = codeAudit != null && (!codeAudit.isDraftMode() || super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor()));
+		boolean status = true;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -56,7 +49,7 @@ public class AuditorAuditRecordShowService extends AbstractService<Auditor, Audi
 		choices = SelectChoices.from(Mark.class, object.getMark());
 
 		dataset = super.unbind(object, "code", "startTime", "endTime", "mark", "link");
-		dataset.put("masterId", object.getCodeAudit().getId());
+		dataset.put("id", object.getCodeAudit().getId());
 		dataset.put("marks", choices);
 		dataset.put("draftMode", object.getCodeAudit().isDraftMode());
 
