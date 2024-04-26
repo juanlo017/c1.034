@@ -24,7 +24,10 @@ master.menu.anonymous.jose-castro = 29515985Q: Castro Vázquez, Jose Ignacio
 master.menu.anonymous.juan-del-junco = 76057243S: del Junco Obregón, Juan
 master.menu.anonymous.pablo-mejias = 77849082Q: Mejías Buitrago, Pablo
 master.menu.anonymous.david-blanco = 30269225Y: Blanco Mora, David
+master.menu.anonymous.published-sponsorships = List all published sponsorships
 
+# master.menu.authenticated ###################################################
+master.menu.authenticated.published-sponsorships = List all published sponsorships
 
 # master.menu.administrator ###################################################
 
@@ -56,6 +59,7 @@ master.menu.manager.list.mine.projects = List my projects
 master.menu.sponsor = Sponsor
 master.menu.sponsor.list.all.sponsorships = List all sponsorships
 master.menu.sponsor.list.mine.sponsorships = List my sponsorships
+master.menu.sponsor.dashboard = Sponsors dashobard
 
 # master.menu.user-account ####################################################
 
@@ -65,3 +69,5 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
+master.menu.user-account.become-sponsor = Become a sponsor
+master.menu.user-account.sponsor = Sponsor data

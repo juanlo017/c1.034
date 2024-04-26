@@ -36,6 +36,9 @@ sponsor.sponsorship.list.label.draftMode = Modo borrador
 sponsor.sponsorship.list.label.amount = Cantidad
 sponsor.sponsorship.list.label.type = Tipo de patrocinio
 
+sponsor.sponsorship.form.error.start-time-date-not-valid = El inicio de la fecha de duración debe ser posterior a la del momento
+sponsor.sponsorship.form.error.currency-not-supported = La moneda elegida no es soportada por el sistema
+sponsor.sponsorship.form.error.duration-not-valid = La duración del patrocinio debe ser de al menos un mes. La fecha de inicio debe ser antes que la fecha de fin
 sponsor.sponsorship.form.error.duplicated = El código ya esta siendo utilizado
 sponsor.sponsorship.form.error.too-close = El periodo debe ser almenos de 1 hora
 sponsor.sponsorship.form.error.negative-amount = La cantidad debe ser positiva

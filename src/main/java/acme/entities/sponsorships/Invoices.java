@@ -64,11 +64,13 @@ public class Invoices extends AbstractEntity {
 	@Length(max = 255)
 	private String				optionalLink;
 
+	private boolean				draftMode;
+
 
 	// Derived attributes -----------------------------------------------------
 	@Transient
-	public Double getTotalAmount() {
-		return this.quantity.getAmount() * this.tax + this.quantity.getAmount();
+	public Double totalAmount() {
+		return this.quantity.getAmount() + this.quantity.getAmount() * (this.tax / 100);
 	}
 
 
