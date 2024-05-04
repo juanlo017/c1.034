@@ -19,6 +19,7 @@
 	<acme:list-column code="client.progress-log.list.label.recordId" path="recordId"/>
 	<acme:list-column code="client.progress-log.list.label.responsiblePerson" path="responsiblePerson"/>
 	<acme:list-column code="client.progress-log.list.label.completeness" path="completeness"/>
+	<acme:list-column code="client.progress-log.list.label.contract" path="contract"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list-mine'}">

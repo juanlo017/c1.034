@@ -44,11 +44,9 @@ public class ClientProgressLogListAllService extends AbstractService<Client, Pro
 		Collection<Contract> contracts;
 
 		Dataset dataset;
-		/*
-		 * contracts = this.repository.findAllContracts();
-		 * choices = SelectChoices.from(contracts, "contract", object.getContract());
-		 */
-		dataset = super.unbind(object, "recordId", "responsiblePerson", "completeness");
+		contracts = this.repository.findAllContracts();
+		choices = SelectChoices.from(contracts, "code", object.getContract());
+		dataset = super.unbind(object, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
 
 		if (object.isDraftMode()) {
 			final Locale local = super.getRequest().getLocale();
@@ -57,10 +55,8 @@ public class ClientProgressLogListAllService extends AbstractService<Client, Pro
 		} else
 			dataset.put("draftMode", "No");
 
-		/*
-		 * dataset.put("contract", choices.getSelected().getKey());
-		 * dataset.put("contracts", choices);
-		 */
+		dataset.put("contract", choices.getSelected().getKey());
+		dataset.put("contracts", choices);
 		super.getResponse().addData(dataset);
 	}
 

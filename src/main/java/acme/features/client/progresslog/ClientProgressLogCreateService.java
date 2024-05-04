@@ -21,12 +21,18 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 	@Override
 	public void authorise() {
-		//TODO
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		//TODO
+		int id;
+		ProgressLog progressLog;
+
+		id = super.getRequest().getData("id", int.class);
+		progressLog = this.repository.findProgressLogById(id);
+
+		super.getBuffer().addData(progressLog);
 	}
 
 	@Override
@@ -41,7 +47,9 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 	@Override
 	public void perform(final ProgressLog object) {
-		//TODO
+		assert object != null;
+		object.setDraftMode(true);
+		this.repository.save(object);
 	}
 
 	@Override
