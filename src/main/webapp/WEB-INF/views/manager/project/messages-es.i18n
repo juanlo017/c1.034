@@ -52,3 +52,12 @@ manager.project.form.error.hasFatalErrors = El proyecto contiene errores fatales
 manager.project.form.error.numberOfUserStories = El proyecto debe tener al menos 1 historia de usuario antes de ser publicada!
 
 manager.project.error.cost.negative-price = El coste no puede ser negativo!
+
+
+manager.project.form.label.title.placeholder = Escribe tu título aquí (75 caracteres máximo)
+manager.project.form.label.abstractText.placeholder = Escribe tu abstracto aquí (100 caracteres máximo)
+manager.project.form.label.fatalErrors.placeholder = Únicos valores aceptados: false (falso) / true (verdadero)
+manager.project.form.label.cost.placeholder = EUR 123,456.78 - Divisas aceptadas: EUR, GBP & USD - Sólo valores positivos
+
+
+

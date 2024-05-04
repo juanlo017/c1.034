@@ -36,9 +36,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>acme-framework</name>
+			<name>acme-framework-24.4</name>
 			<type>2</type>
-			<location>C:/Users/juanq/Desktop/Workspace-24/Frameworks/Acme-Framework-24.4.0/target/classes</location>
+			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-24.4.0/target/classes</locationURI>
 		</link>
 		<link>
 			<name>acme-framework-24.4.0</name>

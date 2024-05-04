@@ -91,8 +91,8 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 
 		int managerId = super.getRequest().getPrincipal().getActiveRoleId();
 
-		Collection<Project> projects = this.repository.findAllPublishedProjectsByManager(managerId);
-		Collection<UserStory> userStories = this.repository.findAllPublishedUserStoriesByManager(managerId);
+		Collection<Project> projects = this.repository.findAllNotPublishedProjectsByManager(managerId);
+		Collection<UserStory> userStories = this.repository.findAllNotPublishedUserStoriesByManager(managerId);
 
 		SelectChoices projectChoices = SelectChoices.from(projects, "title", object.getProject());
 		SelectChoices userStoriesChoices = SelectChoices.from(userStories, "title", object.getUserStory());

@@ -31,3 +31,8 @@ manager.user-story.form.label.description = Descripción
 manager.user-story.form.title = Título
 
 manager.project.delete.draft-mode = Proyecto publicado
+
+manager.user-story.form.label.title.placeholder = Escribe tu título aquí (75 caracteres máximo)
+manager.user-story.form.label.description.placeholder = Escribe tu descripcion aquí (100 caracteres máximo)
+manager.user-story.form.label.acceptanceCriteria.placeholder = Escribe tus criterios de aceptación aquí (100 caracteres máximo)
+manager.user-story.form.label.cost.placeholder = El coste debe ser un número positivo o cero

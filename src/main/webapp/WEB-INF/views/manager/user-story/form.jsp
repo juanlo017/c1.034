@@ -16,10 +16,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form> 
-	<acme:input-textbox code="manager.user-story.form.label.title" path="title"/>
-	<acme:input-textbox code="manager.user-story.form.label.description" path="description"/>
-	<acme:input-integer code="manager.user-story.form.label.estimatedCost" path="estimatedCost"/>
-	<acme:input-textbox code="manager.user-story.form.label.acceptanceCriteria" path="acceptanceCriteria"/>
+	<acme:input-textbox code="manager.user-story.form.label.title" path="title" placeholder="manager.user-story.form.label.title.placeholder"/>
+	<acme:input-textbox code="manager.user-story.form.label.description" path="description" placeholder="manager.user-story.form.label.description.placeholder"/>
+	<acme:input-integer code="manager.user-story.form.label.estimatedCost" path="estimatedCost" placeholder="manager.user-story.form.label.cost.placeholder"/>
+	<acme:input-textbox code="manager.user-story.form.label.acceptanceCriteria" path="acceptanceCriteria" placeholder="manager.user-story.form.label.acceptanceCriteria.placeholder"/>
 	<acme:input-select code="manager.user-story.form.label.priority" path="priority" choices="${ priorities }"/>
 	<acme:input-url code="manager.user-story.form.label.link" path="link"/>
 	<acme:hidden-data path="draftMode"/>
