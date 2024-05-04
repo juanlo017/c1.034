@@ -12,6 +12,6 @@ client.progress-log.list.title = My progress logs
 client.progress-log.list.label.recordId = ID
 client.progress-log.list.label.responsiblePerson = Responsible person
 client.progress-log.list.label.completeness =  Completeness rate
-client.progress-log.button.contract = Contract
+client.progress-log.list.label.contract = Contract
 
 client.progress-log.button.create = Create
