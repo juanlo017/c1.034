@@ -62,10 +62,7 @@ public class ManagerUserStoryPublishService extends AbstractService<Manager, Use
 	public void unbind(final UserStory object) {
 		assert object != null;
 
-		int employerId;
 		Dataset dataset;
-
-		employerId = super.getRequest().getPrincipal().getActiveRoleId();
 
 		dataset = super.unbind(object, "title", "description", "estimatedCost", "acceptanceCriteria", "priority", "link", "draftMode");
 

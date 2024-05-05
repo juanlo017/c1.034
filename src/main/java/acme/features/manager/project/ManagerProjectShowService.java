@@ -57,9 +57,6 @@ public class ManagerProjectShowService extends AbstractService<Manager, Project>
 	public void unbind(final Project project) {
 		assert project != null;
 
-		//CALCULAR PROPIEDADES DERIVADAS EN EL UNBIND
-		int cost = 0;
-
 		Dataset dataset;
 		//atributos a pasar a la vista
 		dataset = super.unbind(project, "code", "title", "abstractText", "fatalErrors", "link", "cost", "draftMode");

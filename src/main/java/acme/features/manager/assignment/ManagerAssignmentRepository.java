@@ -54,9 +54,9 @@ public interface ManagerAssignmentRepository extends AbstractRepository {
 	int existsAssignmentWithSameProjectAndUserStory(Project project, UserStory userStory);
 
 	@Query("select p from Project p where p.manager.id = :managerId and p.draftMode = 1")
-	Collection<Project> findAllPublishedProjectsByManager(int managerId);
+	Collection<Project> findAllNotPublishedProjectsByManager(int managerId);
 
 	@Query("select p from UserStory p where p.manager.id = :managerId and p.draftMode = 1")
-	Collection<UserStory> findAllPublishedUserStoriesByManager(int managerId);
+	Collection<UserStory> findAllNotPublishedUserStoriesByManager(int managerId);
 
 }

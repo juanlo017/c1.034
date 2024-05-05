@@ -53,3 +53,10 @@ manager.project.form.error.hasFatalErrors = The project contains fatal errors!
 manager.project.form.error.numberOfUserStories = You must have at least 1 user story associated to a project to publish it!
 	
 manager.project.error.cost.negative-price = Cost cannot be negative!
+
+manager.project.form.label.title.placeholder = Write a title here (75 characters max)
+manager.project.form.label.abstractText.placeholder = Write your abstract here (100 characters max)
+manager.project.form.label.fatalErrors.placeholder = Only accepted values: false / true
+manager.project.form.label.cost.placeholder = EUR 123,456.78 - Accepted currencies: EUR, GBP & USD - Only positive values
+
+
