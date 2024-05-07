@@ -32,4 +32,7 @@ public interface ClientContractRepository extends AbstractRepository {
 	@Query("select p from Project p where p.id = :id")
 	Project findProjectById(int id);
 
+	@Query("select c.project from Contract c where c.project.id = :id")
+	Project findProjectByContractId(int id);
+
 }

@@ -32,21 +32,24 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void load() {
-		Contract object;
+
+		Contract contract;
 		Client client;
 
 		Principal principal = super.getRequest().getPrincipal();
 		client = this.repository.findClientById(principal.getActiveRoleId());
 
-		object = new Contract();
-		object.setClient(client);
-		object.setDraftMode(true);
-		super.getBuffer().addData(object);
+		contract = new Contract();
+		contract.setClient(client);
+		contract.setDraftMode(true);
+
+		super.getBuffer().addData(contract);
 	}
 
 	@Override
-	public void bind(final Contract object) {
-		assert object != null;
+	public void bind(final Contract contract) {
+
+		assert contract != null;
 
 		int projectId;
 		Project project;
@@ -54,8 +57,8 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
 
-		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
-		object.setProject(project);
+		super.bind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		contract.setProject(project);
 	}
 
 	@Override
@@ -71,14 +74,15 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	}
 
 	@Override
-	public void perform(final Contract object) {
-		assert object != null;
+	public void perform(final Contract contract) {
 
-		this.repository.save(object);
+		assert contract != null;
+		this.repository.save(contract);
 	}
 
 	@Override
 	public void unbind(final Contract object) {
+
 		assert object != null;
 
 		Dataset dataset;
@@ -87,7 +91,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		SelectChoices choices;
 
 		projects = this.repository.findAllProjects();
-		choices = SelectChoices.from(projects, "title", object.getProject());
+		choices = SelectChoices.from(projects, "code", object.getProject());
 
 		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 		dataset.put("projects", choices);
