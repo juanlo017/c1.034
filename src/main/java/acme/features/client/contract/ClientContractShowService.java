@@ -2,6 +2,7 @@
 package acme.features.client.contract;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,35 +27,54 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 
 	@Override
 	public void authorise() {
-		boolean status = true;
+
+		boolean status;
+		int id;
+		Contract contract;
+		Client client;
+
+		id = super.getRequest().getData("id", int.class);
+		contract = this.repository.findContractById(id);
+		client = contract.getClient();
+
+		int activeClientId = super.getRequest().getPrincipal().getActiveRoleId();
+		Client activeClient = this.repository.findClientById(activeClientId);
+
+		boolean activeClientIsContractOwner = contract.getClient() == activeClient;
+		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
+
+		status = activeClientIsContractOwner || hasRole;
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Contract object;
+
+		Contract contract;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findContractById(id);
+		contract = this.repository.findContractById(id);
 
-		super.getBuffer().addData(object);
+		super.getBuffer().addData(contract);
 	}
 
 	@Override
-	public void unbind(final Contract object) {
-		assert object != null;
+	public void unbind(final Contract contract) {
+		assert contract != null;
 
 		Dataset dataset;
 
 		Collection<Project> projects;
 		SelectChoices choices;
 
-		projects = this.repository.findAllProjects();
-		choices = SelectChoices.from(projects, "title", object.getProject());
+		projects = contract.isDraftMode() ? this.repository.findAllProjects() : Set.of(this.repository.findProjectByContractId(contract.getId()));
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		dataset = super.unbind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
+		choices = SelectChoices.from(projects, "code", contract.getProject());
+
 		dataset.put("projects", choices);
 		dataset.put("project", choices.getSelected().getKey());
 
