@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.contracts.Contract;
+import acme.entities.contracts.ProgressLog;
 import acme.entities.projects.Project;
 import acme.roles.Client;
 
@@ -34,5 +35,8 @@ public interface ClientContractRepository extends AbstractRepository {
 
 	@Query("select c.project from Contract c where c.project.id = :id")
 	Project findProjectByContractId(int id);
+
+	@Query("select p from ProgressLog p where p.contract.id = :id")
+	Collection<ProgressLog> findPogressLogsByContractId(int id);
 
 }
