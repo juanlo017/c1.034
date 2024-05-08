@@ -43,7 +43,7 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 		boolean activeClientIsContractOwner = contract.getClient() == activeClient;
 		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
 
-		status = activeClientIsContractOwner || hasRole;
+		status = contract != null && activeClientIsContractOwner && hasRole;
 
 		super.getResponse().setAuthorised(status);
 	}

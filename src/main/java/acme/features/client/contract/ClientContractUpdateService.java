@@ -24,7 +24,25 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean status;
+		int id;
+		Contract contract;
+		Client client;
+
+		id = super.getRequest().getData("id", int.class);
+		contract = this.repository.findContractById(id);
+		client = contract == null ? null : contract.getClient();
+
+		int activeClientId = super.getRequest().getPrincipal().getActiveRoleId();
+		Client activeClient = this.repository.findClientById(activeClientId);
+
+		boolean activeClientIsContractOwner = contract.getClient() == activeClient;
+		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
+
+		status = contract != null && activeClientIsContractOwner && hasRole;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
