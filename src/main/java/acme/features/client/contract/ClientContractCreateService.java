@@ -100,12 +100,4 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		super.getResponse().addData(dataset);
 	}
 
-	/*
-	 * @Override
-	 * public void onSuccess() {
-	 * if (super.getRequest().getMethod().equals("POST"))
-	 * PrincipalHelper.handleUpdate();
-	 * }
-	 */
-
 }
