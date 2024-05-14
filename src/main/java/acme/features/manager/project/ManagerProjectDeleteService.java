@@ -77,6 +77,8 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		super.state(numObjectives == 0, "*", "manager.project.delete.exists-objective");
 		super.state(numSponsorships == 0, "*", "manager.project.delete.exists-sponsorship");
 		super.state(numTrainingModules == 0, "*", "manager.project.delete.exists-training-module");
+
+		super.state(object.isDraftMode(), "*", "manager.project.form.error.isPublished");
 	}
 
 	@Override

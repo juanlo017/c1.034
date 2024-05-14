@@ -54,16 +54,15 @@ public class ManagerProjectPublishService extends AbstractService<Manager, Proje
 	public void validate(final Project object) {
 		assert object != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			int projectId = super.getRequest().getData("id", int.class);
-			Collection<UserStory> stories = this.repository.findAllUserStoriesByProjectId(projectId);
+		int projectId = super.getRequest().getData("id", int.class);
+		Collection<UserStory> stories = this.repository.findAllUserStoriesByProjectId(projectId);
 
-			boolean hasAllStoriesPublished = stories.stream().allMatch(x -> !x.isDraftMode());
+		boolean hasAllStoriesPublished = stories.stream().allMatch(x -> !x.isDraftMode());
 
-			super.state(hasAllStoriesPublished, "*", "manager.project.form.error.notAllStoriesPublished");
-			super.state(!object.isFatalErrors(), "*", "manager.project.form.error.hasFatalErrors");
-			super.state(!stories.isEmpty(), "*", "manager.project.form.error.numberOfUserStories");
-		}
+		super.state(hasAllStoriesPublished, "*", "manager.project.form.error.notAllStoriesPublished");
+		super.state(!object.isFatalErrors(), "*", "manager.project.form.error.hasFatalErrors");
+		super.state(!stories.isEmpty(), "*", "manager.project.form.error.numberOfUserStories");
+		super.state(object.isDraftMode(), "*", "manager.project.form.error.isPublished");
 
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			Project existing = this.repository.findOneProjectByCode(object.getCode());
