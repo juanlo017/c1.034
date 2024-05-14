@@ -85,7 +85,7 @@ public class ClientContractDeleteService extends AbstractService<Client, Contrac
 		assert contract != null;
 
 		Collection<ProgressLog> progressLogs;
-		progressLogs = this.repository.findPogressLogsByContractId(contract.getId());
+		progressLogs = this.repository.findProgressLogsByContractId(contract.getId());
 
 		this.repository.deleteAll(progressLogs);
 		this.repository.delete(contract);
