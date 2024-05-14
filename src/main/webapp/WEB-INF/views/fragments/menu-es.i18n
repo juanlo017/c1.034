@@ -112,4 +112,9 @@ master.menu.user-account.sponsor = Datos de sponsor
 
 master.menu.user-account.become-consumer = Hazte consumidor
 
+# master.menu.client ####################################################
 
+master.menu.client = Cliente
+master.menu.client.my-contracts = Listar mis contratos
+master.menu.client.my-progress-logs = Listar mis registros de progreso
+master.menu.client.my-dashboard = Ver mi panel de cliente
