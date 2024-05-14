@@ -15,18 +15,22 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
-<acme:form> 
+<acme:form>
+	<acme:input-select code="manager.assignment.form.label.project"
+		path="project" choices="${projectChoices}"
+		readonly="${_command != 'create'}" />
+	<acme:input-select code="manager.assignment.form.label.story"
+		path="userStory" choices="${userStoriesChoices}"
+		readonly="${_command != 'create'}" />
 
-	<acme:input-select code="manager.assignment.form.label.priority" path="project" choices="${ projectChoices }"/>
-
-	<acme:input-select code="manager.assignment.form.label.priority" path="userStory" choices="${ userStoriesChoices }"/>
-	
-	<jstl:choose>	 
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
-			<acme:submit code="manager.user-story.form.button.delete" action="/manager/assignment/delete"/>
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|delete') && showDelete}">
+			<acme:submit code="manager.assignment.form.button.delete"
+				action="/manager/assignment/delete" />
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="manager.user-story.form.button.create" action="/manager/assignment/create"/>
-		</jstl:when>		
+			<acme:submit code="manager.assignment.form.button.create"
+				action="/manager/assignment/create" />
+		</jstl:when>
 	</jstl:choose>
 </acme:form>

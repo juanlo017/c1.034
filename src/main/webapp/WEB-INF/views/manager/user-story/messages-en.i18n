@@ -28,4 +28,13 @@ manager.user-story.form.button.publish = Publish
 manager.user-story.form.button.create = Create
 
 manager.user-story.form.label.description = Description	
-manager.user-story.form.title = Title
+manager.user-story.form.title = User Story
+
+manager.project.delete.draft-mode = Published project
+
+manager.user-story.form.label.title.placeholder = Write a title here (75 characters max)
+manager.user-story.form.label.description.placeholder = Write your description here (100 characters max)
+manager.user-story.form.label.acceptanceCriteria.placeholder = Write your acceptance criteria here (100 characters max)
+manager.user-story.form.label.cost.placeholder = Cost must be a positive integer or nought
+
+

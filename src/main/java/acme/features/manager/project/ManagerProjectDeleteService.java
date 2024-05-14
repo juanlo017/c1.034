@@ -33,17 +33,13 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
-		Project project;
-		Manager manager;
+		int projectId = super.getRequest().getData("id", int.class);
+		Project project = this.repository.findOneProjectById(projectId);
 
-		masterId = super.getRequest().getData("id", int.class);
-		project = this.repository.findOneProjectById(masterId);
-		manager = project == null ? null : project.getManager();
-		status = project != null && project.isDraftMode() && super.getRequest().getPrincipal().hasRole(manager);
+		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
+		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && project.getManager().equals(manager);
 
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -73,12 +69,14 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		int numRisks = this.repository.countRisksByProjectId(object.getId());
 		int numObjectives = this.repository.countObjectivesByProjectId(object.getId());
 		int numSponsorships = this.repository.countSponsorshipsByProjectId(object.getId());
+		int numTrainingModules = this.repository.countTrainingModuleId(object.getId());
 
 		super.state(numAssignments == 0, "*", "manager.project.delete.exists-assignment");
 		super.state(numContracts == 0, "*", "manager.project.delete.exists-contract");
 		super.state(numRisks == 0, "*", "manager.project.delete.exists-risk");
 		super.state(numObjectives == 0, "*", "manager.project.delete.exists-objective");
 		super.state(numSponsorships == 0, "*", "manager.project.delete.exists-sponsorship");
+		super.state(numTrainingModules == 0, "*", "manager.project.delete.exists-training-module");
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Acme-SF-D02</name>
+	<name>Acme-SF-D03</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -36,7 +36,7 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>acme-framework</name>
+			<name>acme-framework-24.4</name>
 			<type>2</type>
 			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-24.4.0/target/classes</locationURI>
 		</link>

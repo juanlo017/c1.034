@@ -8,12 +8,14 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-﻿# master.menu #################################################################
+# master.menu #################################################################
 
 master.menu.home = Inicio
 master.menu.sign-up = Registrarse
 master.menu.sign-in = Entrar
 master.menu.sign-out = Salir
+
+master.menu.authenticated = Autenticado
 
 # master.menu.anonymous #######################################################
 
@@ -24,6 +26,20 @@ master.menu.anonymous.jose-castro = 29515985Q: Castro Vázquez, Jose Ignacio
 master.menu.anonymous.juan-del-junco = 76057243S: del Junco Obregón, Juan
 master.menu.anonymous.pablo-mejias = 77849082Q: Mejías Buitrago, Pablo
 master.menu.anonymous.david-blanco = 30269225Y: Blanco Mora, David
+
+master.menu.anonymous.published-modules = Ver todos los módulos de entrenamiento publicados
+
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Autenticado
+master.menu.authenticated.published-modules = Ver todos los módulos de entrenamiento publicados
+master.menu.authenticated.published-sponsorships = Ver todos los patrocinios publicados
+
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated = Autenticado
+
+master.menu.anonymous.all-projects = Listar proyectos publicados
 
 # master.menu.administrator ###################################################
 
@@ -44,20 +60,61 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.developer #########################################################
+
+master.menu.developer = Desarrollador
+master.menu.developer.list.all.training-modules = Listar todos los módulos de entrenamiento
+master.menu.developer.list.mine.training-modules = Listar mis módulos de entrenamiento
+master.menu.developer.all.training-sessions = All Training Sessions
+master.menu.developer.developer-dashboard = Panel de desarrollador
+
 # master.menu.manager ##########################################################
 
-master.menu.manager = Manager
+master.menu.manager = Gerente
 master.menu.manager.list.all.projects = Listar todos los proyectos
 master.menu.manager.list.mine.projects = Listar mis proyectos
 
+
+# master.menu.sponsor ##########################################################
+
+master.menu.sponsor = Sponsor
+master.menu.sponsor.list.all.sponsorships = Listar todos los patrocinios
+master.menu.sponsor.list.mine.sponsorships = Listar mis patrocinios
+master.menu.sponsor.dashboard = Tablero de patrocinadores
+
 master.menu.manager.list.assignment = Listar asignaciones
 master.menu.manager.list.dashboard = Ver Panel de Control
+
 
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
 master.menu.user-account.general-data = Datos generales
+master.menu.user-account.manager = Datos de gerente
+master.menu.user-account.become-manager = Conviértete en gerente
+master.menu.user-account.developer = Datos de desarrollador
+master.menu.user-account.become-developer = Hazte desarrollador
 master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor
+
 master.menu.user-account.become-consumer = Hazte consumidor
+
+# master.menu.auditor ####################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.all-code-audit = Listar todas las auditorías de código
+master.menu.auditor.my-code-audit = Listar todas mis auditorías de código
+master.menu.auditor.my-dashboard= Ver mi panel de auditor
+
+master.menu.user-account.become-sponsor = Hazte patrocinador
+master.menu.user-account.sponsor = Datos de sponsor
+
+master.menu.user-account.become-consumer = Hazte consumidor
+
+# master.menu.client ####################################################
+
+master.menu.client = Cliente
+master.menu.client.my-contracts = Listar mis contratos
+master.menu.client.my-progress-logs = Listar mis registros de progreso
+master.menu.client.my-dashboard = Ver mi panel de cliente

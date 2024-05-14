@@ -21,18 +21,18 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Acme SF D03</name>
+	<name>Acme SF D04</name>
 	<description>Proyecto del grupo C1.034 para la asignatura DP2</description>
 
-	<artifactId>Acme-SF-D03</artifactId>
+	<artifactId>Acme-SF-D04</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 	
 	<parent>
 		<groupId>Acme</groupId>
 		<artifactId>Parent-Pom</artifactId>
-		<version>24.1.0</version>
-		<relativePath>../../pom-24.1.0.xml</relativePath>
+		<version>24.4.0</version>
+		<relativePath>../../pom-24.4.0.xml</relativePath>
 	</parent>
 
 	

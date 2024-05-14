@@ -21,6 +21,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.projects.Assignment;
 import acme.entities.projects.Project;
 import acme.entities.projects.UserStory;
+import acme.roles.Manager;
 
 @Repository
 public interface ManagerAssignmentRepository extends AbstractRepository {
@@ -34,13 +35,28 @@ public interface ManagerAssignmentRepository extends AbstractRepository {
 	@Query("select us from UserStory us where us.id = :userStoryId")
 	UserStory findUserStoryById(int userStoryId);
 
-	@Query("select p from Project p where p.draftMode = true and p.manager.id = :managerId")
-	Collection<Project> findAllNotPublishedProjects(int managerId);
+	@Query("select a from Assignment a where a.id = :assignmentId")
+	Assignment findAssignmentById(int assignmentId);
 
-	@Query("select us from UserStory us where us.draftMode = true and us.manager.id = :managerId")
-	Collection<UserStory> findAllNotPublishedUserStories(int managerId);
+	@Query("select m from Manager m where m.id = :managerId")
+	Manager findManagerById(int managerId);
+
+	@Query("select p from Project p")
+	Collection<Project> findAllProjects();
+
+	@Query("select us from UserStory us")
+	Collection<UserStory> findAllUserStories();
 
 	@Query("select a from Assignment a where a.project.manager.id = :id")
 	Collection<Assignment> findManyAssignmentsByManagerId(int id);
+
+	@Query("SELECT count(a) FROM Assignment a WHERE a.project = :project AND a.userStory = :userStory")
+	int existsAssignmentWithSameProjectAndUserStory(Project project, UserStory userStory);
+
+	@Query("select p from Project p where p.manager.id = :managerId and p.draftMode = 1")
+	Collection<Project> findAllNotPublishedProjectsByManager(int managerId);
+
+	@Query("select p from UserStory p where p.manager.id = :managerId and p.draftMode = 1")
+	Collection<UserStory> findAllNotPublishedUserStoriesByManager(int managerId);
 
 }

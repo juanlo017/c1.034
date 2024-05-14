@@ -1,12 +1,12 @@
-key,code,registrationTime,dueDate,quantity,tax,optionalLink,key:sponsorship
-invoices-01,IN-1234-5678,2000/3/1 11:00,2000/1/1 00:00,EUR 1000000.00,0.12,http://invoices14.com,sponsorship-01
-invoices-02,IN-2464-5698,2001/4/12 10:00,2000/12/11 01:00,EUR -1000000.00,0.25,http://invoices123.com,sponsorship-11
-invoices-03,IN-6568-2346,2000/12/31 23:59,2000/7/12 04:00,EUR 1200.00,0.45,null,sponsorship-10
-invoices-04,IN-8908-8468,2001/11/17 04:00,2000/8/16 10:00,EUR 130.00,0.50,null,sponsorship-03
-invoices-05,IN-4567-7437,2001/12/19 06:30,2000/9/18 11:00,EUR 170.00,0.75,null,sponsorship-02
-invoices-06,IN-8794-3574,2001/2/20 07:00,2000/10/20 12:10,EUR 80.00,0.33,null,sponsorship-07
-invoices-07,IN-3948-5785,2001/6/21 08:15,2000/11/21 09:50,EUR 75.00,0.13,http://invoi14.com,sponsorship-06
-invoices-08,IN-5910-8190,2002/8/1 09:00,2000/12/24 08:40,EUR 134.00,0.15,http://invo14.com,sponsorship-05
-invoices-09,IN-8701-3468,2001/9/29 10:00,2000/2/2 06:30,EUR 156.00,0.14,http://invos14.com,sponsorship-03
-invoices-10,IN-2064-5476,2002/10/16 12:00,2000/4/24 05:20,EUR 140.00,0.51,http://建よ.com,sponsorship-02
-invoices-11,IN-2063-5176,2002/10/16 12:00,2000/4/24 05:20,EUR 140.00,1,http://aaaaaaaaaaaaaaasssssssssdddddddfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.com,sponsorship-02
+key,code,registrationTime,dueDate,quantity,tax,optionalLink,key:sponsorship,draft-mode
+invoices-01,IN-1234-5678,2000/3/1 11:00,2000/1/1 00:00,EUR 1000000.00,0.12,http://invoices14.com,sponsorship-01,true
+invoices-02,IN-2464-5698,2001/4/12 10:00,2000/12/11 01:00,EUR -1000000.00,0.25,http://invoices123.com,sponsorship-11,true
+invoices-03,IN-6568-2346,2000/12/31 23:59,2000/7/12 04:00,EUR 1200.00,0.45,null,sponsorship-10,false
+invoices-04,IN-8908-8468,2001/11/17 04:00,2000/8/16 10:00,EUR 130.00,0.50,null,sponsorship-03,false
+invoices-05,IN-4567-7437,2001/12/19 06:30,2000/9/18 11:00,EUR 170.00,0.75,null,sponsorship-02,false
+invoices-06,IN-8794-3574,2001/2/20 07:00,2000/10/20 12:10,EUR 80.00,0.33,null,sponsorship-07,false
+invoices-07,IN-3948-5785,2001/6/21 08:15,2000/11/21 09:50,EUR 75.00,0.13,http://invoi14.com,sponsorship-06,false
+invoices-08,IN-5910-8190,2002/8/1 09:00,2000/12/24 08:40,EUR 134.00,0.15,http://invo14.com,sponsorship-05,true
+invoices-09,IN-8701-3468,2001/9/29 10:00,2000/2/2 06:30,EUR 156.00,0.14,http://invos14.com,sponsorship-03,false
+invoices-10,IN-2064-5476,2002/10/16 12:00,2000/4/24 05:20,EUR 140.00,0.51,http://建よ.com,sponsorship-02,true
+invoices-11,IN-2063-5176,2002/10/16 12:00,2000/4/24 05:20,EUR 140.00,1,http://aaaaaaaaaaaaaaasssssssssdddddddfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.com,sponsorship-02,true

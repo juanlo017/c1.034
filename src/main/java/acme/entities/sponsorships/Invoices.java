@@ -14,7 +14,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -42,7 +42,7 @@ public class Invoices extends AbstractEntity {
 	private String				code;
 
 	@NotNull
-	@Past
+	@PastOrPresent
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationTime;
 
@@ -64,11 +64,13 @@ public class Invoices extends AbstractEntity {
 	@Length(max = 255)
 	private String				optionalLink;
 
+	private boolean				draftMode;
+
 
 	// Derived attributes -----------------------------------------------------
 	@Transient
-	public Double getTotalAmount() {
-		return this.quantity.getAmount() * this.tax + this.quantity.getAmount();
+	public Double totalAmount() {
+		return this.quantity.getAmount() + this.quantity.getAmount() * (this.tax / 100);
 	}
 
 

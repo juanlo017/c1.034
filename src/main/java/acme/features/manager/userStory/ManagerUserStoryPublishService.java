@@ -18,15 +18,11 @@ public class ManagerUserStoryPublishService extends AbstractService<Manager, Use
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int userStoryId;
-		UserStory userStory;
-		Manager manager;
+		int projectId = super.getRequest().getData("id", int.class);
+		UserStory userStory = this.repository.findOneUserStoryById(projectId);
 
-		userStoryId = super.getRequest().getData("id", int.class);
-		userStory = this.repository.findOneUserStoryById(userStoryId);
-		manager = userStory == null ? null : userStory.getManager();
-		status = userStory != null && userStory.isDraftMode() && super.getRequest().getPrincipal().hasRole(manager);
+		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
+		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && userStory.getManager().equals(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -66,10 +62,7 @@ public class ManagerUserStoryPublishService extends AbstractService<Manager, Use
 	public void unbind(final UserStory object) {
 		assert object != null;
 
-		int employerId;
 		Dataset dataset;
-
-		employerId = super.getRequest().getPrincipal().getActiveRoleId();
 
 		dataset = super.unbind(object, "title", "description", "estimatedCost", "acceptanceCriteria", "priority", "link", "draftMode");
 

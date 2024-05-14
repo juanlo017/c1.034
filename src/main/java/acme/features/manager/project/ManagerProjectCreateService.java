@@ -12,6 +12,9 @@
 
 package acme.features.manager.project;
 
+import java.util.List;
+
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +36,7 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
 	}
 
 	@Override
@@ -67,6 +70,15 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 			existing = this.repository.findOneProjectByCode(object.getCode());
 			super.state(existing == null, "code", "manager.project.form.error.duplicated");
 		}
+
+		if (!super.getBuffer().getErrors().hasErrors("cost")) {
+			String acceptedCurrencies = this.repository.findValidCurrencies(object.getCode());
+			List<Object> currencies = Arrays.asList(acceptedCurrencies.split(","));
+			super.state(currencies.contains(object.getCost().getCurrency()), "cost", "manager.project.form.error.currency");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("cost"))
+			super.state(object.getCost().getAmount() >= 0., "retailPrice", "manager.project.error.cost.negative-price");
 	}
 
 	@Override

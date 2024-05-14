@@ -82,36 +82,100 @@
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:message code="manager.dashboard.form.label.avgCostOfProject"/>
+			<acme:message code="manager.dashboard.form.label.avgCostOfProjectEUR"/>
 		</th>
 		<td>
-			<acme:print value="${avgCostOfProject}"/>
+			<acme:print value="${avgCostOfProjectEUR}"/>
+		</td>
+	</tr>	
+		<tr>
+		<th scope="row">
+			<acme:message code="manager.dashboard.form.label.avgCostOfProjectGBP"/>
+		</th>
+		<td>
+			<acme:print value="${avgCostOfProjectGBP}"/>
+		</td>
+	</tr>
+		<tr>
+		<th scope="row">
+			<acme:message code="manager.dashboard.form.label.avgCostOfProjectUSD"/>
+		</th>
+		<td>
+			<acme:print value="${avgCostOfProjectUSD}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="manager.dashboard.form.label.minCostOfProjectEUR"/>
+		</th>
+		<td>
+			<acme:print value="${minCostOfProjectEUR}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="manager.dashboard.form.label.minCostOfProjectGBP"/>
+		</th>
+		<td>
+			<acme:print value="${minCostOfProjectGBP}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="manager.dashboard.form.label.minCostOfProjectUSD"/>
+		</th>
+		<td>
+			<acme:print value="${minCostOfProjectUSD}"/>
 		</td>
 	</tr>	
 	<tr>
 		<th scope="row">
-			<acme:message code="manager.dashboard.form.label.minCostOfProject"/>
+			<acme:message code="manager.dashboard.form.label.maxCostOfProjectEUR"/>
 		</th>
 		<td>
-			<acme:print value="${minCostOfProject}"/>
+			<acme:print value="${maxCostOfProjectEUR}"/>
 		</td>
 	</tr>	
 	<tr>
 		<th scope="row">
-			<acme:message code="manager.dashboard.form.label.maxCostOfProject"/>
+			<acme:message code="manager.dashboard.form.label.maxCostOfProjectGBP"/>
 		</th>
 		<td>
-			<acme:print value="${maxCostOfProject}"/>
+			<acme:print value="${maxCostOfProjectGBP}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="manager.dashboard.form.label.maxCostOfProjectUSD"/>
+		</th>
+		<td>
+			<acme:print value="${maxCostOfProjectUSD}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="manager.dashboard.form.label.devCostOfProjectEUR"/>
+		</th>
+		<td>
+			<acme:print value="${deviationCostOfProjectEUR}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="manager.dashboard.form.label.devCostOfProjectGBP"/>
+		</th>
+		<td>
+			<acme:print value="${deviationCostOfProjectGBP}"/>
 		</td>
 	</tr>	
 	<tr>
 		<th scope="row">
-			<acme:message code="manager.dashboard.form.label.devCostOfProject"/>
+			<acme:message code="manager.dashboard.form.label.devCostOfProjectUSD"/>
 		</th>
 		<td>
-			<acme:print value="${deviationCostOfProject}"/>
+			<acme:print value="${deviationCostOfProjectUSD}"/>
 		</td>
-	</tr>		
+	</tr>	
 </table>
 
 <acme:return/>

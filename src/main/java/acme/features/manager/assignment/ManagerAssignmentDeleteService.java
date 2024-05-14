@@ -38,7 +38,11 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Assignment object = this.repository.findAssignmentById(super.getRequest().getData("id", int.class));
+		Manager manager = this.repository.findManagerById(super.getRequest().getPrincipal().getActiveRoleId());
+
+		//solo el dueño del assignment puede borrarlo
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class) && object.getProject().getManager().equals(manager));
 	}
 
 	@Override
@@ -67,7 +71,9 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 
 	@Override
 	public void validate(final Assignment object) {
-		assert object != null;
+
+		super.state(object.getProject().isDraftMode(), "*", "manager.project.delete.projectPublished");
+
 	}
 
 	@Override
@@ -83,8 +89,8 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 
 		int managerId = super.getRequest().getPrincipal().getAccountId();
 
-		Collection<Project> projects = this.repository.findAllNotPublishedProjects(managerId);
-		Collection<UserStory> userStories = this.repository.findAllNotPublishedUserStories(managerId);
+		Collection<Project> projects = this.repository.findAllProjects();
+		Collection<UserStory> userStories = this.repository.findAllUserStories();
 
 		SelectChoices projectChoices = SelectChoices.from(projects, "title", object.getProject());
 		SelectChoices userStoriesChoices = SelectChoices.from(userStories, "title", object.getUserStory());

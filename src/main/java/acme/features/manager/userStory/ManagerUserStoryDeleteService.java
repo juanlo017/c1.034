@@ -37,7 +37,13 @@ public class ManagerUserStoryDeleteService extends AbstractService<Manager, User
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int projectId = super.getRequest().getData("id", int.class);
+		UserStory userStory = this.repository.findOneUserStoryById(projectId);
+
+		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
+		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && userStory.getManager().equals(manager);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class ManagerUserStoryDeleteService extends AbstractService<Manager, User
 
 	@Override
 	public void validate(final UserStory object) {
-		assert object != null;
+		super.state(object.isDraftMode(), "*", "manager.project.delete.draft-mode"); //solo se puede si esta en draftmode=true
 	}
 
 	@Override

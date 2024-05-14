@@ -17,5 +17,9 @@ validation.codeaudit.code = Entrada inválida. Por favor, ingresa una cadena que
 validation.auditrecord.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón 'AU-[0-9]{4}-[0-9]{3}', donde 'AU-' es seguido por cuatro dígitos seguidos de un guión, y luego tres dígitos.
 validation.claim.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón 'C-\\d{4}', donde 'C-' es seguido por cuatro dígitos.
 
+validation.codeaudit.executiondate = Fecha inválida. La fecha de ejecución tiene que preceder a la actual.
+validation.codeaudit.mark = Nota inválida. La nota tiene que ser almenos C.
+validation.auditrecord.auditperiod = Período inválido. Ambas fechas han de ser en el pasado, y el periodo comprendido ha de ser de almenos una hora.
+
 default.error.currency = Moneda no aceptada
 validation.risk.code = Entrada inválida. Por favor, ingresa una cadena que siga el patrón 'R-[0-9]{3}', donde R- es seguido de 3 dígitos.

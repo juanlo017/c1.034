@@ -33,7 +33,11 @@ public class ManagerProjectShowService extends AbstractService<Manager, Project>
 
 	@Override
 	public void authorise() {
-		boolean status = true;
+		int projectId = super.getRequest().getData("id", int.class);
+		Project project = this.repository.findOneProjectById(projectId);
+
+		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
+		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && project.getManager().equals(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -52,9 +56,6 @@ public class ManagerProjectShowService extends AbstractService<Manager, Project>
 	@Override
 	public void unbind(final Project project) {
 		assert project != null;
-
-		//CALCULAR PROPIEDADES DERIVADAS EN EL UNBIND
-		int cost = 0;
 
 		Dataset dataset;
 		//atributos a pasar a la vista

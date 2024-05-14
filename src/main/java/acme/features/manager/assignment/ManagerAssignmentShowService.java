@@ -38,9 +38,13 @@ public class ManagerAssignmentShowService extends AbstractService<Manager, Assig
 
 	@Override
 	public void authorise() {
-		boolean status = true;
+		Assignment object = this.repository.findAssignmentById(super.getRequest().getData("id", int.class));
+		Manager manager = this.repository.findManagerById(super.getRequest().getPrincipal().getActiveRoleId());
 
-		super.getResponse().setAuthorised(true);
+		//solo el dueño del assignment puede verlo
+		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && object.getProject().getManager().equals(manager);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -58,10 +62,8 @@ public class ManagerAssignmentShowService extends AbstractService<Manager, Assig
 	public void unbind(final Assignment object) {
 		assert object != null;
 
-		int managerId = super.getRequest().getPrincipal().getAccountId();
-
-		Collection<Project> projects = this.repository.findAllNotPublishedProjects(managerId);
-		Collection<UserStory> userStories = this.repository.findAllNotPublishedUserStories(managerId);
+		Collection<Project> projects = this.repository.findAllProjects();
+		Collection<UserStory> userStories = this.repository.findAllUserStories();
 
 		SelectChoices projectChoices = SelectChoices.from(projects, "title", object.getProject());
 		SelectChoices userStoriesChoices = SelectChoices.from(userStories, "title", object.getUserStory());
@@ -75,6 +77,7 @@ public class ManagerAssignmentShowService extends AbstractService<Manager, Assig
 		dataset.put("project", projectChoices.getSelected().getKey());
 		dataset.put("projectChoices", projectChoices);
 
+		dataset.put("showDelete", object.getProject().isDraftMode());
 		super.getResponse().addData(dataset);
 	}
 }
