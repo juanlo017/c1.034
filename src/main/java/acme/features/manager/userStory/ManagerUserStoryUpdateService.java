@@ -40,7 +40,7 @@ public class ManagerUserStoryUpdateService extends AbstractService<Manager, User
 		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
 		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && userStory.getManager().equals(manager);
 
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(status && userStory.isDraftMode());
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class ManagerUserStoryUpdateService extends AbstractService<Manager, User
 
 	@Override
 	public void validate(final UserStory object) {
-		super.state(object.isDraftMode(), "*", "manager.project.delete.draft-mode"); //solo se puede si esta en draftmode=true
+
 	}
 
 	@Override

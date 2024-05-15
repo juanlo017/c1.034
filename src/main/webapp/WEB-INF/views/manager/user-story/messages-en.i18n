@@ -30,7 +30,7 @@ manager.user-story.form.button.create = Create
 manager.user-story.form.label.description = Description	
 manager.user-story.form.title = User Story
 
-manager.project.delete.draft-mode = Published project
+manager.project.delete.draft-mode = Published user story
 
 manager.user-story.form.label.title.placeholder = Write a title here (75 characters max)
 manager.user-story.form.label.description.placeholder = Write your description here (100 characters max)
