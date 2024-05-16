@@ -37,7 +37,7 @@
 			<acme:message code="client.dashboard.form.label.avgContractBudget"/>
 		</th>
 		<td>
-			<acme:print value="${avgContractBudget}"/>
+			<acme:print value="EUR: ${avgContractBudgetEUR}, USD: ${avgContractBudgetUSD}, GBP: ${avgContractBudgetGBP}"/>
 		</td>
 	</tr>
 	<tr>
@@ -45,7 +45,7 @@
 			<acme:message code="client.dashboard.form.label.minContractBudget"/>
 		</th>
 		<td>
-			<acme:print value="${minContractBudget}"/>
+			<acme:print value="EUR: ${minContractBudgetEUR}, USD: ${minContractBudgetUSD}, GBP: ${minContractBudgetGBP}"/>
 		</td>
 	</tr>	
 	<tr>
@@ -53,7 +53,7 @@
 			<acme:message code="client.dashboard.form.label.maxContractBudget"/>
 		</th>
 		<td>
-			<acme:print value="${maxContractBudget}"/>
+			<acme:print value="EUR: ${maxContractBudgetEUR}, USD: ${maxContractBudgetUSD}, GBP: ${maxContractBudgetGBP}"/>
 		</td>
 	</tr>	
 	<tr>
@@ -61,7 +61,7 @@
 			<acme:message code="client.dashboard.form.label.deviationContractBudget"/>
 		</th>
 		<td>
-			<acme:print value="${deviationContractBudget}"/>
+			<acme:print value="EUR: ${deviationContractBudgetEUR}, USD: ${deviationContractBudgetUSD}, GBP: ${deviationContractBudgetGBP}"/>
 		</td>
 	</tr>
 </table>

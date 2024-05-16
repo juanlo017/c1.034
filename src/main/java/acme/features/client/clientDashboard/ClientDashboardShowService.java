@@ -67,19 +67,38 @@ public class ClientDashboardShowService extends AbstractService<Client, ClientDa
 
 		Map<String, Map<String, Double>> statsForEachCurrency = this.calculateStatsForEachCurrency(clientId);
 
-		/*
-		 * avgContractBudget = statsForEachCurrency.get("EUR").get("avg");
-		 * minContractBudget = statsForEachCurrency.get("EUR").get("min");
-		 * maxContractBudget = statsForEachCurrency.get("EUR").get("max");
-		 * deviationContractBudget = statsForEachCurrency.get("EUR").get("dev");
-		 * 
-		 * clientDashboard.setNumberOfProgressLogs(numberOfProgressLogs);
-		 * clientDashboard.setProgressLogsCompletenessRate(this.calculatePercentil(numberOfCompletedProgressLogs, numberOfProgressLogs));
-		 * clientDashboard.setAvgContractBudget(avgContractBudget);
-		 * clientDashboard.setMinContractBudget(minContractBudget);
-		 * clientDashboard.setMaxContractBudget(maxContractBudget);
-		 * clientDashboard.setDeviationContractBudget(deviationContractBudget);
-		 */
+		avgContractBudgetEUR = statsForEachCurrency.get("EUR").get("avg");
+		minContractBudgetEUR = statsForEachCurrency.get("EUR").get("min");
+		maxContractBudgetEUR = statsForEachCurrency.get("EUR").get("max");
+		deviationContractBudgetEUR = statsForEachCurrency.get("EUR").get("dev");
+
+		avgContractBudgetUSD = statsForEachCurrency.get("USD").get("avg");
+		minContractBudgetUSD = statsForEachCurrency.get("USD").get("min");
+		maxContractBudgetUSD = statsForEachCurrency.get("USD").get("max");
+		deviationContractBudgetUSD = statsForEachCurrency.get("USD").get("dev");
+
+		avgContractBudgetGBP = statsForEachCurrency.get("GBP").get("avg");
+		minContractBudgetGBP = statsForEachCurrency.get("GBP").get("min");
+		maxContractBudgetGBP = statsForEachCurrency.get("GBP").get("max");
+		deviationContractBudgetGBP = statsForEachCurrency.get("GBP").get("dev");
+
+		clientDashboard.setNumberOfProgressLogs(numberOfProgressLogs);
+		clientDashboard.setProgressLogsCompletenessRate(this.calculatePercentil(numberOfCompletedProgressLogs, numberOfProgressLogs));
+
+		clientDashboard.setAvgContractBudgetEUR(avgContractBudgetEUR);
+		clientDashboard.setMinContractBudgetEUR(minContractBudgetEUR);
+		clientDashboard.setMaxContractBudgetEUR(maxContractBudgetEUR);
+		clientDashboard.setDeviationContractBudgetEUR(deviationContractBudgetEUR);
+
+		clientDashboard.setAvgContractBudgetUSD(avgContractBudgetUSD);
+		clientDashboard.setMinContractBudgetUSD(minContractBudgetUSD);
+		clientDashboard.setMaxContractBudgetUSD(maxContractBudgetUSD);
+		clientDashboard.setDeviationContractBudgetUSD(deviationContractBudgetUSD);
+
+		clientDashboard.setAvgContractBudgetGBP(avgContractBudgetGBP);
+		clientDashboard.setMinContractBudgetGBP(minContractBudgetGBP);
+		clientDashboard.setMaxContractBudgetGBP(maxContractBudgetGBP);
+		clientDashboard.setDeviationContractBudgetGBP(deviationContractBudgetGBP);
 
 		super.getBuffer().addData(clientDashboard);
 	}
@@ -137,7 +156,8 @@ public class ClientDashboardShowService extends AbstractService<Client, ClientDa
 	@Override
 	public void unbind(final ClientDashboard clientDashboard) {
 		Dataset dataset = null;
-		dataset = super.unbind(clientDashboard, "numberOfProgressLogs", "progressLogsCompletenessRate", "avgContractBudget", "minContractBudget", "maxContractBudget", "deviationContractBudget");
+		dataset = super.unbind(clientDashboard, "numberOfProgressLogs", "progressLogsCompletenessRate", "avgContractBudgetEUR", "minContractBudgetEUR", "maxContractBudgetEUR", "deviationContractBudgetEUR", "avgContractBudgetUSD", "minContractBudgetUSD",
+			"maxContractBudgetUSD", "deviationContractBudgetUSD", "avgContractBudgetGBP", "minContractBudgetGBP", "maxContractBudgetGBP", "deviationContractBudgetGBP");
 
 		super.getResponse().addData(dataset);
 	}
