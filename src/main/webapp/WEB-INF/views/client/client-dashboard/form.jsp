@@ -63,7 +63,7 @@
 		<td>
 			<acme:print value="${deviationContractBudget}"/>
 		</td>
-	</tr>	
+	</tr>
 </table>
 
 <acme:return/>
