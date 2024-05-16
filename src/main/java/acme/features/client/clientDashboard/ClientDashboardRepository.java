@@ -27,4 +27,7 @@ public interface ClientDashboardRepository extends AbstractRepository {
 	@Query("select stddev(c.budget.amount) from Contract c where c.client.id = :id")
 	Double deviationContractBudget(int id);
 
+	@Query("select c.acceptedCurrencies from Configuration c")
+	String findAcceptedCurrencies();
+
 }
