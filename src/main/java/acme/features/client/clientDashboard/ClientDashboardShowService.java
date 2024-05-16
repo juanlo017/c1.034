@@ -39,10 +39,10 @@ public class ClientDashboardShowService extends AbstractService<Client, ClientDa
 
 		int numberOfProgressLogs;
 		int numberOfCompletedProgressLogs;
-		int avgContractBudget;
-		int minContractBudget;
-		int maxContractBudget;
-		int deviationContractBudget;
+		Double avgContractBudget;
+		Double minContractBudget;
+		Double maxContractBudget;
+		Double deviationContractBudget;
 
 		clientDashboard = new ClientDashboard();
 

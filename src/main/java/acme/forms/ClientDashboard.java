@@ -24,16 +24,16 @@ public class ClientDashboard extends AbstractForm {
 	Percentil					progressLogsCompletenessRate;
 
 	@PositiveOrZero
-	int							avgContractBudget;
+	Double						avgContractBudget;
 
 	@PositiveOrZero
-	int							minContractBudget;
+	Double						minContractBudget;
 
 	@PositiveOrZero
-	int							maxContractBudget;
+	Double						maxContractBudget;
 
 	@PositiveOrZero
-	int							deviationContractBudget;
+	Double						deviationContractBudget;
 
 	// Derived attributes -----------------------------------------------------
 
