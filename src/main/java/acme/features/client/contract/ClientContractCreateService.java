@@ -62,13 +62,13 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	}
 
 	@Override
-	public void validate(final Contract object) {
-		assert object != null;
+	public void validate(final Contract contract) {
+		assert contract != null;
 
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			Contract existing;
 
-			existing = this.repository.findContractById(object.getId());
+			existing = this.repository.findContractById(contract.getId());
 			super.state(existing == null, "code", "client.contrct.form.error.duplicated");
 		}
 	}
@@ -81,9 +81,9 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	}
 
 	@Override
-	public void unbind(final Contract object) {
+	public void unbind(final Contract contract) {
 
-		assert object != null;
+		assert contract != null;
 
 		Dataset dataset;
 
@@ -91,11 +91,11 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		SelectChoices choices;
 
 		projects = this.repository.findAllProjects();
-		choices = SelectChoices.from(projects, "code", object.getProject());
+		choices = SelectChoices.from(projects, "code", contract.getProject());
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
-		dataset.put("projects", choices);
-		dataset.put("project", choices.getSelected().getKey());
+		dataset = super.unbind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
+		dataset.put("choices", choices);
 
 		super.getResponse().addData(dataset);
 	}

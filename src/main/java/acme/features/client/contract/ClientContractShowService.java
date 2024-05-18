@@ -2,7 +2,6 @@
 package acme.features.client.contract;
 
 import java.util.Collection;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +61,7 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 
 	@Override
 	public void unbind(final Contract contract) {
+
 		assert contract != null;
 
 		Dataset dataset;
@@ -69,14 +69,12 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 		Collection<Project> projects;
 		SelectChoices choices;
 
-		projects = contract.isDraftMode() ? this.repository.findAllProjects() : Set.of(this.repository.findProjectByContractId(contract.getId()));
+		projects = this.repository.findAllProjects();
+		choices = SelectChoices.from(projects, "code", contract.getProject());
 
 		dataset = super.unbind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 
-		choices = SelectChoices.from(projects, "code", contract.getProject());
-
-		dataset.put("projects", choices);
-		dataset.put("project", choices.getSelected().getKey());
+		dataset.put("choices", choices);
 
 		super.getResponse().addData(dataset);
 	}

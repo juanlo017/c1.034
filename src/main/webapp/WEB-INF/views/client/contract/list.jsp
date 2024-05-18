@@ -18,7 +18,7 @@
 <acme:list>
 	<acme:list-column code="client.contract.list.label.code" path="code"/>
 	<acme:list-column code="client.contract.list.label.budget" path="budget"/>
-	<acme:list-column code="client.contract.list.label.project" path="project"/>
+	<acme:list-column code="client.contract.list.label.project" path="display-project"/>
 </acme:list>
 
 <acme:button code="client.contract.button.create" action="/client/contract/create"/>
