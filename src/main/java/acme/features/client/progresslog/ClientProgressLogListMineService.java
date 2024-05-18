@@ -32,28 +32,34 @@ public class ClientProgressLogListMineService extends AbstractService<Client, Pr
 
 	@Override
 	public void load() {
+
 		Collection<ProgressLog> progressLogs;
 		Principal principal;
 
 		principal = super.getRequest().getPrincipal();
 		progressLogs = this.repository.findAllProgressLogsByClientId(principal.getActiveRoleId());
 
+		if (super.getRequest().hasData("contractId", Integer.class))
+			progressLogs = this.repository.findAllProgressLogsByContractId(super.getRequest().getData("contractId", Integer.class));
+
 		super.getBuffer().addData(progressLogs);
 	}
 
 	@Override
-	public void unbind(final ProgressLog object) {
-		assert object != null;
+	public void unbind(final ProgressLog progressLog) {
+
+		assert progressLog != null;
 		SelectChoices choices;
 		Collection<Contract> contracts;
-
 		Dataset dataset;
+
 		contracts = this.repository.findAllContracts();
-		choices = SelectChoices.from(contracts, "code", object.getContract());
-		dataset = super.unbind(object, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
+		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
+		dataset = super.unbind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
 
 		dataset.put("contract", choices.getSelected().getKey());
 		dataset.put("contracts", choices);
+
 		super.getResponse().addData(dataset);
 	}
 
