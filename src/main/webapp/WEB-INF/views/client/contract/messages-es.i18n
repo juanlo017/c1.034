@@ -32,3 +32,5 @@ client.contract.form.button.create = Crear
 client.contract.form.button.update = Actualizar
 client.contract.form.button.publish = Publicar
 client.contract.form.button.delete = Eliminar
+
+client.contract.form.button.progress-logs = Ver registros de progreso
