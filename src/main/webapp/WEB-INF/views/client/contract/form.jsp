@@ -17,7 +17,7 @@
 
 <acme:form>
 	<acme:input-textbox code="client.contract.form.label.code" path="code"/>
-	<acme:message code="client.progress-log.form.label.instantiationMoment"/> <acme:print value="${instantiationMoment}"/>
+	<acme:message code="client.contract.form.label.instantiationMoment"/> <acme:print value="${instantiationMoment}"/>
 	<acme:input-textbox code="client.contract.form.label.providerName" path="providerName"/>
 	<acme:input-textbox code="client.contract.form.label.customerName" path="customerName"/>
 	<acme:input-textarea code="client.contract.form.label.goals" path="goals"/>
