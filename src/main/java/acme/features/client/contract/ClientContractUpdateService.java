@@ -47,13 +47,14 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void load() {
-		Contract object;
+
+		Contract contract;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findContractById(id);
+		contract = this.repository.findContractById(id);
 
-		super.getBuffer().addData(object);
+		super.getBuffer().addData(contract);
 	}
 
 	@Override
@@ -65,7 +66,9 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
-		super.bind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
+		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
 		contract.setProject(project);
 	}
 
@@ -78,6 +81,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void perform(final Contract contract) {
+
 		assert contract != null;
 
 		this.repository.save(contract);
