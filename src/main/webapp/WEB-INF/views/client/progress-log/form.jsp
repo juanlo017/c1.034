@@ -25,7 +25,7 @@
 	<acme:input-textbox code="client.progress-log.form.label.responsiblePerson" path="responsiblePerson"/>
 	<acme:input-double code="client.progress-log.form.label.completeness" path="completeness"/>
 	<acme:input-textarea code="client.progress-log.form.label.comment" path="comment"/>
-	<acme:input-select code="client.progress-log.form.label.contract" path="contract" choices="${contracts}"/>
+	<acme:input-select code="client.progress-log.form.label.contract" path="contract" choices="${choices}"/>
 	<acme:hidden-data path="draftMode"/>
 	
 	<jstl:choose>
