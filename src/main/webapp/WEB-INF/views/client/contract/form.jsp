@@ -17,11 +17,7 @@
 
 <acme:form>
 	<acme:input-textbox code="client.contract.form.label.code" path="code"/>
-	<jstl:choose>
-		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:input-moment code="client.contract.form.label.instantiationMoment" path="instantiationMoment"/>
-		</jstl:when>
-	</jstl:choose>
+	<acme:message code="client.progress-log.form.label.instantiationMoment"/> <acme:print value="${instantiationMoment}"/>
 	<acme:input-textbox code="client.contract.form.label.providerName" path="providerName"/>
 	<acme:input-textbox code="client.contract.form.label.customerName" path="customerName"/>
 	<acme:input-textarea code="client.contract.form.label.goals" path="goals"/>
@@ -30,7 +26,7 @@
 	<acme:hidden-data path="draftMode"/>
 	
 	<jstl:choose>	 
-		<jstl:when test="${_command == 'show' && draftMode == false}">
+		<jstl:when test="${_command == 'show'}">
 			<acme:submit code="client.contract.form.button.progress-logs" action="/client/progress-log/list-mine?contractId=${id}"/>			
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
