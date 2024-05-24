@@ -30,3 +30,6 @@ developer.training-module.list.button.create-form = Crear
 developer.training-module.form.error.duplicated = Este código ya está en uso
 developer.training-module.form.error.noSession = Debe tener una sesión de entrenamiento asociada
 developer.training-module.form.error.not-enough-training-sessions = No hay suficientes Sesiones de entrenamiento
+developer.training-module.form.error.negative-total-time = No puede haber un tiempo negativo
+developer.training-module.form.error.create-date-not-valid = La fecha tiene que ser mínimo 01/01/2000 00:00
+developer.training-module.form.error.invalid-link = No se puede insertar este enlace
