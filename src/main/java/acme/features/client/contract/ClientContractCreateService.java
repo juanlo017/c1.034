@@ -58,11 +58,12 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
 
+		contract.setProject(project);
+
 		Date now = MomentHelper.getCurrentMoment();
 		contract.setInstantiationMoment(now);
 
 		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
-		contract.setProject(project);
 	}
 
 	@Override
