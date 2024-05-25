@@ -46,10 +46,18 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 		assert progressLog != null;
 
+		int contractId;
+		Contract contract;
+
+		contractId = super.getRequest().getData("contract", int.class);
+		contract = this.repository.findContractById(contractId);
+
+		progressLog.setContract(contract);
+
 		Date now = MomentHelper.getCurrentMoment();
 		progressLog.setRegistrationMoment(now);
 
-		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "draftMode");
+		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "draftMode");
 	}
 
 	@Override
@@ -81,7 +89,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		contracts = this.repository.findAllContracts();
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
-		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "draftMode");
+		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "draftMode");
 
 		dataset.put("choices", choices);
 		dataset.put("registrationMoment", progressLog.getRegistrationMoment());
