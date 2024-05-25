@@ -25,7 +25,8 @@ public class ClientProgressLogShowService extends AbstractService<Client, Progre
 
 	@Override
 	public void authorise() {
-		Boolean status;
+
+		boolean status;
 		int id;
 		ProgressLog progressLog;
 		Client client;
@@ -33,7 +34,9 @@ public class ClientProgressLogShowService extends AbstractService<Client, Progre
 		id = super.getRequest().getData("id", int.class);
 		progressLog = this.repository.findProgressLogById(id);
 		client = progressLog == null ? null : progressLog.getContract().getClient();
-		status = super.getRequest().getPrincipal().hasRole(client) || progressLog != null && !progressLog.isDraftMode();
+		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
+
+		status = progressLog != null && hasRole;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -50,17 +53,20 @@ public class ClientProgressLogShowService extends AbstractService<Client, Progre
 	}
 
 	@Override
-	public void unbind(final ProgressLog object) {
-		assert object != null;
+	public void unbind(final ProgressLog progressLog) {
+
+		assert progressLog != null;
+
+		Dataset dataset;
+
 		SelectChoices choices;
 		Collection<Contract> contracts;
 
-		Dataset dataset;
 		contracts = this.repository.findAllContracts();
-		choices = SelectChoices.from(contracts, "code", object.getContract());
-		dataset = super.unbind(object, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
+		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
-		dataset.put("contract", choices.getSelected().getKey());
+		dataset = super.unbind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
+
 		dataset.put("choices", choices);
 
 		super.getResponse().addData(dataset);

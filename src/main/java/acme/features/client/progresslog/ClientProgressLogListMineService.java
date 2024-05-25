@@ -55,7 +55,7 @@ public class ClientProgressLogListMineService extends AbstractService<Client, Pr
 
 		contracts = this.repository.findAllContracts();
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
-		dataset = super.unbind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
+		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness");
 
 		dataset.put("contract", choices.getSelected().getKey());
 

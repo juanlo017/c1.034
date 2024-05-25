@@ -58,7 +58,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
 
-		super.bind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 		contract.setProject(project);
 	}
 
@@ -100,9 +100,10 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		projects = this.repository.findAllProjects();
 		choices = SelectChoices.from(projects, "code", contract.getProject());
 
-		dataset = super.unbind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		dataset = super.unbind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 
 		dataset.put("choices", choices);
+		dataset.put("instantiationMoment", MomentHelper.getCurrentMoment());
 
 		super.getResponse().addData(dataset);
 	}

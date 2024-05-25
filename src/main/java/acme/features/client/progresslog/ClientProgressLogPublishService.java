@@ -1,11 +1,16 @@
 
 package acme.features.client.progresslog;
 
+import java.util.Collection;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.contracts.Contract;
 import acme.entities.contracts.ProgressLog;
 import acme.roles.Client;
@@ -56,12 +61,9 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 
 		assert progressLog != null;
 
-		int progressLogId;
+		Contract contract = progressLog.getContract();
 
-		progressLogId = super.getRequest().getData("id", int.class);
-		Contract contract = this.repository.findContractByProgressLogId(progressLogId);
-
-		super.bind(progressLog, "recordId", "completeness", "comment", "registrationMoment", "responsiblePerson");
+		super.bind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
 		progressLog.setContract(contract);
 	}
 
@@ -76,7 +78,11 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 
 		assert progressLog != null;
 
+		Date now = MomentHelper.getCurrentMoment();
+
 		progressLog.setDraftMode(false);
+		progressLog.setRegistrationMoment(now);
+
 		this.repository.save(progressLog);
 	}
 
@@ -85,12 +91,16 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 
 		assert progressLog != null;
 
+		SelectChoices choices;
+		Collection<Contract> contracts;
+
 		Dataset dataset;
+		contracts = this.repository.findAllContracts();
+		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
-		dataset = super.unbind(progressLog, "recordId", "completeness", "comment", "registrationMoment", "responsiblePerson");
+		dataset = super.unbind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
 
-		dataset.put("masterId", progressLog.getContract().getId());
-		dataset.put("draftMode", progressLog.isDraftMode());
+		dataset.put("choices", choices);
 
 		super.getResponse().addData(dataset);
 	}

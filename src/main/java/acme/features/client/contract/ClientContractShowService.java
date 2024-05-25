@@ -66,8 +66,8 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 
 		Dataset dataset;
 
-		Collection<Project> projects;
 		SelectChoices choices;
+		Collection<Project> projects;
 
 		projects = this.repository.findAllProjects();
 		choices = SelectChoices.from(projects, "code", contract.getProject());
