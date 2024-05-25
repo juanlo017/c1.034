@@ -58,6 +58,9 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
 
+		Date now = MomentHelper.getCurrentMoment();
+		contract.setInstantiationMoment(now);
+
 		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 		contract.setProject(project);
 	}
@@ -79,10 +82,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 		assert contract != null;
 
-		Date now = MomentHelper.getCurrentMoment();
-
-		contract.setDraftMode(false);
-		contract.setInstantiationMoment(now);
+		contract.setDraftMode(true);
 
 		this.repository.save(contract);
 	}
@@ -103,7 +103,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		dataset = super.unbind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 
 		dataset.put("choices", choices);
-		dataset.put("instantiationMoment", MomentHelper.getCurrentMoment());
+		dataset.put("instantiationMoment", contract.getInstantiationMoment());
 
 		super.getResponse().addData(dataset);
 	}
