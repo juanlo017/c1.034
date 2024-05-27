@@ -26,7 +26,7 @@ public class ManagerUserStoryPublishService extends AbstractService<Manager, Use
 		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
 		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && userStory.getManager().equals(manager);
 
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(status && userStory.isDraftMode());
 	}
 
 	@Override
