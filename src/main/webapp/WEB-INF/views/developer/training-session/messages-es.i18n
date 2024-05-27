@@ -20,3 +20,9 @@ developer.training-session.list.button.create-form = Crear
 developer.training-session.list.label.code = Código
 developer.training-session.list.label.location = Localización
 developer.training-session.list.label.instructor = Instructor
+
+developer.training-session.form.error.invalid-link = No se puede insertar este enlace
+developer.training-session.form.error.date-not-before-limit = El periodo de tiempo de finalización debe ser anterior al 01/01/2201 00:00
+developer.training-session.form.error.date-not-before-limit-week = El periodo de tiempo final debe ser antes del 2200/12/24 23:59
+developer.training-session.form.error.creation-moment-invalid = El momento de creación debe ser al menos una semana después de la fecha de creación del módulo de entrenamiento
+developer.training-session.form.error.too-close = El periodo de tiempo de finalización debe ser al menos una semana después del período de tiempo de inicio

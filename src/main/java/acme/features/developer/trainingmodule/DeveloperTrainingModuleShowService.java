@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
@@ -27,17 +28,15 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 
 	@Override
 	public void authorise() {
-		Boolean status;
-		int masterId;
-		TrainingModule tm;
-		Developer developer;
+		int id = super.getRequest().getData("id", int.class);
+		TrainingModule trainingModule = this.repository.findOneTrainingModuleById(id);
 
-		masterId = super.getRequest().getData("id", int.class);
-		tm = this.repository.findOneTrainingModuleById(masterId);
-		developer = tm == null ? null : tm.getDeveloper();
-		status = super.getRequest().getPrincipal().hasRole(developer) || tm != null && !tm.isDraftMode();
+		final Principal principal = super.getRequest().getPrincipal();
+		final int userAccountId = principal.getAccountId();
 
-		super.getResponse().setAuthorised(status);
+		final boolean authorise = trainingModule != null && trainingModule.getDeveloper().getUserAccount().getId() == userAccountId;
+
+		super.getResponse().setAuthorised(authorise);
 	}
 
 	@Override

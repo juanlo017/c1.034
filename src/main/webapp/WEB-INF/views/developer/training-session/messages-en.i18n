@@ -11,7 +11,7 @@ developer.training-session.form.button.create-training-session = Create Training
 developer.training-session.form.button.delete = Delete
 developer.training-session.form.button.update = Update
 developer.training-session.form.button.publish = Publish
-developer.training-session.form.error.duplicated = Duplicated code
+developer.training-session.form.error.duplicated = This code is taken
 developer.training-session.form.error.creation-moment-invalid = Invalid creation moment
 developer.training-session.form.error.too-close = Time Period very close to each other
 
@@ -20,3 +20,9 @@ developer.training-session.list.button.create-form = Create
 developer.training-session.list.label.code = Code
 developer.training-session.list.label.location = Location
 developer.training-session.list.label.instructor = Instructor
+
+developer.training-session.form.error.invalid-link = Cannot insert this link
+developer.training-session.form.error.date-not-before-limit = The end time period must be before 2201/01/01 00:00
+developer.training-session.form.error.date-not-before-limit-week = The end time period must be before 2200/12/24 23:59
+developer.training-session.form.error.creation-moment-invalid = The creation moment must be at least one week after the training module creation date
+developer.training-session.form.error.too-close = The end time period must be at least one week after the start time period

@@ -1,7 +1,9 @@
 
 package acme.features.developer.trainingmodule;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,15 +53,16 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	public void bind(final TrainingModule object) {
 		assert object != null;
 
-		int projectId;
-		Project project;
-
-		projectId = super.getRequest().getData("project", int.class);
-		project = this.repository.findOneProjectById(projectId);
+		int projectId = super.getRequest().getData("project", int.class);
+		Project project = this.repository.findOneProjectById(projectId);
 
 		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project");
-		object.setProject(project);
 
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date creationMoment = new Date(currentMoment.getTime() - 600000);
+
+		object.setCreationMoment(creationMoment);
+		object.setProject(project);
 	}
 
 	@Override
@@ -75,6 +78,22 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 
 		if (object.getUpdateMoment() != null && !super.getBuffer().getErrors().hasErrors("updateMoment"))
 			super.state(MomentHelper.isAfter(object.getUpdateMoment(), object.getCreationMoment()), "updateMoment", "developer.training-module.form.error.update-date-not-valid");
+
+		// Create a Calendar instance
+		Calendar minDateCalendar = Calendar.getInstance();
+		// Set the date to December 31, 1999, 23:59:00
+		minDateCalendar.set(1999, Calendar.DECEMBER, 31, 23, 59, 0);
+
+		// Convert Calendar to Date
+		Date minDate = minDateCalendar.getTime();
+
+		// Perform validation
+		if (object.getCreationMoment() != null && !super.getBuffer().getErrors().hasErrors("creationMoment"))
+			super.state(object.getCreationMoment().after(minDate), "creationMoment", "developer.training-module.form.error.create-date-not-valid");
+
+		String optionalLink = object.getOptionalLink();
+		if (optionalLink != null && optionalLink.equals("ftp://"))
+			super.state(false, "optionalLink", "developer.training-module.form.error.invalid-link");
 	}
 
 	@Override
