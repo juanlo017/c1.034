@@ -78,7 +78,7 @@ master.menu.manager.list.mine.projects = List my projects
 master.menu.sponsor = Sponsor
 master.menu.sponsor.list.all.sponsorships = List all sponsorships
 master.menu.sponsor.list.mine.sponsorships = List my sponsorships
-master.menu.sponsor.dashboard = Sponsors dashobard
+master.menu.sponsor.dashboard = Sponsors dashboard
 
 master.menu.manager.list.all.user-story = List all user stories
 master.menu.manager.list.mine.user-story = List my user stories

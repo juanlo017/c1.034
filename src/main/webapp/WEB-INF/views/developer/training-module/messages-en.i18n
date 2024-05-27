@@ -18,7 +18,6 @@ developer.training-module.form.button.update = Update
 developer.training-module.form.button.delete = Delete
 developer.training-module.form.button.publish = Publish
 developer.training-module.form.button.create-training-module = Create
-developer.training-module.form.button.trainingSessions = Training Sessions
 
 developer.training-module.list.label.code = Code
 developer.training-module.list.label.details = Details
@@ -28,5 +27,8 @@ developer.training-module.list.label.total-time = Total Time
 developer.training-module.list.button.create-form = Create
 
 developer.training-module.form.error.duplicated = This code is taken
-developer.training-module.form.error.noSession = Must have a training session associated
 developer.training-module.form.error.not-enough-training-sessions = Not enough Training Sessions
+developer.training-module.form.error.negative-total-time = Cannot have a negative time
+developer.training-module.form.error.create-date-not-valid = Date must be minimum 2000/01/01 00:00
+developer.training-module.form.error.update-date-not-valid = Update Moment must be after the Creation Moment
+developer.training-module.form.error.invalid-link = Cannot insert this link

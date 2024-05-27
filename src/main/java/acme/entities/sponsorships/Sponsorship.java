@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -41,7 +41,7 @@ public class Sponsorship extends AbstractEntity {
 	@Column(unique = true)
 	private String				code;
 
-	@Past
+	@PastOrPresent
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	private Date				moment;

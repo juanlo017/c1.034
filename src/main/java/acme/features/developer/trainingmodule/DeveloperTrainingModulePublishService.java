@@ -1,7 +1,9 @@
 
 package acme.features.developer.trainingmodule;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Service;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
+import acme.entities.projects.Project;
+import acme.entities.trainings.DifficultyLevel;
 import acme.entities.trainings.TrainingModule;
 import acme.entities.trainings.TrainingSession;
 import acme.roles.Developer;
@@ -65,12 +70,27 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 			TrainingModule existing;
 
 			existing = this.repository.findOneTrainingModuleByCode(object.getCode());
-			super.state(existing.equals(object), "code", "developer.training-module.form.error.duplicated");
+			super.state(existing == null || existing.equals(object), "code", "developer.training-module.form.error.duplicated");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("updateMoment"))
+		if (!super.getBuffer().getErrors().hasErrors("updateMoment") && object.getUpdateMoment() != null)
 			super.state(MomentHelper.isAfter(object.getUpdateMoment(), object.getCreationMoment()), "updateMoment", "developer.training-module.form.error.update-date-not-valid");
 
+		// Create a Calendar instance
+		Calendar minDateCalendar = Calendar.getInstance();
+		// Set the date to December 31, 1999, 23:59:00
+		minDateCalendar.set(1999, Calendar.DECEMBER, 31, 23, 59, 0);
+
+		// Convert Calendar to Date
+		Date minDate = minDateCalendar.getTime();
+
+		// Perform validation
+		if (object.getCreationMoment() != null && !super.getBuffer().getErrors().hasErrors("creationMoment"))
+			super.state(object.getCreationMoment().after(minDate), "creationMoment", "developer.training-module.form.error.create-date-not-valid");
+
+		String optionalLink = object.getOptionalLink();
+		if (optionalLink != null && optionalLink.equals("ftp://"))
+			super.state(false, "optionalLink", "developer.training-module.form.error.invalid-link");
 		{
 			Collection<TrainingSession> sessions;
 			int totalSessions;
@@ -93,9 +113,16 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 	public void unbind(final TrainingModule object) {
 		assert object != null;
 
-		Dataset dataset;
+		SelectChoices choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode");
+		Collection<Project> projects = this.repository.findAllProjects();
+		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
+
+		Dataset dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "draftMode", "project");
+
+		dataset.put("difficulty", choices);
+		dataset.put("project", projectsChoices.getSelected().getKey());
+		dataset.put("projects", projectsChoices);
 
 		super.getResponse().addData(dataset);
 

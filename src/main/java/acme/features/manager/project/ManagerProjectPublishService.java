@@ -29,7 +29,7 @@ public class ManagerProjectPublishService extends AbstractService<Manager, Proje
 		Manager manager = this.repository.findOneManagerById(super.getRequest().getPrincipal().getActiveRoleId());
 		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class) && project.getManager().equals(manager);
 
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(status && project.isDraftMode());
 	}
 
 	@Override

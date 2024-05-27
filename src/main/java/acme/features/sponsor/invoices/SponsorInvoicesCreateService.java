@@ -40,17 +40,17 @@ public class SponsorInvoicesCreateService extends AbstractService<Sponsor, Invoi
 
 	@Override
 	public void load() {
-		Invoices invoice;
+		Invoices invoices;
 		int masterId;
 		Sponsorship sponsorship;
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		sponsorship = this.sir.findOneSponsorshipById(masterId);
 
-		invoice = new Invoices();
-		invoice.setSponsorship(sponsorship);
+		invoices = new Invoices();
+		invoices.setSponsorship(sponsorship);
 
-		super.getBuffer().addData(invoice);
+		super.getBuffer().addData(invoices);
 	}
 
 	@Override
