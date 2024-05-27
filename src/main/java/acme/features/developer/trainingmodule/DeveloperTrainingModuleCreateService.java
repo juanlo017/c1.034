@@ -63,10 +63,6 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 
 		object.setCreationMoment(creationMoment);
 		object.setProject(project);
-
-		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project");
-		object.setProject(project);
-
 	}
 
 	@Override
