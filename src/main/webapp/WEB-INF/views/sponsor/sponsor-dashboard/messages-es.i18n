@@ -8,21 +8,20 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-sponsor.sponsor-dashboard.form.title = Indicadores de patrocinador
+sponsor.sponsor-dashboard.form.title = Tablero de patrocinadores
 sponsor.dashboard.form.title.general-indicators = Indicadores generales
 
-sponsor.dashboard.form.label.invoices-with-tax-less-or-equal-to-21 = Número de facturas con un impuesto del 21% o menor
-sponsor.dashboard.form.label.invoices-with-link = Número de facturas con enlaces
+sponsor.dashboard.form.label.invoices-tax-less-or-eq-21	= Facturas con tasas menores o iguales a 21
+sponsor.dashboard.form.label.sponsorships-with-link	= Patrocinios con enlaces
 
-sponsor.dashboard.form.label.sponsorship-amount-average = Cantidad promedia de los patrocinios
-sponsor.dashboard.form.label.sponsorship-amount-deviation = Desviación de los patrocinios
-sponsor.dashboard.form.label.sponsorship-amount-minimum = Cantidad mínima de cada patrocinio
-sponsor.dashboard.form.label.sponsorship-amount-maximum = Cantidad máxima de cada patrocinio
+sponsor.dashboard.form.title.sponsorship-indicators = Indicadores de los patrocinios
+sponsor.dashboard.form.label.average-sponsorships-amount = Media de la cantidad de patrocinios
+sponsor.dashboard.form.label.deviation-sponsorships-amount = Desviación de la cantidad de patrocinios
+sponsor.dashboard.form.label.minimum-sponsorships-amount = Mínimo de la cantidad de patrocinios
+sponsor.dashboard.form.label.maximum-sponsorships-amount = Máximo de la cantidad de patrocinios
 
-sponsor.dashboard.form.label.invoices-quantity-average = Cantidad promedia de las facturas
-sponsor.dashboard.form.label.invoices-quantity-deviation = Desviación de las facturas
-sponsor.dashboard.form.label.invoices-quantity-minimum = Mínima cantidad de cada factura
-sponsor.dashboard.form.label.invoices-quantity-maximum = Máxima cantidad de cada factura
-
-sponsor.dashboard.form.label.sponsorship-general-indicators = Indicadores generales para patrocinios publicados con moneda
-sponsor.dashboard.form.label.invoices-general-indicators = Indicadores generales para facturas publicadas con moneda
+sponsor.dashboard.form.title.invoice-indicators = Indicadores de las facturas
+sponsor.dashboard.form.label.average-invoices-quantity = Media de la cantidad de facturas
+sponsor.dashboard.form.label.deviation-invoices-quantity = Desviación de la cantidad de facturas
+sponsor.dashboard.form.label.minimum-invoices-quantity = Mínimo de la cantidad de facturas
+sponsor.dashboard.form.label.maximum-invoices-quantity = Máximo de la cantidad de facturas

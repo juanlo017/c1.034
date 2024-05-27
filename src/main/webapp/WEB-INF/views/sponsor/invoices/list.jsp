@@ -20,6 +20,6 @@
 	<acme:list-column code="sponsor.invoices.list.label.quantity" path="quantity" width="10%"/>
 </acme:list>
 
-<jstl:if test="${_command == 'list-mine'}">
-	<acme:button test="${showCreate}" code="sponsor.invoice.list.button.create" action="/sponsor/invoice/create?masterId=${masterId}"/>
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="sponsor.invoices.list.button.create-form" action="/sponsor/invoices/create?masterId=${masterId}"/>
 </jstl:if>	

@@ -1,12 +1,39 @@
-key,code,moment,startTime,endTime,amount,type,optionalEmail,optionalLink,key:project,key:sponsor,draft-mode
-sponsorship-01,A-679,2000/12/12 00:00,2200/2/23 00:00,2200/12/31 23:59,USD 1000000.00,FINANCIAL,null,null,project-01,sponsor-01,false
-sponsorship-02,AB-611,2002/2/12 10:00,2001/4/3 12:00,2004/1/4 11:00,EUR -1000000.00,FINANCIAL,sponsorship2@gmail.com,http://sponsorship1234.com,project-01,sponsor-02,true
-sponsorship-03,ABC-679,2003/2/1 2:00,2004/12/20 00:00,2005/2/2 12:00,GBP 1000.00,INKIND,建濯@gmail.com,http://建濯よ.com,project-01,sponsor-02,true
-sponsorship-04,ALO-333,2000/1/12 10:00,2001/12/24 00:30,2002/12/24 01:00,EUR 20000.50,INKIND,null,http://sponsorship14.com,project-01,sponsor-02,true
-sponsorship-05,HAM-444,2001/10/15 11:00,2001/11/25 01:00,2001/12/30 02:00,GBP 21000.00,INKIND,null,http://sponsors1234.com,project-02,sponsor-01,false
-sponsorship-06,VER-111,2000/1/1 00:00,2002/10/3 02:30,2002/12/15 04:30,USD 12200.00,FINANCIAL,sponsorship77@gmail.com,http://www.sffffffffffskmmmmksssssssssssssssssssssssssssssssssskffkdfdigeogiergergnfjgbegkjhegbekjvhfebfeuvbifhbevuebvewrvhbevkiehbervhebviehbvefihvbrvirvbviubrviewhveivuehbviwevbewiebuviwehweiovhwiufehwoefiuvhfbviofbvowifvbvifoevbfevufebveovfvoefyver.com,project-02,sponsor-01,true
-sponsorship-07,BOT-777,2001/1/1 04:00,2001/10/13 10:00,2002/1/2 10:30,USD 12050.00,FINANCIAL,null,null,project-02,sponsor-02,false
-sponsorship-08,STR-145,2000/5/2 05:00,2001/11/23 11:00,2002/4/2 10:15,EUR 17000.50,FINANCIAL,sponsorship56@gmail.com,null,project-02,sponsor-01,true
-sponsorship-09,SAI-699,2000/6/12 09:00,2001/11/23 08:00,2002/1/24 11:00,USD 18600.00,FINANCIAL,null,http://spo34.com,project-02,sponsor-01,false
-sponsorship-10,F-111,2000/4/4 00:10,2001/11/23 12:00,2002/3/11 12:00,GBP 14330.50,FINANCIAL,sponsorship34@gmail.com,http://sp3.com,project-01,sponsor-02,true
-sponsorship-11,SFC-715,2001/9/23 11:00,2001/11/23 00:00,2002/1/12 10:00,USD 12234.00,FINANCIAL,null,null,project-01,sponsor-01,true
+key,code,moment,startTime,endTime,amount,type,optionalEmail,optionalLink,draft-mode,key:sponsor,key:project
+# Base
+sponsorship-01,AAA-000,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 100,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+# Code
+sponsorship-02,B-000,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 10000,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-03,AC-999,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,GBP 100000,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-04,XYZ-089,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 12344,FINANCIAL,test@example.com,http://example.com,true,sponsor-01,project-02
+# Moment
+sponsorship-05,ALO-001,2000/01/01 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 123456,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-06,ALO-002,2000/01/01 00:01,2024/05/20 00:00,2024/06/20 00:00,EUR 10,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-07,SAI-003,2022/07/29 23:59,2024/05/20 00:00,2024/06/20 00:00,EUR 302145,FINANCIAL,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-08,SFC-004,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 33333333.50,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+# StartTime and EndTime
+sponsorship-09,VER-005,2022/07/30 00:00,2022/07/29 23:59,2024/06/20 00:00,EUR 132,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-10,ZOU-006,2022/07/30 00:00,2023/07/30 00:00,2024/06/20 00:00,EUR 100,INKIND,test@example.com,http://example.com,true,sponsor-02,project-01
+sponsorship-11,BOT-007,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 100,INKIND,test@example.com,http://example.com,true,sponsor-02,project-02
+sponsorship-12,HAM-008,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:01,EUR 342424234.50,INKIND,test@example.com,http://example.com,true,sponsor-02,project-02
+sponsorship-13,PER-009,2022/07/30 00:00,2024/05/20 00:00,2024/07/20 00:00,EUR 1678,INKIND,test@example.com,http://example.com,true,sponsor-02,project-01
+# Amount
+sponsorship-14,LEC-010,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 0.01,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-15,NOR-011,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,GBP 0.02,FINANCIAL,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-16,PIA-012,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,USD 999999999999.99,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-17,GAS-013,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 1000,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+sponsorship-18,STR-014,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,USD 11000,INKIND,test@example.com,http://example.com,true,sponsor-01,project-01
+# Type
+sponsorship-19,LOB-015,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 100,FINANCIAL,test@example.com,http://example.com,true,sponsor-01,project-01
+# OptionalEmail
+sponsorship-20,PUE-016,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 100,INKIND,a@b.es,http://example.com,true,sponsor-01,project-01
+sponsorship-21,NAV-017,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,USD 1,INKIND,a@b.esx,http://example.com,true,sponsor-01,project-01
+sponsorship-22,LIV-018,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 100.00,INKIND,pableeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeteeeeeeeeeee@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacme.pepeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.cooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooom,http://example.com,true,sponsor-01,project-01
+sponsorship-23,ROM-019,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,USD 100.50,INKIND,pableeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeteeeeeeeeeee@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacme.pepeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.coooooooooooooooooooooooooooooooooooooooooooooooooooooooooooom,http://example.com,true,sponsor-01,project-01
+sponsorship-24,RKO-020,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 100,INKIND,null,http://example.com,true,sponsor-01,project-01
+# OptionalLink
+sponsorship-25,HHH-021,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 100.33,INKIND,test@example.com,ftp://a,true,sponsor-01,project-01
+sponsorship-26,BAT-022,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 100.11,INKIND,test@example.com,ftp://a.b,true,sponsor-01,project-01
+sponsorship-27,MIS-023,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,GBP 100.01,INKIND,test@example.com,http://urlmuylargaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com,true,sponsor-01,project-01
+sponsorship-28,RHE-024,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 10111.67,INKIND,test@example.com,http://urlmuylargaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com,true,sponsor-01,project-01
+sponsorship-29,DOM-025,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,USD 10043.32,INKIND,test@example.com,null,true,sponsor-01,project-01
+sponsorship-30,FIN-025,2022/07/30 00:00,2024/05/20 00:00,2024/06/20 00:00,EUR 3242.11,INKIND,建濯@example.com,http://建濯よ.com,true,sponsor-01,project-01
