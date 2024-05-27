@@ -72,7 +72,7 @@ public class DeveloperTrainingSessionCreateService extends AbstractService<Devel
 		}
 
 		Date futureMostDate = MomentHelper.parse("2201/01/01 00:00", "yyyy/MM/dd HH:mm");
-		Date startMaximumDate = MomentHelper.parse("2200/12/31 23:59", "yyyy/MM/dd HH:mm");
+		Date startMaximumDate = MomentHelper.parse("2200/12/24 23:59", "yyyy/MM/dd HH:mm");
 
 		if (object.getTimePeriodStart() != null) {
 			if (!super.getBuffer().getErrors().hasErrors("timePeriodStart"))

@@ -60,7 +60,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		Project project = this.repository.findOneProjectById(projectId);
 
 		Date currentMoment = MomentHelper.getCurrentMoment();
-		Date updateMoment = new Date(currentMoment.getTime() - 1000); //Substracts one second to ensure the moment is in the past
+		Date updateMoment = new Date(currentMoment.getTime() - 1000);
 
 		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "optionalLink", "totalTime", "project");
 
@@ -77,7 +77,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 
 		if (!super.getBuffer().getErrors().hasErrors(CREATION_MOMENT) && !super.getBuffer().getErrors().hasErrors(UPDATE_MOMENT)) {
 			final boolean startBeforeEnd = MomentHelper.isAfter(object.getUpdateMoment(), object.getCreationMoment());
-			super.state(startBeforeEnd, UPDATE_MOMENT, "developer.trainingModule.form.error.end-before-start");
+			super.state(startBeforeEnd, UPDATE_MOMENT, "developer.training-module.form.error.update-date-not-valid");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
