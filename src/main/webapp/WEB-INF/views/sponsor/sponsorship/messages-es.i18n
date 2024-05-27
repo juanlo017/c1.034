@@ -24,12 +24,15 @@ sponsor.sponsorship.form.label.optionalLink = Link (opcional)
 sponsor.sponsorship.form.label.draftMode = Modo borrador
 sponsor.sponsorship.form.label.project = Proyecto 
 
-sponsor.sponsorship.form.button.invoices = Facturas
+sponsor.sponsorship.form.button.invoices = Lista de Facturas
 sponsor.sponsorship.list.button.create = Crear un patrocinio
 sponsor.sponsorship.form.button.update = Actualizar
 sponsor.sponsorship.form.button.delete = Eliminar
 sponsor.sponsorship.form.button.publish = Publicar
 sponsor.sponsorship.form.button.create = Crear
+sponsor.sponsorship.form.code.placeholder = [A-Z]{1,3}-[0-9]{3}
+
+
 
 sponsor.sponsorship.list.label.code = Código
 sponsor.sponsorship.list.label.draftMode = Modo borrador

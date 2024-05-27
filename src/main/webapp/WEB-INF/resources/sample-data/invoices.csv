@@ -1,12 +1,36 @@
-key,code,registrationTime,dueDate,quantity,tax,optionalLink,key:sponsorship,draft-mode
-invoices-01,IN-1234-5678,2000/3/1 11:00,2000/1/1 00:00,EUR 1000000.00,0.12,http://invoices14.com,sponsorship-01,true
-invoices-02,IN-2464-5698,2001/4/12 10:00,2000/12/11 01:00,EUR -1000000.00,0.25,http://invoices123.com,sponsorship-11,true
-invoices-03,IN-6568-2346,2000/12/31 23:59,2000/7/12 04:00,EUR 1200.00,0.45,null,sponsorship-10,false
-invoices-04,IN-8908-8468,2001/11/17 04:00,2000/8/16 10:00,EUR 130.00,0.50,null,sponsorship-03,false
-invoices-05,IN-4567-7437,2001/12/19 06:30,2000/9/18 11:00,EUR 170.00,0.75,null,sponsorship-02,false
-invoices-06,IN-8794-3574,2001/2/20 07:00,2000/10/20 12:10,EUR 80.00,0.33,null,sponsorship-07,false
-invoices-07,IN-3948-5785,2001/6/21 08:15,2000/11/21 09:50,EUR 75.00,0.13,http://invoi14.com,sponsorship-06,false
-invoices-08,IN-5910-8190,2002/8/1 09:00,2000/12/24 08:40,EUR 134.00,0.15,http://invo14.com,sponsorship-05,true
-invoices-09,IN-8701-3468,2001/9/29 10:00,2000/2/2 06:30,EUR 156.00,0.14,http://invos14.com,sponsorship-03,false
-invoices-10,IN-2064-5476,2002/10/16 12:00,2000/4/24 05:20,EUR 140.00,0.51,http://建よ.com,sponsorship-02,true
-invoices-11,IN-2063-5176,2002/10/16 12:00,2000/4/24 05:20,EUR 140.00,1,http://aaaaaaaaaaaaaaasssssssssdddddddfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.com,sponsorship-02,true
+key,code,registration-time,due-date,quantity,tax,optionalLink,draft-mode,key:sponsorship
+# Base invoices
+invoices-01,IN-0000-5555,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,50,http://example.com,true,sponsorship-01
+# Code
+invoices-02,IN-0000-0000,2022/07/30 00:00,2022/08/30 00:00,EUR 8000,25,http://example.com,true,sponsorship-02
+invoices-03,IN-4545-3465,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,20,http://example.com,true,sponsorship-01
+invoices-04,IN-9999-9999,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,30,http://example.com,true,sponsorship-01
+# Registration time
+invoices-05,IN-0000-0001,2000/01/01 00:00,2022/08/30 00:00,EUR 50.00,30,http://example.com,true,sponsorship-01
+invoices-06,IN-0000-0002,2000/01/01 00:01,2000/02/01 00:02,EUR 50.00,34,http://example.com,true,sponsorship-01
+invoices-07,IN-0000-0003,2022/07/29 23:59,2022/08/30 00:00,EUR 50.00,33,http://example.com,true,sponsorship-01
+invoices-08,IN-0000-0004,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,21,http://example.com,true,sponsorship-01
+# Due date
+invoices-09,IN-0000-0005,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,10,http://example.com,true,sponsorship-01
+invoices-10,IN-0000-0006,2022/07/30 00:00,2022/08/30 00:01,USD 50.00,11,http://example.com,true,sponsorship-01
+invoices-11,IN-0000-0007,2022/07/30 00:00,2200/12/31 23:58,EUR 50.00,0.01,http://example.com,true,sponsorship-01
+invoices-12,IN-0000-0008,2022/07/30 00:00,2200/12/31 23:59,EUR 50.00,0.50,http://example.com,true,sponsorship-01
+invoices-13,IN-0000-1234,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,0.05,http://example.com,true,sponsorship-01
+# Quantity
+invoices-14,IN-0000-0009,2022/07/30 00:00,2022/08/30 00:00,EUR 0.01,20,http://example.com,true,sponsorship-01
+invoices-15,IN-0000-0010,2022/07/30 00:00,2022/08/30 00:00,EUR 0.02,20,http://example.com,true,sponsorship-01
+invoices-16,IN-0000-0011,2022/07/30 00:00,2022/08/30 00:00,EUR 999999999.99,22,http://example.com,true,sponsorship-01
+invoices-17,IN-0000-0012,2022/07/30 00:00,2022/08/30 00:00,EUR 555555.50,20,http://example.com,true,sponsorship-01
+invoices-18,IN-0000-0013,2022/07/30 00:00,2022/08/30 00:00,USD 1000000000,20,http://example.com,true,sponsorship-01
+# Tax
+invoices-19,IN-0000-0014,2022/07/30 00:00,2022/08/30 00:00,GBP 50.00,0,http://example.com,true,sponsorship-01
+invoices-20,IN-0000-0015,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,100,http://example.com,true,sponsorship-01
+invoices-21,IN-0000-0016,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,99.99,http://example.com,true,sponsorship-01
+invoices-22,IN-0000-0017,2022/07/30 00:00,2022/08/30 00:00,GBP 5000.00,1,http://example.com,true,sponsorship-01
+invoices-23,IN-0000-0018,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,21,http://example.com,true,sponsorship-01
+# Optional Link
+invoices-24,IN-0000-0019,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,20,ftp://a,true,sponsorship-01
+invoices-25,IN-0000-0020,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,20,ftp://a.b,true,sponsorship-01
+invoices-26,IN-0000-0021,2022/07/30 00:00,2022/08/30 00:00,USD 150.00,20,http://urlmuylargaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com,true,sponsorship-01
+invoices-27,IN-0000-0022,2022/07/30 00:00,2022/08/30 00:00,USD 50.00,20,http://urlmuylargaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com,true,sponsorship-01
+invoices-28,IN-0000-0023,2022/07/30 00:00,2022/08/30 00:00,EUR 50.00,20,null,true,sponsorship-01

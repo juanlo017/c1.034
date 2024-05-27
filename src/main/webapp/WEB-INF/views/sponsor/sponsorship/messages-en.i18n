@@ -23,9 +23,10 @@ sponsor.sponsorship.form.label.optionalEmail = Email (optional)
 sponsor.sponsorship.form.label.optionalLink = Link (optional)
 sponsor.sponsorship.form.label.draftMode = Draft Mode
 sponsor.sponsorship.form.label.project = Project
+sponsor.sponsorship.form.code.placeholder = [A-Z]{1,3}-[0-9]{3}
 
 sponsor.sponsorship.list.button.create = Create sponsorship
-sponsor.sponsorship.form.button.invoices = Invoices
+sponsor.sponsorship.form.button.invoices = Invoices list
 sponsor.sponsorship.form.button.update = Update
 sponsor.sponsorship.form.button.delete = Delete
 sponsor.sponsorship.form.button.publish = Publish
