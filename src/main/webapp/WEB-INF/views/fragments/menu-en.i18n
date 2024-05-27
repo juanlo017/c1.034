@@ -110,6 +110,9 @@ master.menu.auditor.all-code-audit = List all code audits
 master.menu.auditor.my-code-audit = List my code audits
 master.menu.auditor.my-dashboard= See my auditor dashboards
 
+# master.menu.client ####################################################
 
-
-
+master.menu.client = Client
+master.menu.client.my-contracts = List my contracts
+master.menu.client.my-progress-logs = List my progress logs
+master.menu.client.my-dashboard = See my dashboard

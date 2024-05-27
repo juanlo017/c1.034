@@ -24,50 +24,73 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean status;
+		int id;
+		Contract contract;
+		Client client;
+
+		id = super.getRequest().getData("id", int.class);
+		contract = this.repository.findContractById(id);
+		client = contract == null ? null : contract.getClient();
+
+		int activeClientId = super.getRequest().getPrincipal().getActiveRoleId();
+		Client activeClient = this.repository.findClientById(activeClientId);
+
+		boolean activeClientIsContractOwner = contract.getClient() == activeClient;
+		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
+
+		status = contract != null && activeClientIsContractOwner && hasRole;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Contract object;
+
+		Contract contract;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findContractById(id);
+		contract = this.repository.findContractById(id);
 
-		super.getBuffer().addData(object);
+		super.getBuffer().addData(contract);
 	}
 
 	@Override
-	public void bind(final Contract object) {
-		assert object != null;
+	public void bind(final Contract contract) {
+		assert contract != null;
 
 		int projectId;
 		Project project;
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
-		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
-		object.setProject(project);
+
+		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
+		contract.setProject(project);
 	}
 
 	@Override
-	public void validate(final Contract object) {
-		assert object != null;
+	public void validate(final Contract contract) {
+		assert contract != null;
 
 		//TODO
 	}
 
 	@Override
-	public void perform(final Contract object) {
-		assert object != null;
+	public void perform(final Contract contract) {
 
-		this.repository.save(object);
+		assert contract != null;
+
+		this.repository.save(contract);
 	}
 
 	@Override
-	public void unbind(final Contract object) {
-		assert object != null;
+	public void unbind(final Contract contract) {
+
+		assert contract != null;
 
 		Dataset dataset;
 
@@ -75,11 +98,11 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 		SelectChoices choices;
 
 		projects = this.repository.findAllProjects();
-		choices = SelectChoices.from(projects, "title", object.getProject());
+		choices = SelectChoices.from(projects, "code", contract.getProject());
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
-		dataset.put("projects", choices);
-		dataset.put("project", choices.getSelected().getKey());
+		dataset = super.unbind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
+		dataset.put("choices", choices);
 
 		super.getResponse().addData(dataset);
 	}

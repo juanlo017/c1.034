@@ -16,9 +16,12 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="client.contract.list.label.code" path="code"/>
-	<acme:list-column code="client.contract.list.label.budget" path="budget"/>
-	<acme:list-column code="client.contract.list.label.project" path="display-project"/>
+	<acme:list-column code="client.progress-log.list.label.recordId" path="recordId"/>
+	<acme:list-column code="client.progress-log.list.label.responsiblePerson" path="responsiblePerson"/>
+	<acme:list-column code="client.progress-log.list.label.completeness" path="completeness"/>
+	<acme:list-column code="client.progress-log.list.label.contract" path="contract"/>
 </acme:list>
 
-<acme:button code="client.contract.button.create" action="/client/contract/create"/>
+<jstl:if test="${_command == 'list-mine'}">
+	<acme:button code="client.progress-log.button.create" action="/client/progress-log/create"/>
+</jstl:if>

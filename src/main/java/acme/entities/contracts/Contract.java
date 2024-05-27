@@ -13,11 +13,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
+import acme.client.data.datatypes.Money;
 import acme.entities.projects.Project;
 import acme.roles.Client;
 import lombok.Getter;
@@ -56,9 +56,9 @@ public class Contract extends AbstractEntity {
 
 	private boolean				draftMode;
 
-	@PositiveOrZero
+	@NotNull
 	//@Max(value = project.getCost()) TODO implement this
-	private int					budget;
+	private Money				budget;
 
 	// Derived attributes -----------------------------------------------------
 

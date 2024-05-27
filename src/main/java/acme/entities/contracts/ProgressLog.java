@@ -53,6 +53,8 @@ public class ProgressLog extends AbstractEntity {
 	@Length(max = 100)
 	private String				comment;
 
+	private boolean				draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------

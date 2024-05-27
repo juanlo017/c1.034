@@ -1,5 +1,5 @@
 
-package acme.features.client.contract;
+package acme.features.client.progresslog;
 
 import javax.annotation.PostConstruct;
 
@@ -7,43 +7,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import acme.client.controllers.AbstractController;
-import acme.entities.contracts.Contract;
+import acme.entities.contracts.ProgressLog;
 import acme.roles.Client;
 
 @Controller
-public class ClientContractController extends AbstractController<Client, Contract> {
+public class ClientProgressLogController extends AbstractController<Client, ProgressLog> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ClientContractListMineService	listMineService;
+	private ClientProgressLogCreateService		createService;
 
 	@Autowired
-	private ClientContractShowService		showService;
+	private ClientProgressLogDeleteService		deleteService;
 
 	@Autowired
-	private ClientContractCreateService		createService;
+	private ClientProgressLogUpdateService		updateService;
 
 	@Autowired
-	private ClientContractPublishService	publishService;
+	private ClientProgressLogListMineService	listMineService;
 
 	@Autowired
-	private ClientContractUpdateService		updateService;
+	private ClientProgressLogShowService		showService;
 
 	@Autowired
-	private ClientContractDeleteService		deleteService;
+	private ClientProgressLogPublishService		publishService;
 
 	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
-		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
-		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("delete", this.deleteService);
-
+		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("show", this.showService);
 		super.addCustomCommand("list-mine", "list", this.listMineService);
 		super.addCustomCommand("publish", "update", this.publishService);
 	}
+
 }

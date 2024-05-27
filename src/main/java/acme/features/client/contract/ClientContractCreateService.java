@@ -2,12 +2,14 @@
 package acme.features.client.contract;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.contracts.Contract;
@@ -32,21 +34,23 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void load() {
-		Contract object;
+
+		Contract contract;
 		Client client;
 
 		Principal principal = super.getRequest().getPrincipal();
 		client = this.repository.findClientById(principal.getActiveRoleId());
 
-		object = new Contract();
-		object.setClient(client);
-		object.setDraftMode(true);
-		super.getBuffer().addData(object);
+		contract = new Contract();
+		contract.setClient(client);
+
+		super.getBuffer().addData(contract);
 	}
 
 	@Override
-	public void bind(final Contract object) {
-		assert object != null;
+	public void bind(final Contract contract) {
+
+		assert contract != null;
 
 		int projectId;
 		Project project;
@@ -54,32 +58,40 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
 
-		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
-		object.setProject(project);
+		contract.setProject(project);
+
+		Date now = MomentHelper.getCurrentMoment();
+		contract.setInstantiationMoment(now);
+
+		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 	}
 
 	@Override
-	public void validate(final Contract object) {
-		assert object != null;
+	public void validate(final Contract contract) {
+		assert contract != null;
 
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			Contract existing;
 
-			existing = this.repository.findContractById(object.getId());
+			existing = this.repository.findContractById(contract.getId());
 			super.state(existing == null, "code", "client.contrct.form.error.duplicated");
 		}
 	}
 
 	@Override
-	public void perform(final Contract object) {
-		assert object != null;
+	public void perform(final Contract contract) {
 
-		this.repository.save(object);
+		assert contract != null;
+
+		contract.setDraftMode(true);
+
+		this.repository.save(contract);
 	}
 
 	@Override
-	public void unbind(final Contract object) {
-		assert object != null;
+	public void unbind(final Contract contract) {
+
+		assert contract != null;
 
 		Dataset dataset;
 
@@ -87,21 +99,14 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		SelectChoices choices;
 
 		projects = this.repository.findAllProjects();
-		choices = SelectChoices.from(projects, "title", object.getProject());
+		choices = SelectChoices.from(projects, "code", contract.getProject());
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
-		dataset.put("projects", choices);
-		dataset.put("project", choices.getSelected().getKey());
+		dataset = super.unbind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+
+		dataset.put("choices", choices);
+		dataset.put("instantiationMoment", contract.getInstantiationMoment());
 
 		super.getResponse().addData(dataset);
 	}
-
-	/*
-	 * @Override
-	 * public void onSuccess() {
-	 * if (super.getRequest().getMethod().equals("POST"))
-	 * PrincipalHelper.handleUpdate();
-	 * }
-	 */
 
 }

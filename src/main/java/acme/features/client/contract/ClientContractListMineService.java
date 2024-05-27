@@ -30,22 +30,24 @@ public class ClientContractListMineService extends AbstractService<Client, Contr
 
 	@Override
 	public void load() {
-		Collection<Contract> objects;
+		Collection<Contract> contracts;
 		Principal principal;
 
 		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findContractsByClientId(principal.getActiveRoleId());
+		contracts = this.repository.findContractsByClientId(principal.getActiveRoleId());
 
-		super.getBuffer().addData(objects);
+		super.getBuffer().addData(contracts);
 	}
 
 	@Override
-	public void unbind(final Contract object) {
-		assert object != null;
+	public void unbind(final Contract contract) {
+		assert contract != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "budget", "project");
+		dataset = super.unbind(contract, "code", "budget", "project");
+
+		dataset.put("display-project", String.format("%s | %s", contract.getProject().getCode(), contract.getProject().getTitle()));
 
 		super.getResponse().addData(dataset);
 	}
