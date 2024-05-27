@@ -62,9 +62,6 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 	@Override
 	public void validate(final TrainingSession object) {
 		assert object != null;
-		String dateString = "2201/01/01 00:00";
-		Date futureMostDate = MomentHelper.parse(dateString, "yyyy/MM/dd HH:mm");
-		Date startMaximumDate = MomentHelper.parse("2200/12/24 23:59", "yyyy/MM/dd HH:mm");
 
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			TrainingSession existing;
@@ -72,6 +69,10 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 			existing = this.repository.findOneTrainingSessionByCode(object.getCode());
 			super.state(existing == null || existing.equals(object), "code", "developer.training-session.form.error.duplicated");
 		}
+
+		Date futureMostDate = MomentHelper.parse("2201/01/01 00:00", "yyyy/MM/dd HH:mm");
+		Date startMaximumDate = MomentHelper.parse("2200/12/24 23:59", "yyyy/MM/dd HH:mm");
+
 		if (object.getTimePeriodStart() != null) {
 			if (!super.getBuffer().getErrors().hasErrors("timePeriodStart"))
 				super.state(MomentHelper.isBefore(object.getTimePeriodStart(), futureMostDate), "timePeriodStart", "developer.training-session.form.error.date-not-before-limit");
@@ -103,6 +104,10 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 			}
 
 		}
+
+		String link = object.getLink();
+		if (link != null && link.equals("ftp://"))
+			super.state(false, "link", "developer.training-session.form.error.invalid-link");
 
 	}
 
