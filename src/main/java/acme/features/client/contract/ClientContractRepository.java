@@ -39,4 +39,7 @@ public interface ClientContractRepository extends AbstractRepository {
 	@Query("select p from ProgressLog p where p.contract.id = :id")
 	Collection<ProgressLog> findProgressLogsByContractId(int id);
 
+	@Query("select c.acceptedCurrencies from Configuration c")
+	String findAcceptedCurrencies();
+
 }

@@ -34,3 +34,8 @@ client.contract.form.button.publish = Publish
 client.contract.form.button.delete = Delete
 
 client.contract.form.button.progress-logs = See progress logs
+
+client.contract.form.error.duplicated-code = This code already exists!
+client.contract.form.error.negative-budget = Budget cannot be negative!
+client.contract.form.error.different-currency = Contract budget's currency must the same as its assigned project!
+client.contract.form.error.unsupported-currency = Currency not supported by the system!

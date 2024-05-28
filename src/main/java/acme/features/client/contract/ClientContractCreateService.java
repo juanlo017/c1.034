@@ -3,6 +3,7 @@ package acme.features.client.contract;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,14 +69,22 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void validate(final Contract contract) {
+
 		assert contract != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			Contract existing;
+		if (!super.getBuffer().getErrors().hasErrors("code"))
+			super.state(contract == null, "code", "client.contract.form.error.duplicated-code");
 
-			existing = this.repository.findContractById(contract.getId());
-			super.state(existing == null, "code", "client.contrct.form.error.duplicated");
-		}
+		if (!super.getBuffer().getErrors().hasErrors("budget"))
+			super.state(0 < contract.getBudget().getAmount(), "budget", "client.contract.form.error.negative-budget");
+
+		if (contract.getProject() != null)
+			super.state(contract.getBudget().getCurrency().equals(contract.getProject().getCost().getCurrency()), "budget", "client.contract.form.error.different-currency");
+
+		String acceptedCurrencies = this.repository.findAcceptedCurrencies();
+		final boolean supportedCurrency = Stream.of(acceptedCurrencies.split(",")).anyMatch(c -> c.equals(contract.getBudget().getCurrency()));
+
+		super.state(supportedCurrency, "budget", "client.contract.form.error.unsupported-currency");
 	}
 
 	@Override

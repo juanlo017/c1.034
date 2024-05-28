@@ -34,3 +34,8 @@ client.contract.form.button.publish = Publicar
 client.contract.form.button.delete = Eliminar
 
 client.contract.form.button.progress-logs = Ver registros de progreso
+
+client.contract.form.error.duplicated-code = Código ya existente
+client.contract.form.error.negative-budget = El presupuesto no puede ser negativo
+client.contract.form.error.different-currency = La divisa del presupuesto de un contrato debe coincidir con la del proyecto al que pertenece
+client.contract.form.error.unsupported-currency = Divisa no soportada por el sistema
