@@ -8,8 +8,8 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-sponsor.invoices.list.title = Invoices list
-sponsor.invoices.form.title = Form
+sponsor.invoices.list.title = List of your invoices
+sponsor.invoices.form.title = Invoice form
 
 sponsor.invoices.list.label.code = Code
 sponsor.invoices.list.label.registrationTime = Registration time
@@ -26,6 +26,7 @@ sponsor.invoices.form.label.dueDate = Due date:
 sponsor.invoices.form.label.quantity = Quantity:
 sponsor.invoices.form.label.tax = Tax:
 sponsor.invoices.form.label.optionalLink = Link (optional):
+sponsor.invoices.form.code.placeholder = IN-[0-9]{4}-[0-9]{4}
 
 sponsor.invoices.list.button.create-form = Create invoice
 

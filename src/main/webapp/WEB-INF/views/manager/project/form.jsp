@@ -19,7 +19,7 @@
 	<acme:input-textbox code="manager.project.form.label.code" path="code" placeholder="ABC-1234"/>
 	<acme:input-textbox code="manager.project.form.label.title" path="title" placeholder="manager.project.form.label.title.placeholder"/>
 	<acme:input-textbox code="manager.project.form.label.abstractText" path="abstractText" placeholder="manager.project.form.label.abstractText.placeholder"/>
-	<acme:input-textbox code="manager.project.form.label.fatalErrors" path="fatalErrors" placeholder="manager.project.form.label.fatalErrors.placeholder"/>
+	<acme:input-checkbox code="manager.project.form.label.fatalErrors" path="fatalErrors"/>
 	<acme:input-url code="manager.project.form.label.link" path="link"/>
 	<acme:input-money code="manager.project.form.label.cost" path="cost" placeholder="manager.project.form.label.cost.placeholder"/>
 	<acme:hidden-data path="draftMode"/>

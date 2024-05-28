@@ -22,102 +22,96 @@
 <table class="table table-sm">
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.invoices-with-tax-less-or-equal-to-21"/>
+			<acme:message code="sponsor.dashboard.form.label.invoices-tax-less-or-eq-21"/>
 		</th>
 		<td>
-			<acme:print value="${totalNumInvoicesWithTaxLessOrEqualTo21}"/>
+			<acme:print value="${invoicesTaxLessOrEqual21}"/>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.invoices-with-link"/>
+			<acme:message code="sponsor.dashboard.form.label.sponsorships-with-link"/>
 		</th>
 		<td>
-			<acme:print value="${totalNumInvoicesWithLink}"/>
+			<acme:print value="${sponsorshipsWithLink}"/>
 		</td>
 	</tr>
-	</table>
+</table>
 
-<jstl:forEach var="currency" items="${supportedCurrencies}">
-    <h2>
-        <acme:message code="sponsor.dashboard.form.label.sponsorship-general-indicators"/>
-        <acme:message code="${currency}"/>
-    </h2>
+<h2>
+	<acme:message code="sponsor.dashboard.form.title.sponsorship-indicators"/>
+</h2>
 
-    <table class="table table-sm">
-        <tr>
-            <th scope="row">
-                <acme:message code="sponsor.dashboard.form.label.sponsorship-amount-average"/>
-            </th>
-            <td>
-                <acme:print value="${averageSponsorshipsAmount[currency]}"/>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                <acme:message code="sponsor.dashboard.form.label.sponsorship-amount-deviation"/>
-            </th>
-            <td>
-                <acme:print value="${deviationSponsorshipsAmount[currency]}"/>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                <acme:message code="sponsor.dashboard.form.label.sponsorship-amount-minimum"/>
-            </th>
-            <td>
-                <acme:print value="${minimumSponsorshipsAmount[currency]}"/>
-            </td>
-        </tr>   
-        <tr>
-            <th scope="row">
-                <acme:message code="sponsor.dashboard.form.label.sponsorship-amount-maximum"/>
-            </th>
-            <td>
-                <acme:print value="${maximumSponsorshipsAmount[currency]}"/>
-            </td>
-        </tr>
-    </table>
-</jstl:forEach>
+<table class="table table-sm">
+	<tr>
+		<th scope="row">
+			<acme:message code="sponsor.dashboard.form.label.average-sponsorships-amount"/>
+		</th>
+		<td>
+			<acme:print value="${averageSponsorshipsAmount}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="sponsor.dashboard.form.label.deviation-sponsorships-amount"/>
+		</th>
+		<td>
+			<acme:print value="${deviationSponsorshipsAmount}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="sponsor.dashboard.form.label.minimum-sponsorships-amount"/>
+		</th>
+		<td>
+			<acme:print value="${minimumSponsorshipsAmount}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="sponsor.dashboard.form.label.maximum-sponsorships-amount"/>
+		</th>
+		<td>
+			<acme:print value="${maximumSponsorshipsAmount}"/>
+		</td>
+	</tr>
+</table>
 
-<jstl:forEach var="currency" items="${supportedCurrencies}">
-    <h2>
-        <acme:message code="sponsor.dashboard.form.label.invoices-general-indicators"/>
-        <acme:message code="${currency}"/>
-    </h2>
+<h2>
+	<acme:message code="sponsor.dashboard.form.title.invoice-indicators"/>
+</h2>
 
-    <table class="table table-sm">
-        <tr>
-            <th scope="row">
-                <acme:message code="sponsor.dashboard.form.label.invoices-quantity-average"/>
-            </th>
-            <td>
-                <acme:print value="${averageInvoicesQuantity[currency]}"/>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                <acme:message code="sponsor.dashboard.form.label.invoices-quantity-deviation"/>
-            </th>
-            <td>
-                <acme:print value="${deviationInvoicesQuantity[currency]}"/>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                <acme:message code="sponsor.dashboard.form.label.invoices-quantity-minimum"/>
-            </th>
-            <td>
-                <acme:print value="${minimumInvoicesQuantity[currency]}"/>
-            </td>
-        </tr>   
-        <tr>
-            <th scope="row">
-                <acme:message code="sponsor.dashboard.form.label.invoices-quantity-maximum"/>
-            </th>
-            <td>
-                <acme:print value="${maximumInvoicesQuantity[currency]}"/>
-            </td>
-        </tr>
-    </table>
-</jstl:forEach>
+<table class="table table-sm">
+	<tr>
+		<th scope="row">
+			<acme:message code="sponsor.dashboard.form.label.average-invoices-quantity"/>
+		</th>
+		<td>
+			<acme:print value="${averageInvoicesQuantity}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="sponsor.dashboard.form.label.deviation-invoices-quantity"/>
+		</th>
+		<td>
+			<acme:print value="${deviationInvoicesQuantity}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="sponsor.dashboard.form.label.minimum-invoices-quantity"/>
+		</th>
+		<td>
+			<acme:print value="${minimumInvoicesQuantity}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="sponsor.dashboard.form.label.maximum-invoices-quantity"/>
+		</th>
+		<td>
+			<acme:print value="${maximumInvoicesQuantity}"/>
+		</td>
+	</tr>
+</table>

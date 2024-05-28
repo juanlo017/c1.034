@@ -2,10 +2,12 @@
 package acme.features.sponsor.invoices;
 
 import java.util.Collection;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.datatypes.Money;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.sponsorships.Invoices;
@@ -49,11 +51,27 @@ public class SponsorInvoicesListMineService extends AbstractService<Sponsor, Inv
 	@Override
 	public void unbind(final Invoices object) {
 		assert object != null;
-
+		Money totalAmount = new Money();
+		Invoices invoices;
 		Dataset dataset;
+		double amount;
+		String currency;
 
-		dataset = super.unbind(object, "code", "quantity");
+		invoices = this.sir.findOneInvoiceByCode(object.getCode());
+		currency = invoices.getQuantity().getCurrency();
+		amount = invoices.totalAmount().getAmount();
 
+		totalAmount.setAmount(amount);
+		totalAmount.setCurrency(currency);
+		dataset = super.unbind(object, "code", "registrationTime", "dueDate", "quantity", "tax", "optionalLink", "draftMode");
+
+		if (object.isDraftMode()) {
+			final Locale local = super.getRequest().getLocale();
+			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
+		} else
+			dataset.put("draftMode", "No");
+
+		dataset.put("totalAmount", totalAmount);
 		super.getResponse().addData(dataset);
 	}
 

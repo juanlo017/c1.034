@@ -71,22 +71,45 @@ public class DeveloperTrainingSessionCreateService extends AbstractService<Devel
 			super.state(existing == null || existing.equals(object), "code", "developer.training-session.form.error.duplicated");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("sessionStart")) {
-			TrainingModule module;
-			int masterId;
+		Date futureMostDate = MomentHelper.parse("2201/01/01 00:00", "yyyy/MM/dd HH:mm");
+		Date startMaximumDate = MomentHelper.parse("2200/12/24 23:59", "yyyy/MM/dd HH:mm");
 
-			masterId = super.getRequest().getData("masterId", int.class);
-			module = this.repository.findOneTrainingModuleById(masterId);
-			super.state(MomentHelper.isAfter(object.getTimePeriodStart(), module.getCreationMoment()), "timePeriodStart", "developer.training-session.form.error.creation-moment-invalid");
+		if (object.getTimePeriodStart() != null) {
+			if (!super.getBuffer().getErrors().hasErrors("timePeriodStart"))
+				super.state(MomentHelper.isBefore(object.getTimePeriodStart(), futureMostDate), "timePeriodStart", "developer.training-session.form.error.date-not-before-limit");
+
+			if (!super.getBuffer().getErrors().hasErrors("timePeriodStart"))
+				super.state(MomentHelper.isBefore(object.getTimePeriodStart(), startMaximumDate), "timePeriodStart", "developer.training-session.form.error.date-not-before-limit-week");
+
+			if (!super.getBuffer().getErrors().hasErrors("timePeriodStart")) {
+				TrainingModule module;
+				int masterId;
+				Date minimumStart;
+
+				masterId = super.getRequest().getData("masterId", int.class);
+				module = this.repository.findOneTrainingModuleById(masterId);
+				minimumStart = MomentHelper.deltaFromMoment(module.getCreationMoment(), 7, ChronoUnit.DAYS);
+
+				super.state(MomentHelper.isAfter(object.getTimePeriodStart(), minimumStart), "timePeriodStart", "developer.training-session.form.error.creation-moment-invalid");
+			}
+
+			if (object.getTimePeriodEnd() != null) {
+
+				if (!super.getBuffer().getErrors().hasErrors("timePeriodEnd")) {
+					Date minimumEnd;
+
+					minimumEnd = MomentHelper.deltaFromMoment(object.getTimePeriodStart(), 7, ChronoUnit.DAYS);
+					super.state(object.getTimePeriodStart() != null && MomentHelper.isAfter(object.getTimePeriodEnd(), minimumEnd), "timePeriodEnd", "developer.training-session.form.error.too-close");
+				}
+				if (!super.getBuffer().getErrors().hasErrors("timePeriodEnd"))
+					super.state(MomentHelper.isBefore(object.getTimePeriodEnd(), futureMostDate), "timePeriodEnd", "developer.training-session.form.error.date-not-before-limit");
+
+			}
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("sessionEnd")) {
-			Date minimumEnd;
-
-			minimumEnd = MomentHelper.deltaFromMoment(object.getTimePeriodStart(), 7, ChronoUnit.DAYS);
-			super.state(MomentHelper.isAfter(object.getTimePeriodEnd(), minimumEnd), "timePeriodEnd", "developer.training-session.form.error.too-close");
-		}
-
+		String link = object.getLink();
+		if (link != null && link.equals("ftp://"))
+			super.state(false, "link", "developer.training-session.form.error.invalid-link");
 	}
 
 	@Override
