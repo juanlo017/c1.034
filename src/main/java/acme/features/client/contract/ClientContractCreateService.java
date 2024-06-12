@@ -3,6 +3,7 @@ package acme.features.client.contract;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -85,18 +86,9 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 			super.state(Pattern.matches("^[A-Z]{1,3}-[0-9]{3}$", contract.getCode()), "code", "client.contract.form.error.illegal-code-pattern");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("providerName"))
-			super.state(contract.getProviderName().isBlank(), "providerName", "client.contract.form.error.blank-field");
-
-		if (!super.getBuffer().getErrors().hasErrors("customerName"))
-			super.state(contract.getCustomerName().isBlank(), "customerName", "client.contract.form.error.blank-field");
-
-		if (!super.getBuffer().getErrors().hasErrors("goals"))
-			super.state(contract.getGoals().isBlank(), "goals", "client.contract.form.error.blank-field");
-
 		if (!super.getBuffer().getErrors().hasErrors("budget")) {
 
-			super.state(contract.getBudget().getAmount() < 0, "budget", "client.contract.form.error.negative-budget");
+			super.state(0 <= contract.getBudget().getAmount(), "budget", "client.contract.form.error.negative-budget");
 
 			String acceptedCurrencies = this.repository.findAcceptedCurrencies();
 			final boolean supportedCurrency = Stream.of(acceptedCurrencies.split(",")).anyMatch(c -> c.equals(contract.getBudget().getCurrency()));
@@ -105,14 +97,22 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("project"))
-			super.state(contract.getProject() == null, "goals", "client.contract.form.error.unassigned-project");
+			super.state(contract.getProject() != null, "project", "client.contract.form.error.unassigned-project");
 
 		if (contract.getProject() != null) {
 
 			Money projectCost = contract.getProject().getCost();
+			List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(contract.getProject().getCode()));
+
+			Double spentBudget = contractsOfProject.stream().map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
+			spentBudget += contract.getBudget().getAmount();
+
+			double remainingBudget = projectCost.getAmount() - spentBudget;
+
+			System.out.println(String.format("%s\n%s\n%s", contractsOfProject, spentBudget, remainingBudget));
 
 			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
-			super.state(projectCost.getAmount() < contract.getBudget().getAmount(), "budget", "client.contract.form.error.budget-greater-than-cost");
+			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
 		}
 	}
 
