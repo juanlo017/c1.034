@@ -79,11 +79,13 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 
+			String contractCode = contract.getCode();
+
 			Contract existing;
-			existing = this.repository.findContractById(contract.getId());
+			existing = this.repository.findContractByCode(contractCode);
 
 			super.state(existing == null, "code", "client.contract.form.error.duplicated-code");
-			super.state(Pattern.matches("^[A-Z]{1,3}-[0-9]{3}$", contract.getCode()), "code", "client.contract.form.error.illegal-code-pattern");
+			super.state(Pattern.matches("^[A-Z]{1,3}-[0-9]{3}$", contractCode), "code", "client.contract.form.error.illegal-code-pattern");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("budget")) {
