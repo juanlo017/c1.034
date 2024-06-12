@@ -3,12 +3,14 @@ package acme.features.client.contract;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.accounts.Principal;
+import acme.client.data.datatypes.Money;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
@@ -72,19 +74,44 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 		assert contract != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("code"))
-			super.state(contract == null, "code", "client.contract.form.error.duplicated-code");
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
 
-		if (!super.getBuffer().getErrors().hasErrors("budget"))
-			super.state(0 < contract.getBudget().getAmount(), "budget", "client.contract.form.error.negative-budget");
+			Contract existing;
+			existing = this.repository.findContractById(contract.getId());
 
-		if (contract.getProject() != null)
-			super.state(contract.getBudget().getCurrency().equals(contract.getProject().getCost().getCurrency()), "budget", "client.contract.form.error.different-currency");
+			super.state(existing == null, "code", "client.contract.form.error.duplicated-code");
+			super.state(Pattern.matches("^[A-Z]{1,3}-[0-9]{3}$", contract.getCode()), "code", "client.contract.form.error.illegal-code-pattern");
+		}
 
-		String acceptedCurrencies = this.repository.findAcceptedCurrencies();
-		final boolean supportedCurrency = Stream.of(acceptedCurrencies.split(",")).anyMatch(c -> c.equals(contract.getBudget().getCurrency()));
+		if (!super.getBuffer().getErrors().hasErrors("providerName"))
+			super.state(contract.getProviderName().isBlank(), "providerName", "client.contract.form.error.blank-field");
 
-		super.state(supportedCurrency, "budget", "client.contract.form.error.unsupported-currency");
+		if (!super.getBuffer().getErrors().hasErrors("customerName"))
+			super.state(contract.getCustomerName().isBlank(), "customerName", "client.contract.form.error.blank-field");
+
+		if (!super.getBuffer().getErrors().hasErrors("goals"))
+			super.state(contract.getGoals().isBlank(), "goals", "client.contract.form.error.blank-field");
+
+		if (!super.getBuffer().getErrors().hasErrors("budget")) {
+
+			super.state(contract.getBudget().getAmount() < 0, "budget", "client.contract.form.error.negative-budget");
+
+			String acceptedCurrencies = this.repository.findAcceptedCurrencies();
+			final boolean supportedCurrency = Stream.of(acceptedCurrencies.split(",")).anyMatch(c -> c.equals(contract.getBudget().getCurrency()));
+
+			super.state(supportedCurrency, "budget", "client.contract.form.error.unsupported-currency");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("project"))
+			super.state(contract.getProject() == null, "goals", "client.contract.form.error.unassigned-project");
+
+		if (contract.getProject() != null) {
+
+			Money projectCost = contract.getProject().getCost();
+
+			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
+			super.state(projectCost.getAmount() < contract.getBudget().getAmount(), "budget", "client.contract.form.error.budget-greater-than-cost");
+		}
 	}
 
 	@Override
