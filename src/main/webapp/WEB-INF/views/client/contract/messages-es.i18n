@@ -36,6 +36,9 @@ client.contract.form.button.delete = Eliminar
 client.contract.form.button.progress-logs = Ver registros de progreso
 
 client.contract.form.error.duplicated-code = Código ya existente
+client.contract.form.error.illegal-code-pattern = El código debe cumplir la siguiente regexp: "^[A-Z]{1,3}-[0-9]{3}$"
 client.contract.form.error.negative-budget = El presupuesto no puede ser negativo
 client.contract.form.error.different-currency = La divisa del presupuesto de un contrato debe coincidir con la del proyecto al que pertenece
 client.contract.form.error.unsupported-currency = Divisa no soportada por el sistema
+client.contract.form.error.budget-greater-than-cost = El coste total de los contratos excede el presupuesto del proyecto
+client.contract.form.error.unassigned-project = Se debe asignar un proyecto
