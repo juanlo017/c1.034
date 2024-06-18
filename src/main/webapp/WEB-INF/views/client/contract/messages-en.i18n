@@ -42,3 +42,5 @@ client.contract.form.error.different-currency = Contract budget's currency must 
 client.contract.form.error.unsupported-currency = Currency not supported by the system
 client.contract.form.error.budget-greater-than-cost = The total contracts cost is greater than the project's budget
 client.contract.form.error.unassigned-project = Project required
+client.contract.form.error.update-published = You can't update a published contract
+client.contract.form.error.publish-published = Contract already published

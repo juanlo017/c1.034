@@ -69,7 +69,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		contract.setProject(project);
 		contract.setInstantiationMoment(now);
 
-		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project");
 	}
 
 	@Override
