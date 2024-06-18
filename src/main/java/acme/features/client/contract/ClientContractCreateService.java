@@ -111,8 +111,6 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 			double remainingBudget = projectCost.getAmount() - spentBudget;
 
-			System.out.println(String.format("%s\n%s\n%s", contractsOfProject, spentBudget, remainingBudget));
-
 			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
 			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
 		}
