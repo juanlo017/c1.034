@@ -69,7 +69,7 @@ public class ClientProgressLogDeleteService extends AbstractService<Client, Prog
 
 	@Override
 	public void validate(final ProgressLog progressLog) {
-		//TODO
+
 		assert progressLog != null;
 
 	}
