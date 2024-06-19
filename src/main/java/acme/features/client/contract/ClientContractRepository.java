@@ -21,11 +21,17 @@ public interface ClientContractRepository extends AbstractRepository {
 	@Query("select c from Contract c where c.id = :id")
 	Contract findContractById(int id);
 
+	@Query("select c from Contract c where c.code LIKE :contractCode")
+	Contract findContractByCode(String contractCode);
+
 	@Query("select c from Client c where c.id = :id")
 	Client findClientById(int id);
 
 	@Query("select c from Contract c")
 	Collection<Contract> findAllContracts();
+
+	@Query("select c from Contract c where c.project.code LIKE :projectCode")
+	Collection<Contract> findContractsByProjectCode(String projectCode);
 
 	@Query("select p from Project p")
 	Collection<Project> findAllProjects();
@@ -38,5 +44,8 @@ public interface ClientContractRepository extends AbstractRepository {
 
 	@Query("select p from ProgressLog p where p.contract.id = :id")
 	Collection<ProgressLog> findProgressLogsByContractId(int id);
+
+	@Query("select c.acceptedCurrencies from Configuration c")
+	String findAcceptedCurrencies();
 
 }

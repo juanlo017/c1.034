@@ -75,8 +75,10 @@ public class ClientContractDeleteService extends AbstractService<Client, Contrac
 	}
 
 	@Override
-	public void validate(final Contract object) {
-		assert object != null;
+	public void validate(final Contract contract) {
+		
+		assert contract != null;
+		
 	}
 
 	@Override
