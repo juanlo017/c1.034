@@ -26,7 +26,7 @@
 	<acme:hidden-data path="draftMode"/>
 	
 	<jstl:choose>	 
-		<jstl:when test="${_command == 'show'}">
+		<jstl:when test="${_command == 'show' && draftMode == false}">
 			<acme:button code="client.contract.form.button.progress-logs" action="/client/progress-log/list-mine?contractId=${id}"/>			
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
