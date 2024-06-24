@@ -117,7 +117,7 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
 		}
 
-		super.state(!contract.isDraftMode(), "draftMode", "client.contract.form.error.publish-published");
+		super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.publish-published");
 	}
 
 	@Override

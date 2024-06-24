@@ -119,7 +119,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
 		}
 
-		super.state(!contract.isDraftMode(), "draftMode", "client.contract.form.error.update-published");
+		super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.update-published");
 	}
 
 	@Override
