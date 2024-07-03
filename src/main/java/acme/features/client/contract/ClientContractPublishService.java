@@ -69,9 +69,12 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findProjectById(projectId);
-		contract.setProject(project);
-		super.bind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		Date now = MomentHelper.getCurrentMoment();
 
+		contract.setProject(project);
+		contract.setInstantiationMoment(now);
+
+		super.bind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 	}
 
 	@Override
@@ -86,7 +89,7 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 			Contract existing;
 			existing = this.repository.findContractByCode(contractCode);
 
-			super.state(existing == null, "code", "client.contract.form.error.duplicated-code");
+			super.state(existing == null || existing.equals(contract), "code", "client.contract.form.error.duplicated-code");
 			super.state(Pattern.matches("^[A-Z]{1,3}-[0-9]{3}$", contractCode), "code", "client.contract.form.error.illegal-code-pattern");
 		}
 
@@ -125,10 +128,7 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 
 		assert contract != null;
 
-		Date now = MomentHelper.getCurrentMoment();
-
 		contract.setDraftMode(false);
-		contract.setInstantiationMoment(now);
 
 		this.repository.save(contract);
 	}
@@ -146,9 +146,10 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 		projects = this.repository.findAllProjects();
 		choices = SelectChoices.from(projects, "code", contract.getProject());
 
-		dataset = super.unbind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
+		dataset = super.unbind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 
 		dataset.put("choices", choices);
+		dataset.put("instantiationMoment", contract.getInstantiationMoment());
 
 		super.getResponse().addData(dataset);
 	}
