@@ -38,4 +38,7 @@ public interface ClientProgressLogRepository extends AbstractRepository {
 	@Query("select c from Client c where c.id = :id")
 	Client findClientById(int id);
 
+	@Query("select pl from ProgressLog pl where pl.recordId LIKE :recordId")
+	ProgressLog findProgressLogByRecordId(String recordId);
+
 }

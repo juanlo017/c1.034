@@ -3,6 +3,7 @@ package acme.features.client.progresslog;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,8 +63,23 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 	@Override
 	public void validate(final ProgressLog progressLog) {
+
 		assert progressLog != null;
-		//TODO
+
+		if (!super.getBuffer().getErrors().hasErrors("recordId")) {
+
+			String recordId = progressLog.getRecordId();
+
+			ProgressLog existing;
+			existing = this.repository.findProgressLogByRecordId(recordId);
+
+			super.state(existing == null, "recordId", "client.progress-log.form.error.duplicated-record-id");
+			super.state(Pattern.matches("^PG-[A-Z]{1,2}-[0-9]{4}$", recordId), "code", "client.contract.form.error.illegal-code-pattern");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("contract"))
+			super.state(progressLog.getContract() != null, "contract", "client.progress-log.form.error.unassigned-contract");
+
 	}
 
 	@Override
