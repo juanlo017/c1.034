@@ -30,3 +30,7 @@ client.progress-log.form.button.update = Actualizar
 client.progress-log.form.button.delete = Eliminar
 client.progress-log.form.button.publish = Publicar
 client.progress-log.form.button.create = Crear
+
+client.progress-log.form.error.duplicated-record-id = Identificador ya existente
+client.contract.form.error.illegal-record-id-pattern = El identificador debe cumplir la siguiente regexp: "^PG-[A-Z]{1,2}-[0-9]{4}$"
+client.progress-log.form.error.unassigned-contract = Se debe asignar un contrato

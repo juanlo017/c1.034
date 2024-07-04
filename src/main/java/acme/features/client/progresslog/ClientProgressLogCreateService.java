@@ -75,7 +75,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 			existing = this.repository.findProgressLogByRecordId(recordId);
 
 			super.state(existing == null, "recordId", "client.progress-log.form.error.duplicated-record-id");
-			super.state(Pattern.matches("^PG-[A-Z]{1,2}-[0-9]{4}$", recordId), "code", "client.contract.form.error.illegal-code-pattern");
+			super.state(Pattern.matches("^PG-[A-Z]{1,2}-[0-9]{4}$", recordId), "code", "client.contract.form.error.illegal-record-id-pattern");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("contract"))
