@@ -38,6 +38,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		ProgressLog progressLog;
 
 		progressLog = new ProgressLog();
+		progressLog.setDraftMode(true);
 
 		super.getBuffer().addData(progressLog);
 	}
@@ -58,7 +59,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		Date now = MomentHelper.getCurrentMoment();
 		progressLog.setRegistrationMoment(now);
 
-		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "draftMode");
+		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract");
 	}
 
 	@Override
@@ -86,7 +87,6 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 	public void perform(final ProgressLog progressLog) {
 
 		assert progressLog != null;
-
 		progressLog.setDraftMode(true);
 
 		this.repository.save(progressLog);

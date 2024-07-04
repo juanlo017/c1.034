@@ -2,6 +2,7 @@
 package acme.features.client.progresslog;
 
 import java.util.Collection;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,8 +42,9 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 
 		boolean activeClientIsProgressLogOwner = progressLog.getContract().getClient() == activeClient;
 		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
+		boolean progressLogIsRight = progressLog != null && progressLog.isDraftMode();
 
-		status = progressLog != null && activeClientIsProgressLogOwner && hasRole;
+		status = activeClientIsProgressLogOwner && hasRole && progressLogIsRight;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -66,13 +68,28 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 
 		Contract contract = progressLog.getContract();
 
-		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "draftMode");
+		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment");
 		progressLog.setContract(contract);
 	}
 
 	@Override
 	public void validate(final ProgressLog progressLog) {
-		//TODO
+
+		assert progressLog != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("recordId")) {
+
+			String recordId = progressLog.getRecordId();
+
+			ProgressLog existing;
+			existing = this.repository.findProgressLogByRecordId(recordId);
+
+			super.state(existing == null || existing.equals(progressLog), "recordId", "client.progress-log.form.error.duplicated-record-id");
+			super.state(Pattern.matches("^PG-[A-Z]{1,2}-[0-9]{4}$", recordId), "code", "client.contract.form.error.illegal-code-pattern");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("contract"))
+			super.state(progressLog.getContract() != null, "contract", "client.progress-log.form.error.unassigned-contract");
 	}
 
 	@Override

@@ -120,6 +120,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	public void perform(final Contract contract) {
 
 		assert contract != null;
+		contract.setDraftMode(true);
 
 		this.repository.save(contract);
 	}

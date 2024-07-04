@@ -43,8 +43,9 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 		boolean activeClientIsContractOwner = contract.getClient() == activeClient;
 		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
+		boolean contractIsRight = contract != null && contract.isDraftMode();
 
-		status = contract != null && activeClientIsContractOwner && hasRole;
+		status = activeClientIsContractOwner && hasRole && contractIsRight;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -119,7 +120,6 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
 		}
 
-		super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.update-published");
 	}
 
 	@Override
