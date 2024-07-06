@@ -54,9 +54,9 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		contractId = super.getRequest().getData("contract", int.class);
 		contract = this.repository.findContractById(contractId);
 
-		progressLog.setContract(contract);
-
 		Date now = MomentHelper.getCurrentMoment();
+
+		progressLog.setContract(contract);
 		progressLog.setRegistrationMoment(now);
 
 		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "registrationMoment");
@@ -77,6 +77,9 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 			super.state(existing == null, "recordId", "client.progress-log.form.error.duplicated-record-id");
 			super.state(Pattern.matches("^PG-[A-Z]{1,2}-[0-9]{4}$", recordId), "code", "client.contract.form.error.illegal-record-id-pattern");
 		}
+
+		if (!super.getBuffer().getErrors().hasErrors("completeness"))
+			super.state(progressLog.getCompleteness() != null, "completeness", "client.progress-log.form.error.completeness-required");
 
 		if (!super.getBuffer().getErrors().hasErrors("contract"))
 			super.state(progressLog.getContract() != null, "contract", "client.progress-log.form.error.unassigned-contract");

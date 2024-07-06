@@ -89,6 +89,9 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 			super.state(Pattern.matches("^PG-[A-Z]{1,2}-[0-9]{4}$", recordId), "code", "client.contract.form.error.illegal-code-pattern");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("completeness"))
+			super.state(progressLog.getCompleteness() != null, "completeness", "client.progress-log.form.error.completeness-required");
+
 		if (!super.getBuffer().getErrors().hasErrors("contract"))
 			super.state(progressLog.getContract() != null, "contract", "client.progress-log.form.error.unassigned-contract");
 	}
