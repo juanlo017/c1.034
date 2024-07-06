@@ -30,6 +30,7 @@
 			<acme:button code="client.contract.form.button.progress-logs" action="/client/progress-log/list-mine?contractId=${id}"/>			
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+			<acme:button code="client.contract.form.button.progress-logs" action="/client/progress-log/list-mine?contractId=${id}"/>
 			<acme:submit code="client.contract.form.button.update" action="/client/contract/update"/>
 			<acme:submit code="client.contract.form.button.delete" action="/client/contract/delete"/>
 			<acme:submit code="client.contract.form.button.publish" action="/client/contract/publish"/>

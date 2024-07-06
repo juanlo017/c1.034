@@ -59,7 +59,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		Date now = MomentHelper.getCurrentMoment();
 		progressLog.setRegistrationMoment(now);
 
-		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract");
+		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "registrationMoment");
 	}
 
 	@Override
