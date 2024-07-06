@@ -113,6 +113,12 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
 			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
+
+			if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
+				super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
+
+			if (!contract.isDraftMode())
+				super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
 		}
 	}
 

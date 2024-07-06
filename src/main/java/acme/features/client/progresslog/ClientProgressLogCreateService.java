@@ -84,6 +84,12 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		if (!super.getBuffer().getErrors().hasErrors("contract"))
 			super.state(progressLog.getContract() != null, "contract", "client.progress-log.form.error.unassigned-contract");
 
+		if (!super.getBuffer().getErrors().hasErrors("registrationMoment"))
+			super.state(MomentHelper.isBeforeOrEqual(progressLog.getRegistrationMoment(), MomentHelper.getCurrentMoment()), "registrationMoment", "client.progress-log.form.error.illegal-moment");
+
+		if (!progressLog.isDraftMode())
+			super.state(progressLog.isDraftMode(), "draftMode", "client.progress-log.form.error.illegal-publish");
+
 	}
 
 	@Override

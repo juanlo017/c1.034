@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.datatypes.Money;
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.contracts.Contract;
@@ -118,6 +119,12 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
 			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
+
+			if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
+				super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
+
+			if (!contract.isDraftMode())
+				super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
 		}
 
 	}
