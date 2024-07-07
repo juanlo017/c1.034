@@ -30,3 +30,8 @@ client.progress-log.form.button.update = Update
 client.progress-log.form.button.delete = Delete
 client.progress-log.form.button.publish = Publish
 client.progress-log.form.button.create = Create
+
+client.progress-log.form.error.duplicated-record-id = This record id already exists
+client.contract.form.error.illegal-code-pattern = The record id must match the following regexp: "^PG-[A-Z]{1,2}-[0-9]{4}$"
+client.progress-log.form.error.completeness-required = Completeness between 0 and 1 required
+client.progress-log.form.error.unassigned-contract = Contract required

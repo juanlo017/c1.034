@@ -17,7 +17,7 @@
 
 <acme:form>
 	<acme:input-textbox code="client.progress-log.form.label.recordId" path="recordId"/>
-	<acme:message code="client.progress-log.form.label.registrationMoment"/> <acme:print value="${registrationMoment}"/>
+	<acme:input-moment code="client.progress-log.form.label.registrationMoment" path="registrationMoment" readonly="true"/>
 	<acme:input-textbox code="client.progress-log.form.label.responsiblePerson" path="responsiblePerson"/>
 	<acme:input-double code="client.progress-log.form.label.completeness" path="completeness"/>
 	<acme:input-textarea code="client.progress-log.form.label.comment" path="comment"/>

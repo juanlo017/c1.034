@@ -3,6 +3,7 @@ package acme.features.client.progresslog;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,16 +31,22 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 	public void authorise() {
 
 		boolean status;
-		int progressLogId;
+		int id;
 		ProgressLog progressLog;
-		Contract contract;
+		Client client;
 
-		progressLogId = super.getRequest().getData("id", int.class);
-		contract = this.repository.findContractByProgressLogId(progressLogId);
-		progressLog = this.repository.findProgressLogById(progressLogId);
-		boolean hasRole = super.getRequest().getPrincipal().hasRole(contract.getClient());
+		id = super.getRequest().getData("id", int.class);
+		progressLog = this.repository.findProgressLogById(id);
+		client = progressLog == null ? null : progressLog.getContract().getClient();
 
-		status = progressLog.isDraftMode() && contract != null && !contract.isDraftMode() && hasRole;
+		int activeClientId = super.getRequest().getPrincipal().getActiveRoleId();
+		Client activeClient = this.repository.findClientById(activeClientId);
+
+		boolean activeClientIsProgressLogOwner = progressLog.getContract().getClient() == activeClient;
+		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
+		boolean progressLogIsRight = progressLog != null && progressLog.isDraftMode();
+
+		status = activeClientIsProgressLogOwner && hasRole && progressLogIsRight;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -63,14 +70,36 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 
 		Contract contract = progressLog.getContract();
 
-		super.bind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
+		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "draftMode");
 		progressLog.setContract(contract);
 	}
 
 	@Override
 	public void validate(final ProgressLog progressLog) {
 		assert progressLog != null;
-		//TODO
+
+		if (!super.getBuffer().getErrors().hasErrors("recordId")) {
+
+			String recordId = progressLog.getRecordId();
+
+			ProgressLog existing;
+			existing = this.repository.findProgressLogByRecordId(recordId);
+
+			super.state(existing == null || existing.equals(progressLog), "recordId", "client.progress-log.form.error.duplicated-record-id");
+			super.state(Pattern.matches("^PG-[A-Z]{1,2}-[0-9]{4}$", recordId), "code", "client.contract.form.error.illegal-code-pattern");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("completeness"))
+			super.state(progressLog.getCompleteness() != null, "completeness", "client.progress-log.form.error.completeness-required");
+
+		if (!super.getBuffer().getErrors().hasErrors("contract"))
+			super.state(progressLog.getContract() != null, "contract", "client.progress-log.form.error.unassigned-contract");
+
+		if (!super.getBuffer().getErrors().hasErrors("registrationMoment"))
+			super.state(MomentHelper.isBeforeOrEqual(progressLog.getRegistrationMoment(), MomentHelper.getCurrentMoment()), "registrationMoment", "client.progress-log.form.error.illegal-moment");
+
+		if (!progressLog.isDraftMode())
+			super.state(progressLog.isDraftMode(), "draftMode", "client.progress-log.form.error.illegal-publish");
 	}
 
 	@Override
@@ -91,16 +120,18 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 
 		assert progressLog != null;
 
+		Dataset dataset;
+
 		SelectChoices choices;
 		Collection<Contract> contracts;
 
-		Dataset dataset;
 		contracts = this.repository.findAllContracts();
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
-		dataset = super.unbind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");
+		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "draftMode");
 
 		dataset.put("choices", choices);
+		dataset.put("registrationMoment", progressLog.getRegistrationMoment());
 
 		super.getResponse().addData(dataset);
 	}

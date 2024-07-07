@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
-import acme.entities.contracts.Contract;
 import acme.entities.contracts.ProgressLog;
 import acme.roles.Client;
 
@@ -47,17 +45,13 @@ public class ClientProgressLogListMineService extends AbstractService<Client, Pr
 
 	@Override
 	public void unbind(final ProgressLog progressLog) {
-
 		assert progressLog != null;
-		SelectChoices choices;
-		Collection<Contract> contracts;
+
 		Dataset dataset;
 
-		contracts = this.repository.findAllContracts();
-		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness");
 
-		dataset.put("contract", choices.getSelected().getKey());
+		dataset.put("display-contract", progressLog.getContract().getCode());
 
 		super.getResponse().addData(dataset);
 	}

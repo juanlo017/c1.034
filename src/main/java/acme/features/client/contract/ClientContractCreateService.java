@@ -106,13 +106,19 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 			Money projectCost = contract.getProject().getCost();
 			List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(contract.getProject().getCode()));
 
-			Double spentBudget = contractsOfProject.stream().map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
+			Double spentBudget = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
 			spentBudget += contract.getBudget().getAmount();
 
 			double remainingBudget = projectCost.getAmount() - spentBudget;
 
 			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
 			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
+
+			if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
+				super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
+
+			if (!contract.isDraftMode())
+				super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
 		}
 	}
 
@@ -120,6 +126,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	public void perform(final Contract contract) {
 
 		assert contract != null;
+		contract.setDraftMode(true);
 
 		this.repository.save(contract);
 	}

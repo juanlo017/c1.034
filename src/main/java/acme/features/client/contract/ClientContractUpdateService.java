@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.datatypes.Money;
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.contracts.Contract;
@@ -43,8 +44,9 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 		boolean activeClientIsContractOwner = contract.getClient() == activeClient;
 		boolean hasRole = super.getRequest().getPrincipal().hasRole(client);
+		boolean contractIsRight = contract != null && contract.isDraftMode();
 
-		status = contract != null && activeClientIsContractOwner && hasRole;
+		status = activeClientIsContractOwner && hasRole && contractIsRight;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -88,7 +90,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 			Contract existing;
 			existing = this.repository.findContractByCode(contractCode);
 
-			super.state(existing == null, "code", "client.contract.form.error.duplicated-code");
+			super.state(existing == null || existing.equals(contract), "code", "client.contract.form.error.duplicated-code");
 			super.state(Pattern.matches("^[A-Z]{1,3}-[0-9]{3}$", contractCode), "code", "client.contract.form.error.illegal-code-pattern");
 		}
 
@@ -110,16 +112,21 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 			Money projectCost = contract.getProject().getCost();
 			List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(contract.getProject().getCode()));
 
-			Double spentBudget = contractsOfProject.stream().map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
+			Double spentBudget = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
 			spentBudget += contract.getBudget().getAmount();
 
 			double remainingBudget = projectCost.getAmount() - spentBudget;
 
 			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
 			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
+
+			if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
+				super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
+
+			if (!contract.isDraftMode())
+				super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
 		}
 
-		super.state(!contract.isDraftMode(), "draftMode", "client.contract.form.error.update-published");
 	}
 
 	@Override

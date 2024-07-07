@@ -57,7 +57,6 @@ public class Contract extends AbstractEntity {
 	private boolean				draftMode;
 
 	@NotNull
-	//@Max(value = project.getCost()) TODO implement this
 	private Money				budget;
 
 	// Derived attributes -----------------------------------------------------
