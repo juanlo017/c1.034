@@ -5,7 +5,7 @@ progress-log-03,PG-K-5000,2021/12/03 20:00,深受全世界人民的喜爱和尊�
 progress-log-04,PG-T-0001,2000/01/01 0:00,L,0.999999999,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",contract-03,true
 progress-log-05,PG-T-0002,2000/01/01 0:00,국민경제의 발전을,0.0000000001,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore*",contract-04,true
 progress-log-06,PG-T-0003,2000/01/01 0:00,العظمى واعتلاء,0.25,<h1>!</h1>,contract-05,true
-progress-log-07,PG-T-0004,2000/01/01 0:00,<h1>!</h1>,0.75,' or 'A'='A,contract-06,true
-progress-log-08,PG-T-0005,2000/01/01 0:00,' or 'A'='A,0,국민경제의 발전을,contract-07,true
+progress-log-07,PG-T-0004,2000/01/01 0:00,<h1>!</h1>,0.75,'' or 'A'='A',contract-06,true
+progress-log-08,PG-T-0005,2000/01/01 0:00,'' or 'A'='A',0,국민경제의 발전을,contract-07,true
 progress-log-09,PG-T-0006,2000/01/01 0:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem",1,العظمى واعتلاء,contract-08,true
 progress-log-10,PG-T-0007,2000/01/01 0:00,Lorem ipsum,0,Lorem ipsum,contract-09,true

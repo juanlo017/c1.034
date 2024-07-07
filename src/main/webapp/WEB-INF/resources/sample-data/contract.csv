@@ -7,6 +7,6 @@ contract-05,T-002,2000/01/01 0:00,"Lorem ipsum dolor sit amet, consectetur adipi
 contract-06,T-003,2000/01/01 0:00,<h1>!</h1>,' or 'A'='A,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",USD 1000000.00,project-06,client-01,true
 contract-07,T-004,2000/01/01 0:00,국민경제의 발전을,العظمى واعتلاء,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore*",EUR 100.00,project-07,client-01,true
 contract-08,T-005,2000/01/01 0:00,العظمى واعتلاء,국민경제의 발전을,<h1>!</h1>,EUR 100.00,project-07,client-01,true
-contract-09,T-001,2000/01/01 0:00,Lo,L,' or 'A'='A,EUR 100.00,project-07,client-01,true
-contract-10,T-006,2000/01/01 0:00,' or 'A'='A,<h1>!</h1>,국민경제의 발전을,EUR 100.00,project-07,client-01,true
+contract-09,T-001,2000/01/01 0:00,Lo,L,'' or 'A'='A',EUR 100.00,project-07,client-01,true
+contract-10,T-006,2000/01/01 0:00,'' or 'A'='A',<h1>!</h1>,국민경제의 발전을,EUR 100.00,project-07,client-01,true
 contract-11,T-007,2000/01/01 0:00,Lorem ipsum,Lorem ipsum,العظمى واعتلاء,EUR 100.00,project-07,client-01,true
