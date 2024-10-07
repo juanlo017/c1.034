@@ -125,6 +125,11 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 			if (!contract.isDraftMode())
 				super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
+
+			boolean projectInDraftMode = contract.getProject().isDraftMode();
+
+			if (!projectInDraftMode)
+				super.state(projectInDraftMode, "project", "client.contract.form.error.illegal-project");
 		}
 
 	}
