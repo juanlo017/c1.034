@@ -122,7 +122,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 			boolean projectInDraftMode = contract.getProject().isDraftMode();
 
-			if (!projectInDraftMode)
+			if (projectInDraftMode)
 				super.state(projectInDraftMode, "project", "client.contract.form.error.illegal-project");
 		}
 	}
