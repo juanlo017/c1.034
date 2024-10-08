@@ -87,16 +87,13 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		if (progressLog.getContract() != null) {
 
 			final boolean contractInDraftMode = progressLog.getContract().isDraftMode();
-
-			if (contractInDraftMode)
-				super.state(contractInDraftMode, "contract", "client.progress-log.form.error.illegal-contract");
+			super.state(!contractInDraftMode, "contract", "client.progress-log.form.error.illegal-contract");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("registrationMoment"))
 			super.state(MomentHelper.isBeforeOrEqual(progressLog.getRegistrationMoment(), MomentHelper.getCurrentMoment()), "registrationMoment", "client.progress-log.form.error.illegal-moment");
 
-		if (!progressLog.isDraftMode())
-			super.state(progressLog.isDraftMode(), "draftMode", "client.progress-log.form.error.illegal-publish");
+		super.state(progressLog.isDraftMode(), "draftMode", "client.progress-log.form.error.illegal-publish");
 
 	}
 
@@ -119,7 +116,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		SelectChoices choices;
 		Collection<Contract> contracts;
 
-		contracts = this.repository.findAllContracts();
+		contracts = this.repository.findAllPublishedContracts();
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
 		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "draftMode");

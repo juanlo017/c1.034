@@ -62,7 +62,7 @@ public class ClientProgressLogShowService extends AbstractService<Client, Progre
 		SelectChoices choices;
 		Collection<Contract> contracts;
 
-		contracts = this.repository.findAllContracts();
+		contracts = this.repository.findAllPublishedContracts();
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
 		dataset = super.unbind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");

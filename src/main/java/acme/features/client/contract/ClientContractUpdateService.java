@@ -123,15 +123,11 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 			if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
 				super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
 
-			if (!contract.isDraftMode())
-				super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
-
 			boolean projectInDraftMode = contract.getProject().isDraftMode();
-
-			if (!projectInDraftMode)
-				super.state(projectInDraftMode, "project", "client.contract.form.error.illegal-project");
+			super.state(!projectInDraftMode, "project", "client.contract.form.error.illegal-project");
 		}
 
+		super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
 	}
 
 	@Override
@@ -152,7 +148,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 		Collection<Project> projects;
 		SelectChoices choices;
 
-		projects = this.repository.findAllProjects();
+		projects = this.repository.findAllPublishedProjects();
 		choices = SelectChoices.from(projects, "code", contract.getProject());
 
 		dataset = super.unbind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");

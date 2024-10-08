@@ -20,6 +20,9 @@ public interface ClientProgressLogRepository extends AbstractRepository {
 	@Query("select c from Contract c")
 	Collection<Contract> findAllContracts();
 
+	@Query("select c from Contract c where c.draftMode = false")
+	Collection<Contract> findAllPublishedContracts();
+
 	@Query("select c from Contract c where c.id = :id")
 	Contract findContractById(int id);
 
