@@ -1,13 +1,13 @@
 key,record-id,registration-moment,responsible-person,completeness,comment,key:contract,draft-mode
 progress-log-01,PG-A-0000,2022/07/30 0:00,Lo,0,L,contract-06,true
 progress-log-02,PG-Z-9999,2022/07/30 0:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod te",1,Lo,contract-07,true
-progress-log-03,PG-K-5000,2020/02/28 0:00,深受全世界人民的喜爱和尊重。,0.5,深受全世界人民的喜爱和尊重。,contract-08,true
+progress-log-03,PG-K-5000,2020/02/28 12:00,深受全世界人民的喜爱和尊重。,0.5,深受全世界人民的喜爱和尊重。,contract-08,true
 progress-log-04,PG-T-0001,2022/07/29 23:00,L,0.999999999,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",contract-09,true
-progress-log-05,PG-T-0002,2022/07/29 23:00,국민경제의 발전을,0.0000000001,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore*",contract-10,true
+progress-log-05,PG-T-0002,2022/07/29 23:58,국민경제의 발전을,0.0000000001,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore*",contract-10,true
 progress-log-06,PG-T-0003,2022/07/29 23:00,العظمى واعتلاء,0.25,<h1>!</h1>,contract-11,false
 progress-log-07,PG-T-0004,2000/01/01 0:00,<h1>!</h1>,0.75,'' or 'A'='A',contract-06,false
 progress-log-08,PG-T-0005,2020/02/28 0:00,'' or 'A'='A',0,국민경제의 발전을,contract-07,false
 progress-log-09,PG-T-0006,2020/02/28 0:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem",1,العظمى واعتلاء,contract-08,false
 progress-log-10,PG-T-0007,2022/07/29 23:59,Lorem ipsum,0,Lorem ipsum,contract-09,false
 progress-log-11,PG-T-0008,2000/01/01 0:01,Lorem ipsum,0,Lorem ipsum,contract-10,false
-progress-log-12,PG-T-0009,2022/07/29 23:00,Lorem ipsum,0,Lorem ipsum,contract-11,false
+progress-log-12,PG-T-0009,2022/07/29 23:01,Lorem ipsum,0,Lorem ipsum,contract-11,false
