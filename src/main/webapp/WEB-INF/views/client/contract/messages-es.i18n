@@ -40,6 +40,6 @@ client.contract.form.error.illegal-code-pattern = El código debe cumplir la sig
 client.contract.form.error.negative-budget = El presupuesto no puede ser negativo
 client.contract.form.error.different-currency = La divisa del presupuesto de un contrato debe coincidir con la del proyecto al que pertenece
 client.contract.form.error.unsupported-currency = Divisa no soportada por el sistema
-client.contract.form.error.budget-greater-than-cost = El coste total de los contratos excede el presupuesto del proyecto
+client.contract.form.error.budget-greater-than-cost = El presupuesto total de los contratos excede el coste del proyecto
 client.contract.form.error.unassigned-project = Se debe asignar un proyecto
 client.contract.form.error.illegal-project = El proyecto asignado no puede estar en modo borrador

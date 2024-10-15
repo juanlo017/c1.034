@@ -1,13 +1,13 @@
 key,record-id,registration-moment,responsible-person,completeness,comment,key:contract,draft-mode
-progress-log-01,PG-B-5000,2022/07/29 23:00,Lorem ipsum,0.5,Lorem ipsum,contract-06,false
-progress-log-02,PG-A-0000,2000/01/01 00:00,L,0.00,L,contract-07,false
-progress-log-03,PG-A-0001,2000/01/01 00:01,Lo,0.01,Lo,contract-08,false
-progress-log-04,PG-Z-9998,2022/07/29 23:59,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod te",0.99,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",contract-09,false
-progress-log-05,PG-Z-9999,2022/07/30 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem",1.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore*",contract-10,true
-progress-log-06,PG-S-0010,2000/01/01 00:02,<h1>!</h1>,0.02,<h1>!</h1>,contract-11,true
-progress-log-07,PG-S-0020,2022/07/29 23:58,'' or 'A'='A,0.98,'' or 'A'='A,contract-12,true
-progress-log-08,PG-S-0030,2000/01/01 12:00,국민경제의 발전을,0.33,국민경제의 발전을,contract-06,false
-progress-log-09,PG-S-0040,2022/07/29 12:00,العظمى واعتلاء,0.66,العظمى واعتلاء,contract-07,false
-progress-log-10,PG-T-0100,2022/07/29 23:00,Lorem ipsum,0.25,Lorem ipsum,contract-08,false
-progress-log-11,PG-T-0200,2022/07/29 23:00,Lorem ipsum,0.75,Lorem ipsum,contract-09,false
-progress-log-12,PG-T-0300,2022/07/29 23:00,Lorem ipsum,0.5,Lorem ipsum,contract-10,true
+progress-log-01,PG-BB-5000,2022/07/29 23:00,Lorem ipsum,0.5,Lorem ipsum,contract-01,false
+progress-log-02,PG-A-0000,2000/01/01 00:00,L,0.00,L,contract-02,false
+progress-log-03,PG-AA-0001,2000/01/01 00:01,Lo,0.01,Lo,contract-03,false
+progress-log-04,PG-Z-9998,2022/07/29 23:59,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod te",0.99,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",contract-04,false
+progress-log-05,PG-ZZ-9999,2022/07/30 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem",1.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore*",contract-05,true
+progress-log-06,PG-SA-0010,2000/01/01 00:02,<h1>!</h1>,0.02,<h1>!</h1>,contract-06,true
+progress-log-07,PG-SB-0020,2022/07/29 23:58,'' or 'A'='A,0.98,'' or 'A'='A,contract-07,true
+progress-log-08,PG-SC-0030,2000/01/01 12:00,국민경제의 발전을,0.33,국민경제의 발전을,contract-08,false
+progress-log-09,PG-SD-0040,2022/07/29 12:00,العظمى واعتلاء,0.66,العظمى واعتلاء,contract-09,false
+progress-log-10,PG-T-0100,2022/07/29 23:00,Lorem ipsum,0.25,Lorem ipsum,contract-01,false
+progress-log-11,PG-TT-0200,2022/07/29 23:00,Lorem ipsum,0.75,Lorem ipsum,contract-02,false
+progress-log-12,PG-TT-0300,2022/07/29 23:00,Lorem ipsum,0.5,Lorem ipsum,contract-03,true

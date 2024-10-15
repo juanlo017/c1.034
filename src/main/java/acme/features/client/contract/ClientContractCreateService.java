@@ -104,7 +104,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		if (contract.getProject() != null) {
 
 			Money projectCost = contract.getProject().getCost();
-			List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(contract.getProject().getCode()));
+			List<Contract> contractsOfProject = List.copyOf(this.repository.findPublishedContractsByProjectCode(contract.getProject().getCode()));
 
 			Double spentBudget = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
 			spentBudget += contract.getBudget().getAmount();

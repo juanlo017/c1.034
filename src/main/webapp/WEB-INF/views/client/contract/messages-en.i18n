@@ -40,6 +40,6 @@ client.contract.form.error.illegal-code-pattern = The code must match the follow
 client.contract.form.error.negative-budget = Budget cannot be negative
 client.contract.form.error.different-currency = Contract budget's currency must the same as its assigned project
 client.contract.form.error.unsupported-currency = Currency not supported by the system
-client.contract.form.error.budget-greater-than-cost = The total contracts cost is greater than the project's budget
+client.contract.form.error.budget-greater-than-cost = The total contracts budget is greater than the project's cost
 client.contract.form.error.unassigned-project = Project required
 client.contract.form.error.illegal-project = Project assigned cannot be in draft mode
