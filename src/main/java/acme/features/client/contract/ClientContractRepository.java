@@ -30,6 +30,9 @@ public interface ClientContractRepository extends AbstractRepository {
 	@Query("select c from Contract c")
 	Collection<Contract> findAllContracts();
 
+	@Query("select c from Contract c where c.project.code LIKE :projectCode")
+	Collection<Contract> findContractsByProjectCode(String projectCode);
+
 	@Query("select c from Contract c where c.project.code LIKE :projectCode AND c.draftMode = false")
 	Collection<Contract> findPublishedContractsByProjectCode(String projectCode);
 
