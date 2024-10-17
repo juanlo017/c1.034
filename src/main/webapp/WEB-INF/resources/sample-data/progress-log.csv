@@ -5,9 +5,21 @@ progress-log-03,PG-AA-0001,2000/01/01 00:01,Lo,0.01,Lo,contract-03,false
 progress-log-04,PG-Z-9998,2022/07/29 23:59,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod te",0.99,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",contract-04,false
 progress-log-05,PG-ZZ-9999,2022/07/30 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem",1.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore*",contract-05,true
 progress-log-06,PG-SA-0010,2000/01/01 00:02,<h1>!</h1>,0.02,<h1>!</h1>,contract-06,true
-progress-log-07,PG-SB-0020,2022/07/29 23:58,'' or 'A'='A,0.98,'' or 'A'='A,contract-07,true
+progress-log-07,PG-SB-0020,2022/07/29 23:58,' or 'A'='A',0.98,' or 'A'='A',contract-07,true
 progress-log-08,PG-SC-0030,2000/01/01 12:00,국민경제의 발전을,0.33,국민경제의 발전을,contract-08,false
 progress-log-09,PG-SD-0040,2022/07/29 12:00,العظمى واعتلاء,0.66,العظمى واعتلاء,contract-09,false
 progress-log-10,PG-T-0100,2022/07/29 23:00,Lorem ipsum,0.25,Lorem ipsum,contract-01,false
 progress-log-11,PG-TT-0200,2022/07/29 23:00,Lorem ipsum,0.75,Lorem ipsum,contract-02,false
 progress-log-12,PG-TT-0300,2022/07/29 23:00,Lorem ipsum,0.5,Lorem ipsum,contract-03,true
+progress-log-13,PG-TS-1111,2000/01/01 12:01,L,0,Lo,contract-09,true
+progress-log-14,PG-S-2222,2022/07/29 12:01,Lo,0,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",contract-09,true
+progress-log-15,PG-TS-3333,2000/01/01 11:59,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod te",0,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore*",contract-09,true
+progress-log-16,PG-S-4444,2022/07/29 11:59,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem",0,<h1>!</h1>,contract-09,true
+progress-log-17,PG-TS-5555,2000/01/01 01:00,<h1>!</h1>,0,' or 'A'='A',contract-09,true
+progress-log-18,PG-S-6666,2000/01/01 01:01,' or 'A'='A',0,국민경제의 발전을,contract-09,true
+progress-log-19,PG-TS-7777,2022/07/29 01:00,국민경제의 발전을,0,العظمى واعتلاء,contract-09,true
+progress-log-20,PG-S-8888,2022/07/29 01:01,العظمى واعتلاء,0,Lorem ipsum,contract-09,true
+progress-log-21,PG-TS-9999,2022/01/01 00:00,Lorem ipsum,0,Lorem ipsum,contract-09,true
+progress-log-22,PG-S-1000,2022/01/01 00:01,Lorem ipsum,0,Lorem ipsum,contract-09,true
+progress-log-23,PG-TS-1100,2021/12/31 23:59,Lorem ipsum,0,Lorem ipsum,contract-09,true
+progress-log-24,PG-S-1200,2021/12/31 23:58,Lorem ipsum,0,Lorem ipsum,contract-09,true
