@@ -22,6 +22,7 @@ client.contract.list.title = Contracts list
 client.contract.list.label.code = Code
 client.contract.list.label.budget = Budget
 client.contract.list.label.project = Project
+client.contract.list.label.draftMode = Draft mode
 
 client.contract.button.create = Create
 client.contract.button.update = Update

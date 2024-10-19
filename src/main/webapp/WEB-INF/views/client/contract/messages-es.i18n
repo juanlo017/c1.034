@@ -22,6 +22,7 @@ client.contract.list.title = Listado de contractos
 client.contract.list.label.code = Código
 client.contract.list.label.budget = Presupuesto
 client.contract.list.label.project = Proyecto
+client.contract.list.label.draftMode = Modo borrador
 
 client.contract.button.create = Crear
 client.contract.button.update = Actualizar

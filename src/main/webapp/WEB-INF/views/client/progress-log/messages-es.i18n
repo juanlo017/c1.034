@@ -14,6 +14,7 @@ client.progress-log.list.label.recordId = Identificador
 client.progress-log.list.label.responsiblePerson = Responsable
 client.progress-log.list.label.completeness =  Completitud
 client.progress-log.list.label.contract = Contrato
+client.progress-log.list.label.draftMode = Modo borrador
 
 client.progress-log.button.create = Crear
 
