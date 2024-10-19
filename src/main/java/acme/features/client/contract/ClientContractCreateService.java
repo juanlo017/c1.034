@@ -90,12 +90,16 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 		if (!super.getBuffer().getErrors().hasErrors("budget")) {
 
+			super.state(contract.getBudget().getAmount() != null, "budget", "client.contract.form.error.null-budget");
+			super.state(contract.getBudget().getCurrency() != null, "budget", "client.contract.form.error.null-currency");
+
 			super.state(0 <= contract.getBudget().getAmount(), "budget", "client.contract.form.error.negative-budget");
 
 			String acceptedCurrencies = this.repository.findAcceptedCurrencies();
 			final boolean supportedCurrency = Stream.of(acceptedCurrencies.split(",")).anyMatch(c -> c.equals(contract.getBudget().getCurrency()));
 
 			super.state(supportedCurrency, "budget", "client.contract.form.error.unsupported-currency");
+
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("project"))
@@ -103,23 +107,26 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 		if (contract.getProject() != null) {
 
-			Money projectCost = contract.getProject().getCost();
-			List<Contract> contractsOfProject = List.copyOf(this.repository.findPublishedContractsByProjectCode(contract.getProject().getCode()));
+			if (!super.getBuffer().getErrors().hasErrors("budget")) {
 
-			Double spentBudget = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
-			spentBudget += contract.getBudget().getAmount();
+				Money projectCost = contract.getProject().getCost();
+				List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(contract.getProject().getCode()));
 
-			double remainingBudget = projectCost.getAmount() - spentBudget;
+				Double spentBudget = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
+				spentBudget += contract.getBudget().getAmount();
 
-			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
-			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
+				double remainingBudget = projectCost.getAmount() - spentBudget;
 
-			if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
-				super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
+				super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
+				super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
+			}
 
 			boolean projectInDraftMode = contract.getProject().isDraftMode();
 			super.state(!projectInDraftMode, "project", "client.contract.form.error.illegal-project");
 		}
+
+		if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
+			super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
 
 		super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
 	}

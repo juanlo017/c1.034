@@ -37,6 +37,8 @@ client.contract.form.button.progress-logs = See progress logs
 
 client.contract.form.error.duplicated-code = This code already exists
 client.contract.form.error.illegal-code-pattern = The code must match the following regexp: "^[A-Z]{1,3}-[0-9]{3}$"
+client.contract.form.error.null-budget = Budget cannot be null
+client.contract.form.error.null-currency = Currency cannot be null
 client.contract.form.error.negative-budget = Budget cannot be negative
 client.contract.form.error.different-currency = Contract budget's currency must the same as its assigned project
 client.contract.form.error.unsupported-currency = Currency not supported by the system
