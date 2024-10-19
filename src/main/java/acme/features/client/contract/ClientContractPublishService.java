@@ -164,6 +164,19 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 		dataset.put("choices", choices);
 		dataset.put("instantiationMoment", contract.getInstantiationMoment());
 
+		if (contract.getProject() != null) {
+
+			Project project = contract.getProject();
+
+			List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(project.getCode()));
+
+			Double sumOfCosts = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
+			Double remainingAmount = project.getCost().getAmount() - sumOfCosts;
+			String remainingBudget = String.format("%s %s", project.getCost().getCurrency(), remainingAmount);
+
+			dataset.put("remainingBudget", remainingBudget);
+		}
+
 		super.getResponse().addData(dataset);
 	}
 

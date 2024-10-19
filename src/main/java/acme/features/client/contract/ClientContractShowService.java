@@ -2,6 +2,7 @@
 package acme.features.client.contract;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,6 +76,19 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 		dataset = super.unbind(contract, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 
 		dataset.put("choices", choices);
+
+		if (contract.getProject() != null) {
+
+			Project project = contract.getProject();
+
+			List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(project.getCode()));
+
+			Double sumOfCosts = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
+			Double remainingAmount = project.getCost().getAmount() - sumOfCosts - contract.getBudget().getAmount();
+			String remainingBudget = String.format("%s %s", project.getCost().getCurrency(), remainingAmount);
+
+			dataset.put("remainingBudget", remainingBudget);
+		}
 
 		super.getResponse().addData(dataset);
 	}
