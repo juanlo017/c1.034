@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
@@ -61,8 +62,9 @@ public class ClientProgressLogShowService extends AbstractService<Client, Progre
 
 		SelectChoices choices;
 		Collection<Contract> contracts;
+		Principal principal = super.getRequest().getPrincipal();
 
-		contracts = this.repository.findAllPublishedContracts();
+		contracts = this.repository.findAllPublishedContractsByClientId(principal.getActiveRoleId());
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
 		dataset = super.unbind(progressLog, "recordId", "registrationMoment", "responsiblePerson", "completeness", "comment", "draftMode");

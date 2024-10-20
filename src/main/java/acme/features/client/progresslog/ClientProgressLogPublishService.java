@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
@@ -68,10 +69,18 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 
 		assert progressLog != null;
 
-		Contract contract = progressLog.getContract();
+		int contractId;
+		Contract contract;
 
-		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "draftMode");
+		contractId = super.getRequest().getData("contract", int.class);
+		contract = this.repository.findContractById(contractId);
+
+		Date now = MomentHelper.getCurrentMoment();
+
 		progressLog.setContract(contract);
+		progressLog.setRegistrationMoment(now);
+
+		super.bind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract");
 	}
 
 	@Override
@@ -130,15 +139,16 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 		SelectChoices choices;
 		Collection<Contract> contracts;
 
-		contracts = this.repository.findAllPublishedContracts();
+		Principal principal = super.getRequest().getPrincipal();
+
+		contracts = this.repository.findAllPublishedContractsByClientId(principal.getActiveRoleId());
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
-		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "draftMode");
+		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "draftMode");
 
 		dataset.put("choices", choices);
 		dataset.put("registrationMoment", progressLog.getRegistrationMoment());
 
 		super.getResponse().addData(dataset);
 	}
-
 }

@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
@@ -116,7 +117,9 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		SelectChoices choices;
 		Collection<Contract> contracts;
 
-		contracts = this.repository.findAllPublishedContracts();
+		Principal principal = super.getRequest().getPrincipal();
+
+		contracts = this.repository.findAllPublishedContractsByClientId(principal.getActiveRoleId());
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
 		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "draftMode");
