@@ -14,6 +14,7 @@ client.progress-log.list.label.recordId = Record id
 client.progress-log.list.label.responsiblePerson = Responsible person
 client.progress-log.list.label.completeness =  Completeness rate
 client.progress-log.list.label.contract = Contract
+client.progress-log.list.label.draftMode = Draft mode
 
 client.progress-log.button.create = Create
 
@@ -35,3 +36,4 @@ client.progress-log.form.error.duplicated-record-id = This record id already exi
 client.contract.form.error.illegal-code-pattern = The record id must match the following regexp: "^PG-[A-Z]{1,2}-[0-9]{4}$"
 client.progress-log.form.error.completeness-required = Completeness between 0 and 1 required
 client.progress-log.form.error.unassigned-contract = Contract required
+client.progress-log.form.error.illegal-contract = Contract assigned cannot be in draft mode

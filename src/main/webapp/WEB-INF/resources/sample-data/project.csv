@@ -1,14 +1,14 @@
 key,code,title,abstract-text,fatalErrors,link,draft-mode,key:manager,cost
-project-01,AAA-0000,Eco-Friendly Homes: Building Sustainable Living Spaces,Exploring eco-friendly building materials and designs for homes.,false,,true,manager-01,GBP 100.00
+project-01,AAA-0000,Eco-Friendly Homes: Building Sustainable Living Spaces,Exploring eco-friendly building materials and designs for homes.,false,,false,manager-01,GBP 100.00
 project-02,CEZ-9999,Cultivating Sustainable Agriculture Practices for Future Foods,Leveraging technology to improve healthcare accessibility.,false,ftp://a,false,manager-01,GBP 0.00
-project-03,NGF-1388,Implementing Zero-Waste Strategies العظمى واعتلاء,<h1>!</h1>,true,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",true,manager-01,USD 0.01
-project-04,PKF-9716,A,貸んい建濯よ芝弾テソ,true,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",true,manager-01,EUR 999999.99
+project-03,NGF-1388,Implementing Zero-Waste Strategies العظمى واعتلاء,<h1>!</h1>,true,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",false,manager-01,USD 0.01
+project-04,PKF-9716,A,貸んい建濯よ芝弾テソ,true,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",false,manager-01,EUR 999999.99
 project-05,MDF-5680,<h1>!</h1>,Q,true,null,true,manager-01,USD 12234.00
 project-06,RIP-4506,' or 'A'='A,QA,false,http://www.lorem-ipsum.org/dolor/sit.html#dolor,false,manager-02,USD 1000000.00
-project-07,JIL-4290,коза коза,Implementing Zero-Waste Strategies for Community Sustainability,true,http://example.org/a/b?a&b,true,manager-02,USD 18600.00
+project-07,JIL-4290,коза коза,Implementing Zero-Waste Strategies for Community Sustainability,true,http://example.org/a/b?a&b,false,manager-02,USD 18600.00
 project-08,BOL-6987,貸んい建濯よ芝弾テソ,Empowering underserved communities with the digital skill to bridge the educational gap between them,false,http://www.thisisaverylongexampleurlthatdoesnotactuallyleadanywherespecificallydesignedtobeexactlytwohundredandfiftyfivecharacterslongincludingthehttpwwwparttoseehowitlooksandfeelsinpracticeabcdefg1234567890abcdefghijklmnopqrstuvwxyzletsgetto255chars.html,true,manager-02,EUR 17000.50
 project-09,OHH-8888,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod te",Empowering underserved communities with the digital skill to bridge the educational gap between the,true,http://example.org?a=1&b=2,true,manager-02,EUR 2100
-project-10,GPT-4040,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem",การออกแบบและการทดสอบสองอย่างถือเป็นขยะ,true,http://example.org/a/b?,true,manager-01,EUR 100
+project-10,GPT-4040,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem",การออกแบบและการทดสอบสองอย่างถือเป็นขยะ,true,http://example.org/a/b?,false,manager-01,EUR 100
 project-11,GTA-8909,St,' or 'A'='A,true,http://建濯よ.com,true,manager-01,USD 23901
 project-12,WET-1409,One User Story,んい建濯よ,true,http://建濯よ.com,true,manager-01,USD 202932
 project-13,WET-1410,No User Story,んい建濯よ,true,http://建濯よ.com,true,manager-01,USD 202932

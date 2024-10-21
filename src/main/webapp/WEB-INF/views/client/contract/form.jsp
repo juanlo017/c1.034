@@ -23,6 +23,13 @@
 	<acme:input-textarea code="client.contract.form.label.goals" path="goals"/>
 	<acme:input-money code="client.contract.form.label.budget" path="budget"/>
 	<acme:input-select code="client.contract.form.label.project" path="project" choices="${choices}"/>
+	<jstl:choose>
+		<jstl:when test="${remainingBudget != null}">
+			<p>
+				<acme:print value="Remaining budget: ${remainingBudget}"/>
+			</p>			
+		</jstl:when>
+	</jstl:choose>
 	<acme:hidden-data path="draftMode"/>
 	
 	<jstl:choose>	 

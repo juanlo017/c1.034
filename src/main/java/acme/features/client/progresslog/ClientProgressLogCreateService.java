@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
@@ -84,11 +85,16 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		if (!super.getBuffer().getErrors().hasErrors("contract"))
 			super.state(progressLog.getContract() != null, "contract", "client.progress-log.form.error.unassigned-contract");
 
+		if (progressLog.getContract() != null) {
+
+			final boolean contractInDraftMode = progressLog.getContract().isDraftMode();
+			super.state(!contractInDraftMode, "contract", "client.progress-log.form.error.illegal-contract");
+		}
+
 		if (!super.getBuffer().getErrors().hasErrors("registrationMoment"))
 			super.state(MomentHelper.isBeforeOrEqual(progressLog.getRegistrationMoment(), MomentHelper.getCurrentMoment()), "registrationMoment", "client.progress-log.form.error.illegal-moment");
 
-		if (!progressLog.isDraftMode())
-			super.state(progressLog.isDraftMode(), "draftMode", "client.progress-log.form.error.illegal-publish");
+		super.state(progressLog.isDraftMode(), "draftMode", "client.progress-log.form.error.illegal-publish");
 
 	}
 
@@ -111,7 +117,9 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		SelectChoices choices;
 		Collection<Contract> contracts;
 
-		contracts = this.repository.findAllContracts();
+		Principal principal = super.getRequest().getPrincipal();
+
+		contracts = this.repository.findAllPublishedContractsByClientId(principal.getActiveRoleId());
 		choices = SelectChoices.from(contracts, "code", progressLog.getContract());
 
 		dataset = super.unbind(progressLog, "recordId", "responsiblePerson", "completeness", "comment", "contract", "draftMode");

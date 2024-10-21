@@ -96,6 +96,9 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 
 		if (!super.getBuffer().getErrors().hasErrors("budget")) {
 
+			super.state(contract.getBudget().getAmount() != null, "budget", "client.contract.form.error.null-budget");
+			super.state(contract.getBudget().getCurrency() != null, "budget", "client.contract.form.error.null-currency");
+
 			super.state(0 <= contract.getBudget().getAmount(), "budget", "client.contract.form.error.negative-budget");
 
 			String acceptedCurrencies = this.repository.findAcceptedCurrencies();
@@ -109,24 +112,28 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 
 		if (contract.getProject() != null) {
 
-			Money projectCost = contract.getProject().getCost();
-			List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(contract.getProject().getCode()));
+			if (!super.getBuffer().getErrors().hasErrors("budget")) {
 
-			Double spentBudget = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
-			spentBudget += contract.getBudget().getAmount();
+				Money projectCost = contract.getProject().getCost();
+				List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(contract.getProject().getCode()));
 
-			double remainingBudget = projectCost.getAmount() - spentBudget;
+				Double spentBudget = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
+				spentBudget += contract.getBudget().getAmount();
 
-			super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
-			super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
+				double remainingBudget = projectCost.getAmount() - spentBudget;
 
-			if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
-				super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
+				super.state(contract.getBudget().getCurrency().equals(projectCost.getCurrency()), "budget", "client.contract.form.error.different-currency");
+				super.state(0 <= remainingBudget, "budget", "client.contract.form.error.budget-greater-than-cost");
+			}
 
-			if (!contract.isDraftMode())
-				super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
+			boolean projectInDraftMode = contract.getProject().isDraftMode();
+			super.state(!projectInDraftMode, "project", "client.contract.form.error.illegal-project");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("instantiationMoment"))
+			super.state(MomentHelper.isBeforeOrEqual(contract.getInstantiationMoment(), MomentHelper.getCurrentMoment()), "instantiationMoment", "client.contract.form.error.illegal-moment");
+
+		super.state(contract.isDraftMode(), "draftMode", "client.contract.form.error.illegal-publish");
 	}
 
 	@Override
@@ -149,13 +156,26 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 		Collection<Project> projects;
 		SelectChoices choices;
 
-		projects = this.repository.findAllProjects();
+		projects = this.repository.findAllPublishedProjects();
 		choices = SelectChoices.from(projects, "code", contract.getProject());
 
 		dataset = super.unbind(contract, "code", "providerName", "customerName", "goals", "budget", "project", "draftMode");
 
 		dataset.put("choices", choices);
 		dataset.put("instantiationMoment", contract.getInstantiationMoment());
+
+		if (contract.getProject() != null) {
+
+			Project project = contract.getProject();
+
+			List<Contract> contractsOfProject = List.copyOf(this.repository.findContractsByProjectCode(project.getCode()));
+
+			Double sumOfCosts = contractsOfProject.stream().filter(c -> !c.equals(contract)).map(c -> c.getBudget().getAmount()).reduce(.0, (x, y) -> x + y);
+			Double remainingAmount = project.getCost().getAmount() - sumOfCosts;
+			String remainingBudget = String.format("%s %s", project.getCost().getCurrency(), remainingAmount);
+
+			dataset.put("remainingBudget", remainingBudget);
+		}
 
 		super.getResponse().addData(dataset);
 	}

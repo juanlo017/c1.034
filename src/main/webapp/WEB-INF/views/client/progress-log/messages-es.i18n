@@ -14,6 +14,7 @@ client.progress-log.list.label.recordId = Identificador
 client.progress-log.list.label.responsiblePerson = Responsable
 client.progress-log.list.label.completeness =  Completitud
 client.progress-log.list.label.contract = Contrato
+client.progress-log.list.label.draftMode = Modo borrador
 
 client.progress-log.button.create = Crear
 
@@ -35,3 +36,4 @@ client.progress-log.form.error.duplicated-record-id = Identificador ya existente
 client.contract.form.error.illegal-record-id-pattern = El identificador debe cumplir la siguiente regexp: "^PG-[A-Z]{1,2}-[0-9]{4}$"
 client.progress-log.form.error.completeness-required = Se debe asignar una completitud de 0 a 1
 client.progress-log.form.error.unassigned-contract = Se debe asignar un contrato
+client.progress-log.form.error.illegal-contract = El contracto asignado no puede estar en modo borrador
